@@ -24,12 +24,12 @@ namespace miniCRM
             InitializeComponent();
             List<Client> clients = new List<Client>()
             {
-                new Client("Рога и копыта", "Александр"),
-                new Client("2 гуся", "Евгений"),
-                new Client("Смалец", "Сергей")
+                new Client("Рога и копыта", "Александр", "+912343211", "roga@mail.com"),
+                new Client("2 гуся", "Евгений", "+84326776654", "twogeese@mail.com"),
+                new Client("Такое дело", "Сергей", "+612235434", "case@mail.com")
             };
 
-            test_table.ItemsSource = clients;
+            clients_table.ItemsSource = clients;
         }
     }
 }
