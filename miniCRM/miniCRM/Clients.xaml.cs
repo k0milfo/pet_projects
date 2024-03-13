@@ -19,6 +19,7 @@ namespace miniCRM
     /// </summary>
     public partial class Window_Clients : Window
     {
+       
         public Window_Clients()
         {
             InitializeComponent();
@@ -30,6 +31,15 @@ namespace miniCRM
             };
 
             clients_table.ItemsSource = clients;
+
+            //add_client.Click += add_client_Click;
+        }
+
+        private void add_client_Click(object sender, RoutedEventArgs e)
+        {
+            Window1 window1 = new Window1();
+            window1.Show();
+            
         }
     }
 }

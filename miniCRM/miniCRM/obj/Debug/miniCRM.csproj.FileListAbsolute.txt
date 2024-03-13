@@ -25,3 +25,5 @@ C:\Users\User\Source\Repos\miniCRM\miniCRM\obj\Debug\miniCRM.csproj.CopyComplete
 C:\Users\User\Source\Repos\miniCRM\miniCRM\obj\Debug\Clients.g.cs
 C:\Users\User\Source\Repos\miniCRM\miniCRM\obj\Debug\Clients.baml
 C:\Users\User\Source\Repos\miniCRM\miniCRM\obj\Debug\App.baml
+C:\Users\User\Source\Repos\miniCRM\miniCRM\obj\Debug\Window1.g.cs
+C:\Users\User\Source\Repos\miniCRM\miniCRM\obj\Debug\Window1.baml
