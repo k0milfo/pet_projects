@@ -1,5 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data;
+using System.Data.SqlClient;
+using System.Diagnostics.Contracts;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -17,24 +20,27 @@ namespace miniCRM
     /// <summary>
     /// Логика взаимодействия для Window1.xaml
     /// </summary>
-    public partial class Window1 : Window
+    public partial class AddClientWindow : Window
     {
-        public Window1()
+        DataBase dataBase = new DataBase();
+        public AddClientWindow()
         {
             InitializeComponent();
         }
 
-        private void Button_Click(object sender, RoutedEventArgs e)
+        private void Button_ok_Click(object sender, RoutedEventArgs e)
         {
             Window_Clients clients = Application.Current.Windows.OfType<Window_Clients>().FirstOrDefault();
-            List<Client> list = new List<Client>();
-                list.Add(new Client(company.Text, name.Text,
-                    number_phone.Text, email.Text));
-                list.AddRange(clients.clients_table.Items.Cast<Client>().ToList());
-                clients.clients_table.ItemsSource = null;
-                clients.clients_table.ItemsSource = list;
-                this.Close();
-                clients.InvalidateVisual();
+            string querystring = $"INSERT INTO clients_db (company, contact_person, number_phone, email) VALUES ('{company.Text}', '{name.Text}', '{number_phone.Text}', '{email.Text}')";
+            using (SqlCommand command = new SqlCommand(querystring, dataBase.GetConnection()))
+            {
+                dataBase.openConnection();
+                command.ExecuteNonQuery();
+                clients.initializeClitntsTable();
+                dataBase.closeConnection();
+            }
+            this.Close();
+
         }
     }
 }

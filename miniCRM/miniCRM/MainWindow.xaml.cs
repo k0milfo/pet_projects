@@ -27,8 +27,9 @@ namespace miniCRM
 
         private void Clients_Click(object sender, RoutedEventArgs e)
         {
-            Window_Clients wo = new Window_Clients();
-            wo.Show();
+            Window_Clients clients_window = new Window_Clients();
+            clients_window.Show();
+            this.Close();
         }
     }
 }
