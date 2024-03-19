@@ -23,8 +23,6 @@ C:\Users\User\Source\Repos\miniCRM\miniCRM\bin\Debug\Microsoft.Xaml.Behaviors.pd
 C:\Users\User\Source\Repos\miniCRM\miniCRM\bin\Debug\Microsoft.Xaml.Behaviors.xml
 C:\Users\User\Source\Repos\miniCRM\miniCRM\obj\Debug\miniCRM.csproj.CopyComplete
 C:\Users\User\Source\Repos\miniCRM\miniCRM\obj\Debug\App.baml
-C:\Users\User\Source\Repos\miniCRM\miniCRM\obj\Debug\Window1.g.cs
-C:\Users\User\Source\Repos\miniCRM\miniCRM\obj\Debug\Window1.baml
 C:\Users\User\Source\Repos\miniCRM\miniCRM\bin\Debug\Azure.Core.dll
 C:\Users\User\Source\Repos\miniCRM\miniCRM\bin\Debug\Azure.Identity.dll
 C:\Users\User\Source\Repos\miniCRM\miniCRM\bin\Debug\Microsoft.Bcl.AsyncInterfaces.dll
@@ -93,5 +91,7 @@ C:\Users\User\Source\Repos\miniCRM\miniCRM\bin\Debug\pt-BR\Microsoft.Data.SqlCli
 C:\Users\User\Source\Repos\miniCRM\miniCRM\bin\Debug\ru\Microsoft.Data.SqlClient.resources.dll
 C:\Users\User\Source\Repos\miniCRM\miniCRM\bin\Debug\zh-Hans\Microsoft.Data.SqlClient.resources.dll
 C:\Users\User\Source\Repos\miniCRM\miniCRM\bin\Debug\zh-Hant\Microsoft.Data.SqlClient.resources.dll
-C:\Users\User\Source\Repos\miniCRM\miniCRM\obj\Debug\Window_Clients.g.cs
-C:\Users\User\Source\Repos\miniCRM\miniCRM\obj\Debug\Window_Clients.baml
+C:\Users\User\Source\Repos\miniCRM\miniCRM\obj\Debug\Page_Clients.g.cs
+C:\Users\User\Source\Repos\miniCRM\miniCRM\obj\Debug\Page_Clients.baml
+C:\Users\User\Source\Repos\miniCRM\miniCRM\obj\Debug\AddClientWindow.g.cs
+C:\Users\User\Source\Repos\miniCRM\miniCRM\obj\Debug\AddClientWindow.baml

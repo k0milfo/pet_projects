@@ -23,13 +23,19 @@ namespace miniCRM
         public MainWindow()
         {
             InitializeComponent();
+            add_clients1.Visibility = Visibility.Hidden;
         }
 
         private void Clients_Click(object sender, RoutedEventArgs e)
         {
-            Window_Clients clients_window = new Window_Clients();
-            clients_window.Show();
-            this.Close();
+            mainFrame.Navigate(new Page_Clients());
+            add_clients1.Visibility = Visibility.Visible;
+        }
+
+        private void add_clients1_Click(object sender, RoutedEventArgs e)
+        {
+            AddClientWindow add = new AddClientWindow();
+            add.Show();
         }
     }
 }

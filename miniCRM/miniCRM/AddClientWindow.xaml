@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:miniCRM"
         mc:Ignorable="d"
-        Title="Window1" Height="250" Width="300">
+        Title="Новый клиент" Height="250" Width="300">
     <Grid Background="#B0F26D" Margin="0,0,0,0">
         <Label Content="Компания" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top"/>
         <Label Content="Контактное лицо" HorizontalAlignment="Left" Margin="10,36,0,0" VerticalAlignment="Top"/>

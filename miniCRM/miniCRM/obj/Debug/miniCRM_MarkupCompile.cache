@@ -10,11 +10,11 @@ none
 false
 DEBUG;TRACE
 C:\Users\User\Source\Repos\miniCRM\miniCRM\App.xaml
-3-1021590637
+3-157387119
 
-9-305191535
+10-467088473
 571373869981
-MainWindow.xaml;Window_Clients.xaml;Window1.xaml;
+MainWindow.xaml;Page_Clients.xaml;AddClientWindow.xaml;
 
 False
 
