@@ -1,0 +1,64 @@
+﻿@model Web_miniCRM.Domain.Entity.CreateInvoiceViewModel
+@{
+	ViewData["Title"] = "Companies";
+}
+
+<!-- Подключение CSS файла -->
+<link rel="stylesheet" href="~/css/styles.css" />
+
+<div class="text-center1">
+	<h1 class="display-4">Companies</h1>
+</div>
+
+<!-- Основной контейнер для кнопок и таблицы -->
+<div class="button-container">
+	<div class="custom-button">
+		<button class="custom-button" type="button" id="myButton" onclick="location.href='@Url.Action("CreateCompany", "Company")'">
+			Добавить
+		</button>
+	</div>
+	<form asp-action="FindCompany" method="get">
+		<input type="text" name="item" id="find-company" value="" placeholder="ИНН или Название" />
+		<button class="custom-button" type="submit">Поиск</button>
+		@if (TempData["SuccessMessage"] != null)
+		{
+			<div class="alert alert-success">
+				@TempData["SuccessMessage"]
+			</div>
+		}
+	</form>
+
+	<div class="table-container-Companies">
+		<table>
+			<thead>
+				<tr>
+					<th>Компания</th>
+					<th>Контактное лицо</th>
+					<th>Номер телефона</th>
+					<th>Email</th>
+					<th>ИНН</th>
+					<th>Менеджер</th>
+				</tr>
+			</thead>
+			<tbody>
+				@foreach (var company in Model._companies)
+				{
+					<tr>
+						<td><a href="@Url.Action("GetCompanyInfo", "Company", new { id = company.CompanyId })" class="company-link" data-company-id="@company.CompanyId">@company.CompanyName</a></td>
+						<td>@company.NameContactPerson</td>
+						<td>@company.PhoneNumber</td>
+						<td>@company.Email</td>
+						<td>@company.INN</td>
+						<td><a href="@Url.Action("GetManagerInfoCompany", "Manager", new { id = company.ManagerId })">@Model._managers.FirstOrDefault(i => i.ManagerId == company.ManagerId).FirstName @Model._managers.FirstOrDefault(i => i.ManagerId == company.ManagerId).LastName</a></td>
+						<td>
+							<div>
+								<button class="custom-button" type="button" id="ButtonUpdate" onclick="location.href='@Url.Action("ChangingDataCompany", "Company", new { id = company.CompanyId})'">Изменить</button>
+								<button class="custom-button" type="button" id="ButtonDelete" onclick="location.href='@Url.Action("DeleteCompany", "Company", new { id = company.CompanyId})'">Удалить</button>
+							</div>
+						</td>
+					</tr>
+				}
+			</tbody>
+		</table>
+	</div>
+</div>

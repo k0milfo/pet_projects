@@ -1,0 +1,62 @@
+﻿@model Web_miniCRM.Domain.Entity.Company
+<form asp-action="UpsertCompany" method="post">
+	<div class="main-container">
+		<input type="hidden" id="CompanyId" name="CompanyId" value="@Model.CompanyId" />
+		<input type="hidden" id="INN" name="INN" value="@Model.INN" />
+		<input type="hidden" id="CompanyName" name="CompanyName" value="@Model.CompanyName" />
+
+		@for (int i = 0; i < Model.Invoices.Count; i++)
+		{
+			<input type="hidden" name="Invoices[@i].InvoiceId" value="@Model.Invoices[i].InvoiceId" />
+			<input type="hidden" name="Invoices[@i].InvoiceDate" value="@Model.Invoices[i].InvoiceDate" />
+			<input type="hidden" name="Invoices[@i].CompanyId" value="@Model.Invoices[i].CompanyId" />
+		}
+
+		<div class="form-group">
+			<label for="NameContactPerson">Контактное лицо:</label>
+			<input type="text" id="NameContactPerson" name="NameContactPerson" value="@Model.NameContactPerson" />
+		</div>
+
+		<div class="form-group">
+			<label for="PhoneNumber">Телефонный номер:</label>
+			<input type="text" id="PhoneNumber" name="PhoneNumber" value="@Model.PhoneNumber" />
+		</div>
+
+		<div class="form-group">
+			<label for="Email">Email:</label>
+			<input type="text" id="Email" name="Email" value="@Model.Email" />
+		</div>
+
+		@for (int i = 0; i < Model.Informations.Count; i++)
+		{
+			<div class="form-group">
+				<h5>Информация о компании</h5>
+				<input type="text" name="Informations[@i].Details" value="@Model.Informations[i].Details" />
+			</div>
+		}
+
+		<button type="submit">Сохранить изменения</button>
+	</div>
+</form>
+
+
+<!-- #region Настройка стилей -->
+
+<style>
+	.form-group {
+		margin-bottom: 10px; /* Отступ между элементами формы */
+	}
+
+		.form-group label {
+			display: block; /* Делаем метки блочными, чтобы располагались столбиком */
+			margin-bottom: 5px; /* Отступ между метками и полями ввода */
+		}
+
+		.form-group input {
+			width: 100%; /* Ширина полей ввода по ширине контейнера */
+			padding: 5px; /* Внутренний отступ для улучшения визуального восприятия */
+			box-sizing: border-box; /* Учитываем padding в общей ширине элемента */
+		}
+</style>
+
+<!-- #endregion -->

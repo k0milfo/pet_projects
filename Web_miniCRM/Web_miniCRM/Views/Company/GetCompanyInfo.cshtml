@@ -1,0 +1,87 @@
+﻿@model Web_miniCRM.Domain.Entity.Company
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="styles.css"> <!-- Подключение внешнего CSS файла -->
+    <style>
+        .client-info {
+            flex: 1; /* Занимает всю доступную ширину */
+            margin-right: 40px; /* Увеличение правого отступа */
+            position: relative;
+            right: 45px; /*150px;*/
+        }
+        .table-container {
+            flex: 1; /* Занимает всю доступную ширину */
+            border: 1px solid #ddd;
+            padding: 10px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="client-info">
+            <h3>Информация о клиенте</h3>
+            @if (Model != null && Model.Informations != null)
+            {
+                @foreach (var item in Model.Informations)
+                {
+                    <p>@item.Details</p>
+                }
+            }
+            else
+            {
+                <p>Нет доступной информации о клиенте</p>
+            }
+        </div>
+        <div class="table-container">
+            <h5>Счета отгруженные</h5>
+            <table>
+                <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>Дата</th>
+                        <th>Сумма</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <!-- Здесь будут данные таблицы -->
+                    @foreach(var company in Model.Invoices.Where(i => i.ShippedInvoiced == true))
+                    {
+                        <tr>
+                            <td><a href="@Url.Action("GetInvoiceInfo", "Invoice", new { id = company.InvoiceId })" class="company-link" data-invoice-id"="@company.InvoiceId">@company.InvoiceId</a></td>
+                            <td>@company.InvoiceDate?.ToString("dd.MM.yyyy")</td>
+                            <td>@company.InvoiceItems.Select(i => i.Product.Price * i.Quantity).Sum()</td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+        <div class="table-container">
+            <h5>Счета неотгруженные</h5>
+            <table>
+                <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>Дата</th>
+                        <th>Сумма</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <!-- Здесь будут данные таблицы -->
+                    @foreach (var company in Model.Invoices.Where(i => i.ShippedInvoiced == false))
+                    {
+                        <tr>
+                            <td><a href="@Url.Action("GetInvoiceInfo", "Invoice", new { id = company.InvoiceId })" class="company-link" data-invoice-id"="@company.InvoiceId">@company.InvoiceId</a></td>
+                            <td>@company.InvoiceDate?.ToString("dd.MM.yyyy")</td>
+                            <td>@company.InvoiceItems.Select(i => i.Product.Price * i.Quantity).Sum()</td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+    </div>
+</body>
+</html>

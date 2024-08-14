@@ -1,0 +1,29 @@
+﻿@{
+    ViewData["Title"] = "Home Page";
+}
+
+<div class="text-center">
+    <h1 class="display-4">Welcome</h1>
+    <p>Learn about <a href="https://learn.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
+</div>
+
+<div class="button-container">
+    <button class="custom-button" type="button" id="myButton" onclick="location.href='@Url.Action("GetCompanies", "Company")'">
+        Компании
+    </button>
+    <button class="custom-button" type="button" id="myButton1" onclick="location.href='@Url.Action("GetProducts", "Product")'">
+        Склад
+    </button>
+    <button class="custom-button" type="button" id="myButton2" onclick="location.href='@Url.Action("CreateInvoice", "Invoice")'">
+        Создать счет
+    </button>
+    <button class="custom-button" type="button" id="myButton2" onclick="location.href='@Url.Action("GetInvoices", "Invoice")'">
+        Вывести все счета
+    </button>
+    <button class="custom-button" type="button" id="myButton3" onclick="location.href='@Url.Action("CreateProduct", "Product")'">
+       Добавить продукт
+    </button>
+    <button class="custom-button" type="button" id="myButton4" onclick="location.href='@Url.Action("GetManagers", "Manager")'">
+        Менеджеры
+    </button>
+</div>

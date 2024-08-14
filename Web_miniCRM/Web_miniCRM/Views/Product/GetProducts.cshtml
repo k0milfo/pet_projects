@@ -1,0 +1,10 @@
+﻿@model List<Web_miniCRM.Domain.Entity.Product>
+@{
+}
+
+@foreach (var item in Model)
+{
+	<p>Название: @item.Name</p>
+	<p>Цена: @item.Price руб</p>
+	<p>Количество на складе: @item.CountAllProduct</p>
+}

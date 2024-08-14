@@ -1,0 +1,86 @@
+﻿@model Web_miniCRM.Domain.Entity.CreateInvoiceViewModel
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Create Invoice</title>
+    <link rel="stylesheet" href="~/css/styles.css">
+</head>
+<body>
+    <h2>Создание счета</h2>
+    <form asp-action="UpsertItem" method="post">
+        <div class="invoice-info">
+            <label for="Company">Company:</label>
+            <select id="Company" name="CompanyId">
+                @foreach (var company in Model._companies)
+                {
+                    <option value="@company.CompanyId">@company.CompanyName</option>
+                }
+            </select>
+            <label for="InvoiceDate">Дата счета:</label>
+            <input type="date" id="InvoiceDate" name="InvoiceDate" />
+        </div>
+
+        <div class="product-info">
+            <h2>Продукты</h2>
+            <div id="product-container">
+                <!-- Поле для первого продукта, которое всегда присутствует -->
+                <div class="product-entry">
+                    <select name="InvoiceItems[0].ProductId">
+                        @foreach (var product in Model._products)
+                        {
+                            <option value="@product.ProductId">@product.Name</option>
+                        }
+                    </select>
+                    <input type="number" name="InvoiceItems[0].Quantity" placeholder="Количество" min="1" required />
+                    <button type="button" class="remove-product-btn">Удалить</button>
+                </div>
+            </div>
+            <button type="button" id="add-product-btn">Добавить продукт</button>
+        </div>
+        <label for="Informations_0">Дополнительная информация по счету:</label>
+        <input type="text" id="Informations_0" name="Informations[0].Details" />
+        <button type="submit">Сохранить счет</button>
+    </form>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            var productContainer = document.getElementById('product-container');
+            var addProductBtn = document.getElementById('add-product-btn');
+            var productCount = 0;
+
+            addProductBtn.addEventListener('click', function () {
+                productCount++;
+
+                var productDiv = document.createElement('div');
+                productDiv.classList.add('product-entry');
+
+                // Генерация HTML для select с помощью Razor
+                var selectHtml = '<select name="InvoiceItems[' + productCount + '].ProductId">';
+        @foreach (var product in Model._products)
+        {
+            <text>
+                        selectHtml += '<option value="@product.ProductId">@product.Name</option>';
+            </text>
+        }
+                    selectHtml += '</select>';
+
+                var quantityInput = '<input type="number" name="InvoiceItems[' + productCount + '].Quantity" placeholder="Количество" min="1" required />';
+                var removeBtn = '<button type="button" class="remove-product-btn">Удалить</button>';
+
+                productDiv.innerHTML = selectHtml + quantityInput + removeBtn;
+                productContainer.appendChild(productDiv);
+
+                // Добавляем обработчик для кнопки удаления продукта
+                var removeBtns = productDiv.getElementsByClassName('remove-product-btn');
+                for (var i = 0; i < removeBtns.length; i++) {
+                    removeBtns[i].addEventListener('click', function () {
+                        this.parentElement.remove();
+                    });
+                }
+            });
+        });
+    </script>
+</body>
+</html>
