@@ -1,103 +1,37 @@
 ﻿@model Web_miniCRM.Domain.Entity.Company
 
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <h1 class="text-center1" style="margin-left:-100px;">Информация о компании</h1>
-    <link rel="stylesheet" href="~/css/styles.css">
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<h1 class="text-center1" style="margin-left:-80px;">@Model.CompanyName</h1>
 </head>
 
 
 <div class="button-container">
-    <button class="custom-button" type="button" id="myButton1" onclick="location.href='@Url.Action("GetManagerInfoCompany", "Manager", new { id = Model.ManagerId })'" class="manager-link" data-manager-id="@Model.ManagerId">
-        Информация
-    </button>
-    <button class="custom-button" type="button" id="myButton2" onclick="location.href='@Url.Action("GetCompanyInfoCalls", "Company", new { id = Model.ManagerId })'" class="manager-link" data-manager-id="@Model.ManagerId">
-        Звонки
-    </button>
-    <button class="custom-button" type="button" id="myButton3" onclick="location.href='@Url.Action("GetManagerInfoMeetings", "Manager", new { id = Model.ManagerId })'" class="manager-link" data-manager-id="@Model.ManagerId">
-        Встречи
-    </button>
-    <button class="custom-button" type="button" id="myButton4" onclick="location.href='@Url.Action("GetManagerInfoInvoice", "Manager", new { id = Model.ManagerId })'" class="manager-link" data-manager-id="@Model.ManagerId">
-        Счета
-    </button>
-    <button class="custom-button additional-button" type="button" id="myButton5" onclick="location.href='@Url.Action("CreateCompany", "Company", new {id = Model.ManagerId})'">
-        Пустая кнопка
-    </button>
-    </div>
+	<button class="custom-button" type="button" id="myButton1" onclick="location.href='@Url.Action("GetCompanyInfo", "Company", new { id = Model.CompanyId})'">
+		Информация
+	</button>
+	<button class="custom-button" type="button" id="myButton2" onclick="location.href='@Url.Action("GetCompanyInfoCalls", "Company", new { id = Model.CompanyId })'">
+		Звонки
+	</button>
+	<button class="custom-button" type="button" id="myButton3" onclick="location.href='@Url.Action("GetCompanyInfoMeetings", "Company", new { id = Model.CompanyId })'">
+		Встречи
+	</button>
+	<button class="custom-button" type="button" id="myButton4" onclick="location.href='@Url.Action("GetCompanyInfoInvoices", "Company", new { id = Model.CompanyId })'">
+		Счета
+	</button>
+</div>
 
-
-
-
-
-
-
-
-
-@* <body> *@
-@*     <div class="text-center1" style="margin-left:500px;">
-        <h3>Информация о клиенте</h3>
-    </div> *@
-    <div class="container">
-        @* <div class="client-info"> *@
-            @if (Model != null && Model.Informations != null)
-            {
-                @foreach (var item in Model.Informations)
-                {
-                    <p>@item.Details</p>
-                }
-            }
-            else
-            {
-                <p>Нет доступной информации о клиенте</p>
-            }
-
-
-@*         <div class="table-container">
-            <h5>Счета отгруженные</h5>
-            <table>
-                <thead>
-                    <tr>
-                        <th>ID</th>
-                        <th>Дата</th>
-                        <th>Сумма</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    @foreach(var company in Model.Invoices.Where(i => i.ShippedInvoiced == true))
-                    {
-                        <tr>
-                            <td><a href="@Url.Action("GetInvoiceInfo", "Invoice", new { id = company.InvoiceId })" class="company-link" data-invoice-id"="@company.InvoiceId">@company.InvoiceId</a></td>
-                            <td>@company.InvoiceDate?.ToString("dd.MM.yyyy")</td>
-                            <td>@company.InvoiceItems.Select(i => i.Product.Price * i.Quantity).Sum()</td>
-                        </tr>
-                    }
-                </tbody>
-            </table>
-        </div>
-        <div class="table-container">
-            <h5>Счета неотгруженные</h5>
-            <table>
-                <thead>
-                    <tr>
-                        <th>ID</th>
-                        <th>Дата</th>
-                        <th>Сумма</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    @foreach (var company in Model.Invoices.Where(i => i.ShippedInvoiced == false))
-                    {
-                        <tr>
-                            <td><a href="@Url.Action("GetInvoiceInfo", "Invoice", new { id = company.InvoiceId })" class="company-link" data-invoice-id"="@company.InvoiceId">@company.InvoiceId</a></td>
-                            <td>@company.InvoiceDate?.ToString("dd.MM.yyyy")</td>
-                            <td>@company.InvoiceItems.Select(i => i.Product.Price * i.Quantity).Sum()</td>
-                        </tr>
-                    }
-                </tbody>
-            </table>
-        </div> *@
-
-
-    </div>
-@* </body> *@
+<div class="container">
+	@if (Model != null && Model.Informations != null)
+	{
+		@foreach (var item in Model.Informations)
+		{
+			<p>@item.Details</p>
+		}
+	}
+	else
+	{
+		<p>Нет доступной информации о клиенте</p>
+	}
+</div>

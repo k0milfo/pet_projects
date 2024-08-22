@@ -41,7 +41,27 @@ namespace Web_miniCRM.Controllers
 			return RedirectToAction("Error");
 		}
 
-		[HttpGet]
+        [HttpGet]
+        public async Task<IActionResult> GetInvoiceInfo_NoUpd(int id)
+        {
+            var response = await _invoiceServices.GetInvoiceId(id);
+            var products = await _productService.GetProducts();
+
+            if (response.StatusCode == Domain.Enum.StatusCode.OK)
+            {
+                //СОЗДАТЬ КЛАСС ПРЕДСТАВЛЕНИЯ/ИЗМЕНИТЬ ДЛЯ УПРОЩЕНИЯ В САМОМ ПРЕДСТАВЛЕНИИ
+                var viewModel = new
+                {
+                    Invoice = response.Data,
+                    Products = products.Data
+                };
+
+                return View(viewModel);
+            }
+            return RedirectToAction("Error");
+        }
+
+        [HttpGet]
 		public async Task<IActionResult> GetInvoices()
 		{
 			var response = await _invoiceServices.GetInvoices();

@@ -53,6 +53,14 @@ body {
     width: 800px;
 }
 
+.table-container-Company_Invoices_Calls_Meetings {
+    flex-grow: 1;
+    position: relative;
+    left: 450px;
+    top: -325px;
+    width: 800px;
+}
+
 table {
     width: 100%;
     border-collapse: collapse;

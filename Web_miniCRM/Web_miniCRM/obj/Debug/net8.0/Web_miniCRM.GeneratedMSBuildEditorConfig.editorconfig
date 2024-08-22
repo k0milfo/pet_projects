@@ -54,6 +54,10 @@ build_metadata.AdditionalFiles.CssScope =
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQ29tcGFueVxHZXRDb21wYW55SW5mb0NhbGxzLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
+[C:/Users/User/Source/Repos/Web_miniCRM/Web_miniCRM/Views/Company/GetCompanyInfoInvoices.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQ29tcGFueVxHZXRDb21wYW55SW5mb0ludm9pY2VzLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
 [C:/Users/User/Source/Repos/Web_miniCRM/Web_miniCRM/Views/Company/GetCompanyInfoMeetings.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQ29tcGFueVxHZXRDb21wYW55SW5mb01lZXRpbmdzLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
@@ -84,6 +88,10 @@ build_metadata.AdditionalFiles.CssScope =
 
 [C:/Users/User/Source/Repos/Web_miniCRM/Web_miniCRM/Views/Invoice/GetInvoiceInfo.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSW52b2ljZVxHZXRJbnZvaWNlSW5mby5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/User/Source/Repos/Web_miniCRM/Web_miniCRM/Views/Invoice/GetInvoiceInfo_NoUpd.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSW52b2ljZVxHZXRJbnZvaWNlSW5mb19Ob1VwZC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
 [C:/Users/User/Source/Repos/Web_miniCRM/Web_miniCRM/Views/Invoice/GetInvoices.cshtml]

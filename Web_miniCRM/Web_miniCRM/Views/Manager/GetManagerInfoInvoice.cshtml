@@ -40,6 +40,7 @@
 		<thead>
 			<tr>
 				<label>Отгруженные счета</label>
+				<th>Номер</th>
 				<th>Компания</th>
 				<th>Дата счета</th>
 				<th>Сумма</th>
@@ -49,6 +50,7 @@
 				@foreach(var invoice in Model.FilteredInvoices.Where(i => i.ShippedInvoiced == true))
 				{
 					<tr>
+						<td><a href="@Url.Action("GetInvoiceInfo", "Invoice", new { id = invoice.InvoiceId })">@invoice.InvoiceId</a></td>
 						<td><a href="@Url.Action("GetCompanyInfo", "Company", new { id = invoice.CompanyId })">@invoice.Company.CompanyName</a></td>
 						<td>@invoice.InvoiceDate</td>
 						<td>@invoice.InvoiceItems.Sum(item => item.Product.Price * item.Quantity)</td>
@@ -63,6 +65,7 @@
 		<thead>
 			<tr>
 				<label>На согласовании</label>
+				<th>Номер</th>
 				<th>Компания</th>
 				<th>Дата счета</th>
 				<th>Сумма</th>
@@ -72,6 +75,7 @@
 				@foreach (var invoice in Model.FilteredInvoices.Where(i => i.ShippedInvoiced == false))
 				{
 					<tr>
+						<td><a href="@Url.Action("GetInvoiceInfo", "Invoice", new { id = invoice.InvoiceId })">@invoice.InvoiceId</a></td>
 						<td><a href="@Url.Action("GetCompanyInfo", "Company", new { id = invoice.CompanyId })">@invoice.Company.CompanyName</a></td>
 						<td>@invoice.InvoiceDate</td>
 						<td>@invoice.InvoiceItems.Sum(item => item.Product.Price * item.Quantity)</td>

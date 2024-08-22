@@ -2,6 +2,7 @@
 using Microsoft.AspNetCore.Mvc;
 using Web_miniCRM.Domain.Entity;
 using Web_miniCRM.Service.Interfaces;
+using static Microsoft.EntityFrameworkCore.DbLoggerCategory.Database;
 
 namespace Web_miniCRM.Controllers
 {
@@ -182,40 +183,59 @@ namespace Web_miniCRM.Controllers
 				return RedirectToAction("Error");
 			}
 		}
-		//[HttpGet]
-		//public async Task<IActionResult> GetCompanyInfoMeetings(int id, string? startDateRange, string? endDateRange)
-		//{
-		//	var response = await _companyServices.GetCompanyId(id);
 
-		//	List<Call> filteredCalls = (manager.Data.Calls.Where(call
-		//	=> (!startDate.HasValue || call.Date >= startDate)
-		//	&& (!endDate.HasValue || call.Date <= endDate))).ToList();
+		[HttpGet]
+		public async Task<IActionResult> GetCompanyInfoMeetings(int id, string? startDateRange, string? endDateRange)
+		{
+			var company = await _companyServices.GetCompanyId(id);
 
-		//	DateTime? startDate = string.IsNullOrEmpty(startDateRange) ? null : DateTime.Parse(startDateRange);
-		//	DateTime? endDate = string.IsNullOrEmpty(endDateRange) ? null : DateTime.Parse(endDateRange);
+			DateTime? startDate = string.IsNullOrEmpty(startDateRange) ? null : DateTime.Parse(startDateRange);
+			DateTime? endDate = string.IsNullOrEmpty(endDateRange) ? null : DateTime.Parse(endDateRange);
 
-		//	if (response.StatusCode == Domain.Enum.StatusCode.OK && response.Data != null)
-		//	{
-		//		return View(response.Data);
-		//	}
-		//	else
-		//	{
-		//		return RedirectToAction("Error");
-		//	}
-		//}
-		//[HttpGet]
-		//public async Task<IActionResult> GetCompanyInfoInvoices(int id)
-		//{
-		//	var response = await _companyServices.GetCompanyId(id);
+			List<Meeting> filteredMeetings = company.Data.Meetings.Where(meeting
+			=> (!startDate.HasValue || meeting.Date >= startDate)
+			&& (!endDate.HasValue || meeting.Date <= endDate)).ToList();
 
-		//	if (response.StatusCode == Domain.Enum.StatusCode.OK && response.Data != null)
-		//	{
-		//		return View(response.Data);
-		//	}
-		//	else
-		//	{
-		//		return RedirectToAction("Error");
-		//	}
-		//}
+			if (company.StatusCode == Domain.Enum.StatusCode.OK && company.Data != null)
+			{
+				var viewModel = new CompanyViewModelFiltering
+				{
+					Company = company.Data,
+					FilteredMeetings = filteredMeetings
+				};
+				return View(viewModel);
+			}
+			else
+			{
+				return RedirectToAction("Error");
+			}
+		}
+
+		[HttpGet]
+		public async Task<IActionResult> GetCompanyInfoInvoices(int id, string? startDateRange, string? endDateRange)
+		{
+			var company = await _companyServices.GetCompanyId(id);
+
+			DateTime? startDate = string.IsNullOrEmpty(startDateRange) ? null : DateTime.Parse(startDateRange);
+			DateTime? endDate = string.IsNullOrEmpty(endDateRange) ? null : DateTime.Parse(endDateRange);
+
+			List<Invoice> filteredInvoices = company.Data.Invoices.Where(invoices
+			=> (!startDate.HasValue || invoices.InvoiceDate >= startDate)
+			&& (!endDate.HasValue || invoices.InvoiceDate <= endDate)).ToList();
+
+			if (company.StatusCode == Domain.Enum.StatusCode.OK && company.Data != null)
+			{
+				var viewModel = new CompanyViewModelFiltering
+				{
+					Company = company.Data,
+					FilteredInvoices = filteredInvoices
+				};
+				return View(viewModel);
+			}
+			else
+			{
+				return RedirectToAction("Error");
+			}
+		}
 	}
 }
