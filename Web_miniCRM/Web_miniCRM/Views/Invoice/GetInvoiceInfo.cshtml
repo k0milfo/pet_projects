@@ -51,7 +51,7 @@
 </div>
 <button type="submit">Сохранить изменения</button>
 <button type="submit" name="action" value="CreateExelInvoice">Создать Excel</button>
-<button type="button" id="myButton" onclick="location.href='@Url.Action("GetCompanyInfo", "Company", new {id = Model.Invoice.CompanyId})'">Вернуться к счетам компании</button>
+    <button type="button" id="myButton" onclick="location.href='@Url.Action("GetManagerInfoInvoice", "Manager", new {id = Model.Invoice.ManagerId})'">Вернуться к счетам</button>
 </form>
 
 <script>

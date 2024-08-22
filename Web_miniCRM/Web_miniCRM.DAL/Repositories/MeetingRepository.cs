@@ -37,7 +37,10 @@ namespace Web_miniCRM.DAL.Repositories
 
 		public async Task<List<Meeting>> GetByManagerId(int id)
 		{
-			return await _db.Meetings.Where(i => i.ManagerId == id).ToListAsync();
+			return await _db.Meetings
+				.Include(c => c.Company)
+				.Where(i => i.ManagerId == id)
+				.ToListAsync();
 		}
 
 		public async Task<bool> Insert(Meeting entity)

@@ -1,13 +1,22 @@
-﻿@model Web_miniCRM.Domain.Entity.ManagerViewModel
+﻿@model Web_miniCRM.Domain.Entity.ManagerViewModelFiltering
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<h1 class="text-center1" style="margin-left:-80px;">@Model.Manager.FirstName @Model.Manager.LastName</h1>
+</head>
 
 <div class="button-container">
+	<button class="custom-button" type="button" id="myButton1" onclick="location.href='@Url.Action("GetManagerInfoById", "Manager", new { id = Model.Manager.ManagerId })'" class="manager-link" data-manager-id="@Model.Manager.ManagerId">
+		Информация о менеджере
+	</button>
 	<button class="custom-button" type="button" id="myButton1" onclick="location.href='@Url.Action("GetManagerInfoCompany", "Manager", new { id = Model.Manager.ManagerId })'" class="manager-link" data-manager-id="@Model.Manager.ManagerId">
 		Компании
 	</button>
-	<button class="custom-button" type="button" id="myButton2" onclick="location.href='@Url.Action("GetCallsByManagerId", "Call", new { id = Model.Manager.ManagerId })'" class="manager-link" data-manager-id="@Model.Manager.ManagerId">
+	<button class="custom-button" type="button" id="myButton2" onclick="location.href='@Url.Action("GetManagerInfoCalls", "Manager", new { id = Model.Manager.ManagerId })'" class="manager-link" data-manager-id="@Model.Manager.ManagerId">
 		Звонки
 	</button>
-	<button class="custom-button" type="button" id="myButton3" onclick="location.href='@Url.Action("GetManagerInfoMeetings", "Meeting", new { id = Model.Manager.ManagerId })'" class="manager-link" data-manager-id="@Model.Manager.ManagerId">
+	<button class="custom-button" type="button" id="myButton3" onclick="location.href='@Url.Action("GetManagerInfoMeetings", "Manager", new { id = Model.Manager.ManagerId })'" class="manager-link" data-manager-id="@Model.Manager.ManagerId">
 		Встречи
 	</button>
 	<button class="custom-button" type="button" id="myButton4" onclick="location.href='@Url.Action("GetManagerInfoInvoice", "Manager", new { id = Model.Manager.ManagerId })'" class="manager-link" data-manager-id="@Model.Manager.ManagerId">
@@ -17,7 +26,7 @@
 		Создать счет
 	</button>
 
-	<form asp-action="GetManagerInfoInvoice" method="get" style="margin-top: 130px">
+	<form asp-action="GetManagerInfoInvoice" method="get" style="margin-top: 194px">
 		<input type="hidden" name="id" value="@Model.Manager.ManagerId" />
 		<label>Счета за период</label>
 		<input type="date" name="startDateRange" placeholder="От" />
@@ -53,7 +62,7 @@
 	<table>
 		<thead>
 			<tr>
-				<label>Отгруженные счета</label>
+				<label>На согласовании</label>
 				<th>Компания</th>
 				<th>Дата счета</th>
 				<th>Сумма</th>

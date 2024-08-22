@@ -1,0 +1,59 @@
+﻿@model Web_miniCRM.Domain.Entity.CompanyViewModelFiltering
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<h1 class="text-center1" style="margin-left:-80px;">@Model.Company.CompanyName</h1>
+</head>
+
+<div class="button-container">
+	<button class="custom-button" type="button" id="myButton1" onclick="location.href='@Url.Action("GetManagerInfoCompany", "Manager", new { id = Model.Company.ManagerId })'">
+		Информация
+	</button>
+	<button class="custom-button" type="button" id="myButton2" onclick="location.href='@Url.Action("GetManagerInfoCalls", "Manager", new { id = Model.Company.ManagerId })'">
+		Звонки
+	</button>
+	<button class="custom-button" type="button" id="myButton3" onclick="location.href='@Url.Action("GetManagerInfoMeetings", "Manager", new { id = Model.Company.ManagerId })'">
+		Встречи
+	</button>
+	<button class="custom-button" type="button" id="myButton4" onclick="location.href='@Url.Action("GetManagerInfoInvoice", "Manager", new { id = Model.Company.ManagerId })'">
+		Счета
+	</button>
+	<button class="custom-button additional-button" type="button" id="myButton5" onclick="location.href='@Url.Action("CreateCompany", "Company", new {id = Model.Company.ManagerId})'">
+		Пустая кнопка
+	</button>
+
+	<form asp-action="GetCompanyInfoCalls" method="get" style="margin-top: 170px">
+		<input type="hidden" name="id" value="@Model.Company.CompanyId" />
+		<label>Звонки за период</label>
+		<input type="date" name="startDateRange" placeholder="От" />
+		<input type="date" name="endDateRange" placeholder="До" />
+		<button type="submit" class="custom-button" style="margin-top: 5px">Фильтр</button>
+	</form>
+
+	<div class="table-container-Manager_Invoices_Calls_Meetings">
+		<table>
+			<thead>
+				<tr>
+					<label>Звонки</label>
+					<th>Дата</th>
+					<th>Номер</th>
+					<th>Контактное лицо</th>
+					<th>Детали</th>
+					<th>Исполнитель</th>
+				</tr>
+			</thead>
+			<tbody>
+				@foreach (var call in Model.FilteredCalls)
+				{
+					<tr>
+						<td>@call.Date</td>
+						<td>@call.PhoneNumber</td>
+						<td>@call.NameContactPerson</td>
+						<td>@call.Details</td>
+						<td><a href="@Url.Action("GetManagerInfoById", "Manager", new { id = Model.Company.ManagerId })" class="company-link" data-company-id="@Model.Company.ManagerId">@Model.Company.Manager.FirstName @Model.Company.Manager.LastName</a></td>
+					</tr>
+				}
+			</tbody>
+		</table>
+	</div>

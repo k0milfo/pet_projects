@@ -149,5 +149,31 @@ namespace Web_miniCRM.Service.Implementations
                 };
             }
         }
-    }
+
+		public async Task<IBaseResponse<List<Invoice>>> GetInvoicesByCompanyId(int id)
+		{
+			var baseResponse = new BaseResponse<List<Invoice>>();
+			try
+			{
+				var invoices = await _invoiceRepository.GetByCompanyId(id);
+				if (invoices.Count == 0)
+				{
+					baseResponse.Description = "Найдено 0 элементов";
+					baseResponse.StatusCode = StatusCode.OK;
+					return baseResponse;
+				}
+				baseResponse.Data = invoices;
+				baseResponse.StatusCode = StatusCode.OK;
+
+				return baseResponse;
+			}
+			catch (Exception ex)
+			{
+				return new BaseResponse<List<Invoice>>()
+				{
+					Description = $"[GetInvoicesByCompanyId] : {ex.Message}"
+				};
+			}
+		}
+	}
 }

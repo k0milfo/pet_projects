@@ -5,7 +5,7 @@ namespace Web_miniCRM.Service.Interfaces
 {
     public interface IProductService
     {
-        Task<IBaseResponse<IEnumerable<Product>>> GetProducts();
+        Task<IBaseResponse<List<Product>>> GetProducts();
         Task<IBaseResponse<Product>> GetProductId(int id);
         Task<IBaseResponse<Product>> GetProductByName(string name);
         Task<IBaseResponse<bool>> DeleteProduct(int id);

@@ -48,9 +48,9 @@ namespace Web_miniCRM.Service.Implementations
             }
         }
 
-        public async Task<IBaseResponse<IEnumerable<Product>>> GetProducts()
+        public async Task<IBaseResponse<List<Product>>> GetProducts()
         {
-            var baseResponse = new BaseResponse<IEnumerable<Product>>();
+            var baseResponse = new BaseResponse<List<Product>>();
 
             try
             {
@@ -68,7 +68,7 @@ namespace Web_miniCRM.Service.Implementations
             }
             catch (Exception ex)
             {
-                return new BaseResponse<IEnumerable<Product>>()
+                return new BaseResponse<List<Product>>()
                 {
                     Description = $"[DeleteProduct] : {ex.Message}"
                 };

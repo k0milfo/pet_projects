@@ -40,6 +40,17 @@ namespace Web_miniCRM.DAL
 						.WithOne(i => i.Company)   // Счет обязательно должен иметь компанию
 						.HasForeignKey(i => i.CompanyId) // Внешний ключ на CompanyId в Invoice
 						.OnDelete(DeleteBehavior.Restrict);
+			modelBuilder.Entity<Company>()
+						.HasMany(c => c.Calls)       // Компания имеет много счетов
+						.WithOne(i => i.Company)   // Счет обязательно должен иметь компанию
+						.HasForeignKey(i => i.CompanyId) // Внешний ключ на CompanyId в Invoice
+						.OnDelete(DeleteBehavior.Restrict);
+
+			modelBuilder.Entity<Company>()
+						.HasMany(c => c.Meetings)       // Компания имеет много счетов
+						.WithOne(i => i.Company)   // Счет обязательно должен иметь компанию
+						.HasForeignKey(i => i.CompanyId) // Внешний ключ на CompanyId в Invoice
+						.OnDelete(DeleteBehavior.Restrict);
 
 			modelBuilder.Entity<Company>()
 						.Property(c => c.INN)
@@ -70,6 +81,7 @@ namespace Web_miniCRM.DAL
 						.WithMany(m => m.Companies)
 						.HasForeignKey(c => c.ManagerId)
 						.OnDelete(DeleteBehavior.Restrict);
+
 
 			modelBuilder.Entity<Company>(entity =>
 			{
@@ -128,6 +140,12 @@ namespace Web_miniCRM.DAL
 				.WithOne(ii => ii.Invoice) // InvoiceItems обязательно должен иметь к какому счету items привязаны
 				.HasForeignKey(ii => ii.InvoiceId) // Внешний ключ на InvoiceId в InvoiceItems
 				.IsRequired();
+
+			modelBuilder.Entity<Invoice>()
+				.HasOne(c => c.Manager)
+				.WithMany(m => m.Invoices)
+				.HasForeignKey(c => c.ManagerId)
+				.OnDelete(DeleteBehavior.Restrict);
 			#endregion
 
 			#region Конфигурация InvoiceItemInfo

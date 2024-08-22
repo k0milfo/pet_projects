@@ -1,5 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Newtonsoft.Json.Linq;
+using System.Linq;
 using Web_miniCRM.DAL.Interfaces;
 using Web_miniCRM.Domain.Entity;
 
@@ -31,14 +32,18 @@ namespace Web_miniCRM.DAL.Repositories
 
 		public async Task<List<Company>> GetAll()
 		{
-			return await _db.Companies.ToListAsync();
+			return await _db.Companies
+				.Include(i => i.Manager)
+				.ToListAsync();
 		}
 
 		public async Task<Company> Get(int id)
 		{
 			return await _db.Companies
-			.Include(c => c.Informations)
-			.Include(c => c.Invoices)
+				.Include(i => i.Manager)
+            .Include(i => i.Informations)
+			.Include(i => i.Calls)
+			.Include(i => i.Invoices)
 				.ThenInclude(i => i.InvoiceItems)
 					.ThenInclude(ii => ii.Product)
 			.FirstOrDefaultAsync(c => c.CompanyId == id);

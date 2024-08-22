@@ -23,9 +23,9 @@ namespace Web_miniCRM.DAL.Repositories
 		{
 			return await _db.Managers
 				.Include(i => i.Companies)
-				.ThenInclude(c => c.Invoices)
-				.ThenInclude(d => d.InvoiceItems)
-				.ThenInclude(j => j.Product)
+					.ThenInclude(c => c.Invoices)
+					.ThenInclude(d => d.InvoiceItems)
+					.ThenInclude(j => j.Product)
 				.Include(ii => ii.Meetings)
 				.Include(iii => iii.Calls)
 				.FirstOrDefaultAsync(iiii => iiii.ManagerId == id);

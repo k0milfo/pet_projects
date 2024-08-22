@@ -31,7 +31,7 @@
 				@foreach (var manager in Model)
 				{
 					<tr>
-						<td><a href="@Url.Action("GetManagerInfoCompany", "Manager", new { id = manager.ManagerId })" class="manager-link" data-manager-id="@manager.ManagerId">@manager.FirstName @manager.LastName</a></td>
+						<td><a href="@Url.Action("GetManagerInfoById", "Manager", new { id = manager.ManagerId })" class="manager-link" data-manager-id="@manager.ManagerId">@manager.FirstName @manager.LastName</a></td>
 						<td>@manager.DepartmentNumber</td>
 						<td>@manager.NumberPhone</td>
 						<td>@manager.Email</td>

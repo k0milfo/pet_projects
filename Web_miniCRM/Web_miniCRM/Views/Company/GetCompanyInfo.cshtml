@@ -1,29 +1,45 @@
 ﻿@model Web_miniCRM.Domain.Entity.Company
 
-<!DOCTYPE html>
-<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="styles.css"> <!-- Подключение внешнего CSS файла -->
-    <style>
-        .client-info {
-            flex: 1; /* Занимает всю доступную ширину */
-            margin-right: 40px; /* Увеличение правого отступа */
-            position: relative;
-            right: 45px; /*150px;*/
-        }
-        .table-container {
-            flex: 1; /* Занимает всю доступную ширину */
-            border: 1px solid #ddd;
-            padding: 10px;
-        }
-    </style>
+    <h1 class="text-center1" style="margin-left:-100px;">Информация о компании</h1>
+    <link rel="stylesheet" href="~/css/styles.css">
 </head>
-<body>
+
+
+<div class="button-container">
+    <button class="custom-button" type="button" id="myButton1" onclick="location.href='@Url.Action("GetManagerInfoCompany", "Manager", new { id = Model.ManagerId })'" class="manager-link" data-manager-id="@Model.ManagerId">
+        Информация
+    </button>
+    <button class="custom-button" type="button" id="myButton2" onclick="location.href='@Url.Action("GetCompanyInfoCalls", "Company", new { id = Model.ManagerId })'" class="manager-link" data-manager-id="@Model.ManagerId">
+        Звонки
+    </button>
+    <button class="custom-button" type="button" id="myButton3" onclick="location.href='@Url.Action("GetManagerInfoMeetings", "Manager", new { id = Model.ManagerId })'" class="manager-link" data-manager-id="@Model.ManagerId">
+        Встречи
+    </button>
+    <button class="custom-button" type="button" id="myButton4" onclick="location.href='@Url.Action("GetManagerInfoInvoice", "Manager", new { id = Model.ManagerId })'" class="manager-link" data-manager-id="@Model.ManagerId">
+        Счета
+    </button>
+    <button class="custom-button additional-button" type="button" id="myButton5" onclick="location.href='@Url.Action("CreateCompany", "Company", new {id = Model.ManagerId})'">
+        Пустая кнопка
+    </button>
+    </div>
+
+
+
+
+
+
+
+
+
+@* <body> *@
+@*     <div class="text-center1" style="margin-left:500px;">
+        <h3>Информация о клиенте</h3>
+    </div> *@
     <div class="container">
-        <div class="client-info">
-            <h3>Информация о клиенте</h3>
+        @* <div class="client-info"> *@
             @if (Model != null && Model.Informations != null)
             {
                 @foreach (var item in Model.Informations)
@@ -35,8 +51,9 @@
             {
                 <p>Нет доступной информации о клиенте</p>
             }
-        </div>
-        <div class="table-container">
+
+
+@*         <div class="table-container">
             <h5>Счета отгруженные</h5>
             <table>
                 <thead>
@@ -47,7 +64,6 @@
                     </tr>
                 </thead>
                 <tbody>
-                    <!-- Здесь будут данные таблицы -->
                     @foreach(var company in Model.Invoices.Where(i => i.ShippedInvoiced == true))
                     {
                         <tr>
@@ -70,7 +86,6 @@
                     </tr>
                 </thead>
                 <tbody>
-                    <!-- Здесь будут данные таблицы -->
                     @foreach (var company in Model.Invoices.Where(i => i.ShippedInvoiced == false))
                     {
                         <tr>
@@ -81,7 +96,8 @@
                     }
                 </tbody>
             </table>
-        </div>
+        </div> *@
+
+
     </div>
-</body>
-</html>
+@* </body> *@

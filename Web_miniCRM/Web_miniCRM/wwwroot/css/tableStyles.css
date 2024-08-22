@@ -32,8 +32,8 @@ body {
 .table-container-Companies {
     flex-grow: 1;
     position: relative;
-    left: 390px;
-    top: -40px; 
+    left: 325px;
+    top: -13px; 
     width: 800px;
     margin-top: -160px;
 }
@@ -42,14 +42,14 @@ body {
     flex-grow: 1;
     position: relative;
     left: 450px;
-    top: -48px;
+    top: -69px;
     width: 800px;
 }
 .table-container-Manager_Invoices_Calls_Meetings {
     flex-grow: 1;
     position: relative;
     left: 450px;
-    top: -302px;
+    top: -390px;
     width: 800px;
 }
 

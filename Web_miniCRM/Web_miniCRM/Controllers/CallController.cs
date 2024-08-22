@@ -15,7 +15,7 @@ namespace Web_miniCRM.Controllers
             _managerService = managerService;
 		}
 		[HttpGet]
-		public async Task<IActionResult> GetCallsByManagerId(int id, List<Call>? filteredCalls)
+		public async Task<IActionResult> GetCallsByManagerId(int id)
 		{
 			var response = await _callService.GetByManagerId(id);
 			if (response.StatusCode == Domain.Enum.StatusCode.OK)
@@ -30,32 +30,32 @@ namespace Web_miniCRM.Controllers
 			}
 		}
 
-		[HttpGet]
-		public async Task<IActionResult> GetCallsDataRange(int id, string? startDateRange, string? endDateRange)
-		{
-			var responseManager = await _callService.GetByManagerId(id);
+		//[HttpGet]
+		//public async Task<IActionResult> GetCallsDataRange(int id, string? startDateRange, string? endDateRange)
+		//{
+		//	var responseCalls = await _callService.GetByManagerId(id);
 
-			DateTime? startDate = string.IsNullOrEmpty(startDateRange) ? null : DateTime.Parse(startDateRange);
-			DateTime? endDate = string.IsNullOrEmpty(endDateRange) ? null : DateTime.Parse(endDateRange);
+		//	DateTime? startDate = string.IsNullOrEmpty(startDateRange) ? null : DateTime.Parse(startDateRange);
+		//	DateTime? endDate = string.IsNullOrEmpty(endDateRange) ? null : DateTime.Parse(endDateRange);
 			
-			if (responseManager.StatusCode == Domain.Enum.StatusCode.OK)
-			{
-				List<Call> filteredCalls = (responseManager.Data.Where(call
-					=> (!startDate.HasValue || call.Date >= startDate)
-					&& (!endDate.HasValue || call.Date <= endDate))).ToList();
+		//	if (responseCalls.StatusCode == Domain.Enum.StatusCode.OK)
+		//	{
+		//		List<Call> filteredCalls = (responseCalls.Data.Where(call
+		//			=> (!startDate.HasValue || call.Date >= startDate)
+		//			&& (!endDate.HasValue || call.Date <= endDate))).ToList();
 
-				//var viewModel = new ManagerViewModel
-				//{
-				//	Manager = responseManager.Data,
-				//	FilteredInvoices = filteredInvoice,
-				//};
-				return View("GetCallsByManagerId", filteredCalls);
-			}
-			else
-			{
-				return View("Error");
-			}
-		}
+		//		//var viewModel = new ManagerViewModel
+		//		//{
+		//		//	Manager = responseManager.Data,
+		//		//	FilteredInvoices = filteredInvoice,
+		//		//};
+		//		return View("GetCallsByManagerId", filteredCalls);
+		//	}
+		//	else
+		//	{
+		//		return View("Error");
+		//	}
+		//}
 
 		[HttpGet]
 		public async Task<IActionResult> CreateCall(int id)

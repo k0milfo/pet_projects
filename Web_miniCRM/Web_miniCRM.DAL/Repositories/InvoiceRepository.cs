@@ -49,5 +49,11 @@ namespace Web_miniCRM.DAL.Repositories
             return entity;
         }
 
+		public async Task<List<Invoice>> GetByCompanyId(int id)
+		{
+            return await _db.Invoices
+                .Where(i => i.CompanyId == id)
+                .ToListAsync();
+		}
 	}
 }

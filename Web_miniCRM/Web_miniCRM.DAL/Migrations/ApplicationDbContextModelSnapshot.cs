@@ -152,12 +152,17 @@ namespace Web_miniCRM.DAL.Migrations
                     b.Property<DateTime?>("InvoiceDate")
                         .HasColumnType("datetime2");
 
+                    b.Property<int>("ManagerId")
+                        .HasColumnType("int");
+
                     b.Property<bool>("ShippedInvoiced")
                         .HasColumnType("bit");
 
                     b.HasKey("InvoiceId");
 
                     b.HasIndex("CompanyId");
+
+                    b.HasIndex("ManagerId");
 
                     b.ToTable("Invoices");
                 });
@@ -285,9 +290,9 @@ namespace Web_miniCRM.DAL.Migrations
             modelBuilder.Entity("Web_miniCRM.Domain.Entity.Call", b =>
                 {
                     b.HasOne("Web_miniCRM.Domain.Entity.Company", "Company")
-                        .WithMany()
+                        .WithMany("Calls")
                         .HasForeignKey("CompanyId")
-                        .OnDelete(DeleteBehavior.Cascade)
+                        .OnDelete(DeleteBehavior.Restrict)
                         .IsRequired();
 
                     b.HasOne("Web_miniCRM.Domain.Entity.Manager", "Manager")
@@ -342,7 +347,15 @@ namespace Web_miniCRM.DAL.Migrations
                         .OnDelete(DeleteBehavior.Restrict)
                         .IsRequired();
 
+                    b.HasOne("Web_miniCRM.Domain.Entity.Manager", "Manager")
+                        .WithMany("Invoices")
+                        .HasForeignKey("ManagerId")
+                        .OnDelete(DeleteBehavior.Restrict)
+                        .IsRequired();
+
                     b.Navigation("Company");
+
+                    b.Navigation("Manager");
                 });
 
             modelBuilder.Entity("Web_miniCRM.Domain.Entity.InvoiceItemInfo", b =>
@@ -367,8 +380,9 @@ namespace Web_miniCRM.DAL.Migrations
             modelBuilder.Entity("Web_miniCRM.Domain.Entity.Meeting", b =>
                 {
                     b.HasOne("Web_miniCRM.Domain.Entity.Company", "Company")
-                        .WithMany()
-                        .HasForeignKey("CompanyId");
+                        .WithMany("Meetings")
+                        .HasForeignKey("CompanyId")
+                        .OnDelete(DeleteBehavior.Restrict);
 
                     b.HasOne("Web_miniCRM.Domain.Entity.Manager", "Manager")
                         .WithMany("Meetings")
@@ -383,9 +397,13 @@ namespace Web_miniCRM.DAL.Migrations
 
             modelBuilder.Entity("Web_miniCRM.Domain.Entity.Company", b =>
                 {
+                    b.Navigation("Calls");
+
                     b.Navigation("Informations");
 
                     b.Navigation("Invoices");
+
+                    b.Navigation("Meetings");
                 });
 
             modelBuilder.Entity("Web_miniCRM.Domain.Entity.Invoice", b =>
@@ -400,6 +418,8 @@ namespace Web_miniCRM.DAL.Migrations
                     b.Navigation("Calls");
 
                     b.Navigation("Companies");
+
+                    b.Navigation("Invoices");
 
                     b.Navigation("Meetings");
                 });

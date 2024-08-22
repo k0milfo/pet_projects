@@ -13,6 +13,8 @@
 		public int? ManagerId { get; set; }
 		public virtual List<Information>? Informations { get; set; } = new List<Information>();
 		public virtual List<Invoice>? Invoices { get; set; } = new List<Invoice>();
+		public virtual List<Meeting>? Meetings { get; set; } = new List<Meeting>();
+		public virtual List<Call>? Calls { get; set; } = new List<Call>();
 
 	}
 }

@@ -9,14 +9,16 @@ namespace Web_miniCRM.Controllers
 	public class InvoiceController : Controller
 	{
 		public readonly IInvoiceService _invoiceServices;
-		public readonly ICompanyService _companyeService;
+		//public readonly ICompanyService _companyeService;
 		public readonly IProductService _productService;
+		public readonly IManagerService _manager;
 
-		public InvoiceController(IInvoiceService invoiceServices, ICompanyService companyeService, IProductService productService)
+		public InvoiceController(IInvoiceService invoiceServices, IManagerService manager, IProductService productService)
 		{
 			_invoiceServices = invoiceServices;
-			_companyeService = companyeService;
+			//_companyeService = companyeService;
 			_productService = productService;
+			_manager = manager;
 		}
 
 		[HttpGet]
@@ -27,6 +29,7 @@ namespace Web_miniCRM.Controllers
 
 			if (response.StatusCode == Domain.Enum.StatusCode.OK)
 			{
+				//СОЗДАТЬ КЛАСС ПРЕДСТАВЛЕНИЯ/ИЗМЕНИТЬ ДЛЯ УПРОЩЕНИЯ В САМОМ ПРЕДСТАВЛЕНИИ
 				var viewModel = new
 				{
 					Invoice = response.Data,
@@ -82,8 +85,8 @@ namespace Web_miniCRM.Controllers
 			}
 			else
 			{
-				var company = await _companyeService.GetCompanyId(model.CompanyId);
-				model.Company = company.Data;
+				//var company = await _companyeService.GetCompanyId(model.CompanyId);
+				//model.Company = company.Data;
 				//model.Informations = new List<Information>();
 
 				if (ModelState.IsValid)
@@ -113,20 +116,40 @@ namespace Web_miniCRM.Controllers
 		}
 
 		[HttpGet]
-		public async Task<IActionResult> CreateInvoice(int? id)
+		public async Task<IActionResult> CreateInvoice(int id)
 		{
-			var companiesRepository = await _companyeService.GetCompanies();
-			var productsRepository = await _productService.GetProducts();
-			if (companiesRepository.StatusCode == Domain.Enum.StatusCode.OK && productsRepository.StatusCode == Domain.Enum.StatusCode.OK)
-			{
-				var companies = id.HasValue ? companiesRepository.Data.Where(i => i.ManagerId == id).ToList() : companiesRepository.Data;
-				var products = productsRepository.Data;
+			//var companiesRepository = await _companyeService.GetCompanies();
+			var responseProducts = await _productService.GetProducts();
 
-				return View(new CreateInvoiceViewModel(companies, products, new Information(), null));
+			var responseManager = await _manager.Get(id);
+			if (responseManager.StatusCode == Domain.Enum.StatusCode.OK && responseProducts.StatusCode == Domain.Enum.StatusCode.OK)
+			{
+				//var companies = id.HasValue ? companiesRepository.Data.Where(i => i.ManagerId == id).ToList() : companiesRepository.Data;
+				//var products = productsRepository.Data;
+				var viewModel = new CreateInvoiceViewModel
+				{
+					_manager = responseManager.Data,
+					_products = responseProducts.Data
+					//_information = new Information()
+				};
+				return View(viewModel);
 			}
 
 			return RedirectToAction("GetInvoices");
 		}
+
+		[HttpGet]
+		public async Task<IActionResult> GetInvoicesByCompanyId(int id)
+		{
+			var response = await _invoiceServices.GetInvoicesByCompanyId(id);
+
+			if (response.StatusCode == Domain.Enum.StatusCode.OK)
+			{
+				return View(response.Data);
+			}
+			return RedirectToAction("Error");
+		}
+
 		[HttpGet]
 		public async Task<IActionResult> CreateExelInvoice(int invoiceId)
 		{

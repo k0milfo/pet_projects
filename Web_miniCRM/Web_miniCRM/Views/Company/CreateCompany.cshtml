@@ -12,7 +12,6 @@
     <h2>Создание компании</h2>
     <form asp-action="UpsertCompany" method="post">
         <input type="hidden" name="ManagerId" value="@Model.ManagerId" />
-        <input type="hidden" name="Manager" value="@Model.Manager" />
 
         <label for="CompanyName">Название компании</label>
         <input type="text" id="CompanyName" placeholder="Рога и Копыта" name="CompanyName" />

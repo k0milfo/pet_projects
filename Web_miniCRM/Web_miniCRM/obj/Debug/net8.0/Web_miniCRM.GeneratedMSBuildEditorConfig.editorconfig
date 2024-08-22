@@ -22,14 +22,6 @@ build_property._RazorSourceGeneratorDebug =
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQ2FsbFxDcmVhdGVDYWxsLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/User/Source/Repos/Web_miniCRM/Web_miniCRM/Views/Call/GetCallsByManagerId.cshtml]
-build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQ2FsbFxHZXRDYWxsc0J5TWFuYWdlcklkLmNzaHRtbA==
-build_metadata.AdditionalFiles.CssScope = 
-
-[C:/Users/User/Source/Repos/Web_miniCRM/Web_miniCRM/Views/Call/GetCallsDataRange.cshtml]
-build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQ2FsbFxHZXRDYWxsc0RhdGFSYW5nZS5jc2h0bWw=
-build_metadata.AdditionalFiles.CssScope = 
-
 [C:/Users/User/Source/Repos/Web_miniCRM/Web_miniCRM/Views/Company/ChangingDataCompany.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQ29tcGFueVxDaGFuZ2luZ0RhdGFDb21wYW55LmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
@@ -56,6 +48,14 @@ build_metadata.AdditionalFiles.CssScope =
 
 [C:/Users/User/Source/Repos/Web_miniCRM/Web_miniCRM/Views/Company/GetCompanyInfo.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQ29tcGFueVxHZXRDb21wYW55SW5mby5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/User/Source/Repos/Web_miniCRM/Web_miniCRM/Views/Company/GetCompanyInfoCalls.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQ29tcGFueVxHZXRDb21wYW55SW5mb0NhbGxzLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/User/Source/Repos/Web_miniCRM/Web_miniCRM/Views/Company/GetCompanyInfoMeetings.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQ29tcGFueVxHZXRDb21wYW55SW5mb01lZXRpbmdzLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
 [C:/Users/User/Source/Repos/Web_miniCRM/Web_miniCRM/Views/Company/UpsertItem.cshtml]
@@ -90,8 +90,20 @@ build_metadata.AdditionalFiles.CssScope =
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSW52b2ljZVxHZXRJbnZvaWNlcy5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
+[C:/Users/User/Source/Repos/Web_miniCRM/Web_miniCRM/Views/Invoice/GetInvoicesByCompanyId.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSW52b2ljZVxHZXRJbnZvaWNlc0J5Q29tcGFueUlkLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
 [C:/Users/User/Source/Repos/Web_miniCRM/Web_miniCRM/Views/Invoice/UpsertItem.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSW52b2ljZVxVcHNlcnRJdGVtLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/User/Source/Repos/Web_miniCRM/Web_miniCRM/Views/Manager/GetManagerInfoById.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcTWFuYWdlclxHZXRNYW5hZ2VySW5mb0J5SWQuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/User/Source/Repos/Web_miniCRM/Web_miniCRM/Views/Manager/GetManagerInfoCalls.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcTWFuYWdlclxHZXRNYW5hZ2VySW5mb0NhbGxzLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
 [C:/Users/User/Source/Repos/Web_miniCRM/Web_miniCRM/Views/Manager/GetManagerInfoCompany.cshtml]
@@ -110,8 +122,8 @@ build_metadata.AdditionalFiles.CssScope =
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcTWFuYWdlclxHZXRNYW5hZ2Vycy5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/User/Source/Repos/Web_miniCRM/Web_miniCRM/Views/Meeting/GetManagerInfoMeetings.cshtml]
-build_metadata.AdditionalFiles.TargetPath = Vmlld3NcTWVldGluZ1xHZXRNYW5hZ2VySW5mb01lZXRpbmdzLmNzaHRtbA==
+[C:/Users/User/Source/Repos/Web_miniCRM/Web_miniCRM/Views/Meeting/CreateMeeting.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcTWVldGluZ1xDcmVhdGVNZWV0aW5nLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
 [C:/Users/User/Source/Repos/Web_miniCRM/Web_miniCRM/Views/Product/CreateProduct.cshtml]

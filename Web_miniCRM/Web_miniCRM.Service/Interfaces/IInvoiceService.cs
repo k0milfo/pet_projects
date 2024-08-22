@@ -7,7 +7,8 @@ namespace Web_miniCRM.Service.Interfaces
     {
 
         Task<IBaseResponse<IEnumerable<Invoice>>> GetInvoices();
-        Task<IBaseResponse<Invoice>> GetInvoiceId(int id);
+		Task<IBaseResponse<List<Invoice>>> GetInvoicesByCompanyId(int id);
+		Task<IBaseResponse<Invoice>> GetInvoiceId(int id);
         Task<IBaseResponse<bool>> DeleteInvoice(int id);
         Task<IBaseResponse<bool>> Insert(Invoice NewInvoice);
         Task<IBaseResponse<Invoice>> UpdateInvoice(int id, Invoice NewInvoice);

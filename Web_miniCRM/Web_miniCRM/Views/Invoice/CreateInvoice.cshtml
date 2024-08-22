@@ -10,10 +10,11 @@
 <body>
     <h2>Создание счета</h2>
     <form asp-action="UpsertItem" method="post">
+        <input type="hidden" name="ManagerId" value="@Model._manager.ManagerId" />
         <div class="invoice-info">
             <label for="Company">Company:</label>
             <select id="Company" name="CompanyId">
-                @foreach (var company in Model._companies)
+                @foreach (var company in Model._manager.Companies)
                 {
                     <option value="@company.CompanyId">@company.CompanyName</option>
                 }

@@ -11,5 +11,6 @@
 		public virtual List<Call>? Calls { get; set; } = new List<Call>();
 		public virtual List<Company>? Companies { get; set; } = new List<Company>();
 		public virtual List<Meeting>? Meetings { get; set; } = new List<Meeting>();
+		public virtual List<Invoice>? Invoices { get; set; } = new List<Invoice>();
 	}
 }
