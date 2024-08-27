@@ -26,7 +26,7 @@ body {
     flex-grow: 1;
     position: relative;
     left: 390px; /*left: 300px;*/
-    top: -40px; /*top: -84px;*/
+    top: -57px; /*top: -84px;*/
     width: 800px; /*width: 1000px;*/
 }
 .table-container-Companies {
@@ -56,7 +56,7 @@ body {
 .table-container-Company_Invoices_Calls_Meetings {
     flex-grow: 1;
     position: relative;
-    left: 450px;
+    left: 443px;
     top: -325px;
     width: 800px;
 }

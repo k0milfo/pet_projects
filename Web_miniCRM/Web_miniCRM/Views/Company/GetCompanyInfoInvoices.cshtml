@@ -47,6 +47,12 @@
 						<td><a href="@Url.Action("GetManagerInfoById", "Manager", new { id = invoice.ManagerId })">@invoice.Manager.FirstName @invoice.Manager.LastName</a></td>
 						<td>@invoice.InvoiceDate</td>
 						<td>@invoice.InvoiceItems.Sum(item => item.Product.Price * item.Quantity)</td>
+						<td>
+							<div>
+								<button class="custom-button" type="button" id="ButtonUpdate" onclick="location.href='@Url.Action("GetInvoiceInfo", "Invoice", new { id = invoice.InvoiceId })'">Изменить</button>
+								<button class="custom-button" type="button" id="ButtonDelete" onclick="location.href='@Url.Action("DeleteInvoice", "Invoice", new { id = invoice.InvoiceId, managerId = invoice.ManagerId})'">Удалить</button>
+							</div>
+						</td>
 					</tr>
 				}
 			</tbody>
@@ -72,6 +78,12 @@
 						<td><a href="@Url.Action("GetManagerInfoById", "Manager", new { id = invoice.ManagerId })">@invoice.Manager.FirstName @invoice.Manager.LastName</a></td>
 						<td>@invoice.InvoiceDate</td>
 						<td>@invoice.InvoiceItems.Sum(item => item.Product.Price * item.Quantity)</td>
+						<td>
+							<div>
+								<button class="custom-button" type="button" id="ButtonUpdate" onclick="location.href='@Url.Action("GetInvoiceInfo", "Invoice", new { id = invoice.InvoiceId })'">Изменить</button>
+								<button class="custom-button" type="button" id="ButtonDelete" onclick="location.href='@Url.Action("DeleteInvoice", "Invoice", new { id = invoice.InvoiceId, managerId = invoice.ManagerId})'">Удалить</button>
+							</div>
+						</td>
 					</tr>
 				}
 			</tbody>

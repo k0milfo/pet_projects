@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("Web_miniCRM.Domain")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+797a57eaa94ff7c2d47528073778b5f86ae13199")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+190f1df740b66ba83ca708b77d4c8442b1e57cb2")]
 [assembly: System.Reflection.AssemblyProductAttribute("Web_miniCRM.Domain")]
 [assembly: System.Reflection.AssemblyTitleAttribute("Web_miniCRM.Domain")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

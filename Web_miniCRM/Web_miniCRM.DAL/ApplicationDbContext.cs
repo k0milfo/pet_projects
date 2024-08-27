@@ -15,9 +15,9 @@ namespace Web_miniCRM.DAL
 		public DbSet<Product> Products { get; set; }
 		public DbSet<Invoice> Invoices { get; set; }
 		public DbSet<Manager> Managers { get; set; }
-		public DbSet<Call> Calls { get; set; }
+        public DbSet<HeadDepartment> HeadDepartments { get; set; }
+        public DbSet<Call> Calls { get; set; }
 		public DbSet<Meeting> Meetings { get; set; }
-
 		public DbSet<InvoiceItemInfo> InvoicesItemInfo { get; set; }
 		public DbSet<Info> Informations { get; set; }
 
@@ -28,9 +28,7 @@ namespace Web_miniCRM.DAL
 			modelBuilder.Entity<Company>()
 				.HasKey(c => c.CompanyId);
 
-
-
-			modelBuilder.Entity<Company>()
+            modelBuilder.Entity<Company>()
 					.HasMany(i => i.Informations)
 					.WithOne(ii => ii.Company)
 					.HasForeignKey(ii => ii.CompanyId);
@@ -147,7 +145,6 @@ namespace Web_miniCRM.DAL
 				.HasForeignKey(c => c.ManagerId)
 				.OnDelete(DeleteBehavior.Restrict);
 			#endregion
-
 			#region Конфигурация InvoiceItemInfo
 			modelBuilder.Entity<InvoiceItemInfo>()
 				.HasKey(c => c.InvoiceItemId);
@@ -155,7 +152,6 @@ namespace Web_miniCRM.DAL
 				.Property(c => c.Quantity);
 
 			#endregion
-
 			#region Конфигурация Manager
 			modelBuilder.Entity<Manager>()
 			.HasKey(i => i.ManagerId);
@@ -195,7 +191,6 @@ namespace Web_miniCRM.DAL
 			.HasForeignKey(ii => ii.ManagerId)
 			.OnDelete(DeleteBehavior.Restrict);
 			#endregion
-
 			#region Конфигурация Call
 			modelBuilder.Entity<Call>()
 			.HasKey(i => i.CallId);
@@ -208,8 +203,6 @@ namespace Web_miniCRM.DAL
 			.Property(c => c.CompanyId)
 			.IsRequired();
 			#endregion
-
-
 			#region Конфигурация Meeting
 			modelBuilder.Entity<Meeting>()
 			.HasKey(i => i.MeetingId);
@@ -221,7 +214,18 @@ namespace Web_miniCRM.DAL
 			modelBuilder.Entity<Meeting>()
 			.Property(c => c.Address)
 			.IsRequired();
-			#endregion
-		}
-	}
+            #endregion
+            #region Конфигурация HeadDepartment
+
+            modelBuilder.Entity<HeadDepartment>()
+                .HasKey(c => c.HeadDepartmentId);
+
+            modelBuilder.Entity<HeadDepartment>()
+        .HasMany(i => i.Managers)
+        .WithOne(ii => ii.HeadDepartment)
+        .HasForeignKey(ii => ii.HeadDepartmentId)
+        .OnDelete(DeleteBehavior.Restrict);
+            #endregion
+        }
+    }
 }

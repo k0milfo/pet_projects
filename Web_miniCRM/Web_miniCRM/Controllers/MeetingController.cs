@@ -90,7 +90,27 @@ namespace Web_miniCRM.Controllers
 					// error.ErrorMessage содержит сообщение об ошибке
 				}
 			}
-			return RedirectToAction("GetMeetingsByManagerId", new { id = model.ManagerId });
+			return RedirectToAction("GetManagerInfoMeetings", "Manager", new { id = model.ManagerId });
+		}
+		[HttpDelete]
+		public async Task<IActionResult> DeleteMeeting(int id, int managerId)
+		{
+			var response = await _meetingService.Delete(id);
+			if (response.StatusCode == Domain.Enum.StatusCode.OK)
+			{
+				return RedirectToAction("GetManagerInfoMeeting", new { id = managerId });
+			}
+			return RedirectToAction("Error");
+		}
+		[HttpGet]
+		public async Task<IActionResult> ChangingDataMeeting(int id)
+		{
+			var response = await _meetingService.GetMeetingId(id);
+			if (response.StatusCode == Domain.Enum.StatusCode.OK)
+			{
+				return View(response.Data);
+			}
+			return RedirectToAction("Error");
 		}
 	}
 }

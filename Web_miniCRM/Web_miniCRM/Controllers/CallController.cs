@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Web_miniCRM.Domain.Entity;
+using Web_miniCRM.Service.Implementations;
 using Web_miniCRM.Service.Interfaces;
 
 namespace Web_miniCRM.Controllers
@@ -71,9 +72,7 @@ namespace Web_miniCRM.Controllers
 		[HttpPost]
 		public async Task<IActionResult> UpsertCall(Call model)
 		{
-			var managerResponse = await _managerService.Get(model.ManagerId);
-			model.Company = managerResponse.Data.Companies.FirstOrDefault(i => i.CompanyId == model.CompanyId);
-			model.Manager = managerResponse.Data;
+			var callResponse = await _callService.GetCallById(model.CallId);
 
 			if (ModelState.IsValid)
 			{
@@ -96,7 +95,28 @@ namespace Web_miniCRM.Controllers
 					// error.ErrorMessage содержит сообщение об ошибке
 				}
 			}
-			return RedirectToAction("GetCallsByManagerId", new {id = model.ManagerId});
+			return RedirectToAction("GetCompanyInfoCalls", "Company", new {id = model.CompanyId});
+		}
+
+        [HttpGet]
+        public async Task<IActionResult> ChangingDataCall(int id)
+        {
+            var response = await _callService.GetCallById(id);
+            if (response.StatusCode == Domain.Enum.StatusCode.OK)
+            {
+                return View(response.Data);
+            }
+            return RedirectToAction("Error");
+        }
+		[HttpGet]
+		public async Task<IActionResult> DeleteCall(int id, int companyId)
+		{
+			var response = await _callService.Delete(id);
+			if (response.StatusCode == Domain.Enum.StatusCode.OK)
+			{
+				return RedirectToAction("GetCompanyInfoCalls", "Company", new { id = companyId });
+			}
+			return RedirectToAction("Error");
 		}
 	}
 }

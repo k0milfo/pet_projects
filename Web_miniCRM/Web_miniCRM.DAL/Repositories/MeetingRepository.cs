@@ -1,9 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using Web_miniCRM.DAL.Interfaces;
 using Web_miniCRM.Domain.Entity;
 
@@ -13,15 +10,15 @@ namespace Web_miniCRM.DAL.Repositories
 	{
 		private readonly ApplicationDbContext _db;
 
-		public MeetingRepository(ApplicationDbContext db)
+		public MeetingRepository(ApplicationDbContext dbContext)
 		{
-			_db = db;
+			_db = dbContext;
 		}
 
 		public async Task<bool> Delete(Meeting entity)
 		{
 			_db.Remove(entity);
-			_db.SaveChanges();
+			await _db.SaveChangesAsync();
 			return true;
 		}
 
@@ -53,7 +50,7 @@ namespace Web_miniCRM.DAL.Repositories
 		public async Task<Meeting> Update(Meeting entity)
 		{
 			_db.Update(entity);
-			_db.SaveChangesAsync();
+			await _db.SaveChangesAsync();
 			return entity;
 		}
 	}

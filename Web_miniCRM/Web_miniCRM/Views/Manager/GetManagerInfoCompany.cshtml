@@ -41,7 +41,7 @@
 				@foreach (var managerCompany in Model.Companies.Where(i => i.MainCompany == true))
 				{
 					<tr>
-						<td><a href="@Url.Action("GetCompanyInfo", "Company", new { id = managerCompany.CompanyId })" class="company-link" data-company-id="@managerCompany.CompanyId">@managerCompany.CompanyName</a></td>
+						<td><a href="@Url.Action("GetCompanyInfo", "Company", new { id = managerCompany.CompanyId, managerId = Model.ManagerId })" class="company-link" data-company-id="@managerCompany.CompanyId">@managerCompany.CompanyName</a></td>
 						<td>@managerCompany.NameContactPerson</td>
 						<td>@managerCompany.PhoneNumber</td>
 						<td>@managerCompany.Email</td>

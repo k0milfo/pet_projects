@@ -49,6 +49,12 @@
 						<td>@call.NameContactPerson</td>
 						<td>@call.Details</td>
 						<td><a href="@Url.Action("GetManagerInfoById", "Manager", new { id = Model.Company.ManagerId })" class="company-link" data-company-id="@Model.Company.ManagerId">@Model.Company.Manager.FirstName @Model.Company.Manager.LastName</a></td>
+						<td>
+							<div>
+								<button class="custom-button" type="button" id="ButtonUpdate" onclick="location.href='@Url.Action("ChangingDataCall", "Call", new { id = call.CallId})'">Изменить</button>
+								<button class="custom-button" type="button" id="ButtonDelete" onclick="location.href='@Url.Action("DeleteCall", "Call", new { id = call.CallId, companyId = call.CompanyId})'">Удалить</button>
+							</div>
+						</td>
 					</tr>
 				}
 			</tbody>

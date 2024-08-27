@@ -50,10 +50,16 @@
 				@foreach(var invoice in Model.FilteredInvoices.Where(i => i.ShippedInvoiced == true))
 				{
 					<tr>
-						<td><a href="@Url.Action("GetInvoiceInfo", "Invoice", new { id = invoice.InvoiceId })">@invoice.InvoiceId</a></td>
+						<td>@invoice.InvoiceId</td>
 						<td><a href="@Url.Action("GetCompanyInfo", "Company", new { id = invoice.CompanyId })">@invoice.Company.CompanyName</a></td>
 						<td>@invoice.InvoiceDate</td>
 						<td>@invoice.InvoiceItems.Sum(item => item.Product.Price * item.Quantity)</td>
+						<td>
+							<div>
+								<button class="custom-button" type="button" id="ButtonUpdate" onclick="location.href='@Url.Action("GetInvoiceInfo", "Invoice", new { id = invoice.InvoiceId })'">Изменить</button>
+								<button class="custom-button" type="button" id="ButtonDelete" onclick="location.href='@Url.Action("DeleteInvoice", "Invoice", new { id = invoice.InvoiceId, managerId = invoice.ManagerId})'">Удалить</button>
+							</div>
+						</td>
 					</tr>
 				}
 		</tbody>
@@ -75,10 +81,16 @@
 				@foreach (var invoice in Model.FilteredInvoices.Where(i => i.ShippedInvoiced == false))
 				{
 					<tr>
-						<td><a href="@Url.Action("GetInvoiceInfo", "Invoice", new { id = invoice.InvoiceId })">@invoice.InvoiceId</a></td>
+						<td>@invoice.InvoiceId</td>
 						<td><a href="@Url.Action("GetCompanyInfo", "Company", new { id = invoice.CompanyId })">@invoice.Company.CompanyName</a></td>
 						<td>@invoice.InvoiceDate</td>
 						<td>@invoice.InvoiceItems.Sum(item => item.Product.Price * item.Quantity)</td>
+						<td>
+							<div>
+								<button class="custom-button" type="button" id="ButtonUpdate" onclick="location.href='@Url.Action("GetInvoiceInfo", "Invoice", new { id = invoice.InvoiceId })'">Изменить</button>
+								<button class="custom-button" type="button" id="ButtonDelete" onclick="location.href='@Url.Action("DeleteInvoice", "Invoice", new { id = invoice.InvoiceId, managerId = invoice.ManagerId})'">Удалить</button>
+							</div>
+						</td>
 					</tr>
 				}
 		</tbody>

@@ -3,20 +3,20 @@
   "WorkspaceRootPath": "C:\\Users\\User\\Source\\Repos\\Web_miniCRM\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{3329A7B9-C7DB-4D06-8C60-EC483AAA417F}|Web_miniCRM.DAL\\Web_miniCRM.DAL.csproj|c:\\users\\user\\source\\repos\\web_minicrm\\web_minicrm.dal\\repositories\\companyrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{3329A7B9-C7DB-4D06-8C60-EC483AAA417F}|Web_miniCRM.DAL\\Web_miniCRM.DAL.csproj|solutionrelative:web_minicrm.dal\\repositories\\companyrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{3BCDA969-ABBF-4CF2-980B-B12B31D5C252}|Web_miniCRM\\Web_miniCRM.csproj|c:\\users\\user\\source\\repos\\web_minicrm\\web_minicrm\\controllers\\headdepartmentcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{3BCDA969-ABBF-4CF2-980B-B12B31D5C252}|Web_miniCRM\\Web_miniCRM.csproj|solutionrelative:web_minicrm\\controllers\\headdepartmentcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{61A17C3C-B2A4-4A6B-8FFF-81A4B1EC1AB3}|Web_miniCRM.Domain\\Web_miniCRM.Domain.csproj|c:\\users\\user\\source\\repos\\web_minicrm\\web_minicrm.domain\\entity\\companyviewmodelfiltering.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{61A17C3C-B2A4-4A6B-8FFF-81A4B1EC1AB3}|Web_miniCRM.Domain\\Web_miniCRM.Domain.csproj|solutionrelative:web_minicrm.domain\\entity\\companyviewmodelfiltering.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{0FEDBDF0-6679-410C-BCE3-EB2BCC01FFA4}|Web_miniCRM.Service\\Web_miniCRM.Service.csproj|c:\\users\\user\\source\\repos\\web_minicrm\\web_minicrm.service\\implementations\\headdepartmentservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{0FEDBDF0-6679-410C-BCE3-EB2BCC01FFA4}|Web_miniCRM.Service\\Web_miniCRM.Service.csproj|solutionrelative:web_minicrm.service\\implementations\\headdepartmentservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{3BCDA969-ABBF-4CF2-980B-B12B31D5C252}|Web_miniCRM\\Web_miniCRM.csproj|c:\\users\\user\\source\\repos\\web_minicrm\\web_minicrm\\views\\company\\getcompanyinfocalls.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
-      "RelativeMoniker": "D:0:0:{3BCDA969-ABBF-4CF2-980B-B12B31D5C252}|Web_miniCRM\\Web_miniCRM.csproj|solutionrelative:web_minicrm\\views\\company\\getcompanyinfocalls.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+      "AbsoluteMoniker": "D:0:0:{3329A7B9-C7DB-4D06-8C60-EC483AAA417F}|Web_miniCRM.DAL\\Web_miniCRM.DAL.csproj|c:\\users\\user\\source\\repos\\web_minicrm\\web_minicrm.dal\\applicationdbcontext.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{3329A7B9-C7DB-4D06-8C60-EC483AAA417F}|Web_miniCRM.DAL\\Web_miniCRM.DAL.csproj|solutionrelative:web_minicrm.dal\\applicationdbcontext.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{3BCDA969-ABBF-4CF2-980B-B12B31D5C252}|Web_miniCRM\\Web_miniCRM.csproj|c:\\users\\user\\source\\repos\\web_minicrm\\web_minicrm\\controllers\\companycontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{3BCDA969-ABBF-4CF2-980B-B12B31D5C252}|Web_miniCRM\\Web_miniCRM.csproj|solutionrelative:web_minicrm\\controllers\\companycontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{3BCDA969-ABBF-4CF2-980B-B12B31D5C252}|Web_miniCRM\\Web_miniCRM.csproj|c:\\users\\user\\source\\repos\\web_minicrm\\web_minicrm\\views\\home\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{3BCDA969-ABBF-4CF2-980B-B12B31D5C252}|Web_miniCRM\\Web_miniCRM.csproj|solutionrelative:web_minicrm\\views\\home\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
     }
   ],
   "DocumentGroupContainers": [
@@ -26,7 +26,7 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 2,
+          "SelectedChildIndex": 3,
           "Children": [
             {
               "$type": "Bookmark",
@@ -38,54 +38,54 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 0,
-              "Title": "CompanyRepository.cs",
-              "DocumentMoniker": "C:\\Users\\User\\Source\\Repos\\Web_miniCRM\\Web_miniCRM.DAL\\Repositories\\CompanyRepository.cs",
-              "RelativeDocumentMoniker": "Web_miniCRM.DAL\\Repositories\\CompanyRepository.cs",
-              "ToolTip": "C:\\Users\\User\\Source\\Repos\\Web_miniCRM\\Web_miniCRM.DAL\\Repositories\\CompanyRepository.cs",
-              "RelativeToolTip": "Web_miniCRM.DAL\\Repositories\\CompanyRepository.cs",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAAACwAAAAYAAAA",
+              "DocumentIndex": 2,
+              "Title": "ApplicationDbContext.cs",
+              "DocumentMoniker": "C:\\Users\\User\\Source\\Repos\\Web_miniCRM\\Web_miniCRM.DAL\\ApplicationDbContext.cs",
+              "RelativeDocumentMoniker": "Web_miniCRM.DAL\\ApplicationDbContext.cs",
+              "ToolTip": "C:\\Users\\User\\Source\\Repos\\Web_miniCRM\\Web_miniCRM.DAL\\ApplicationDbContext.cs",
+              "RelativeToolTip": "Web_miniCRM.DAL\\ApplicationDbContext.cs",
+              "ViewState": "AQIAANcAAAAAAAAAAAAswC8AAAAoAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-08-21T23:46:27.151Z",
+              "WhenOpened": "2024-08-26T23:57:39.099Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "HeadDepartmentController.cs",
+              "DocumentMoniker": "C:\\Users\\User\\Source\\Repos\\Web_miniCRM\\Web_miniCRM\\Controllers\\HeadDepartmentController.cs",
+              "RelativeDocumentMoniker": "Web_miniCRM\\Controllers\\HeadDepartmentController.cs",
+              "ToolTip": "C:\\Users\\User\\Source\\Repos\\Web_miniCRM\\Web_miniCRM\\Controllers\\HeadDepartmentController.cs",
+              "RelativeToolTip": "Web_miniCRM\\Controllers\\HeadDepartmentController.cs",
+              "ViewState": "AQIAABIAAAAAAAAAAAAowBoAAAAIAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-08-26T23:52:23.71Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
               "DocumentIndex": 1,
-              "Title": "CompanyViewModelFiltering.cs",
-              "DocumentMoniker": "C:\\Users\\User\\Source\\Repos\\Web_miniCRM\\Web_miniCRM.Domain\\Entity\\CompanyViewModelFiltering.cs",
-              "RelativeDocumentMoniker": "Web_miniCRM.Domain\\Entity\\CompanyViewModelFiltering.cs",
-              "ToolTip": "C:\\Users\\User\\Source\\Repos\\Web_miniCRM\\Web_miniCRM.Domain\\Entity\\CompanyViewModelFiltering.cs",
-              "RelativeToolTip": "Web_miniCRM.Domain\\Entity\\CompanyViewModelFiltering.cs",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAgAAAAnAAAA",
+              "Title": "HeadDepartmentService.cs",
+              "DocumentMoniker": "C:\\Users\\User\\Source\\Repos\\Web_miniCRM\\Web_miniCRM.Service\\Implementations\\HeadDepartmentService.cs",
+              "RelativeDocumentMoniker": "Web_miniCRM.Service\\Implementations\\HeadDepartmentService.cs",
+              "ToolTip": "C:\\Users\\User\\Source\\Repos\\Web_miniCRM\\Web_miniCRM.Service\\Implementations\\HeadDepartmentService.cs",
+              "RelativeToolTip": "Web_miniCRM.Service\\Implementations\\HeadDepartmentService.cs",
+              "ViewState": "AQIAADEAAAAAAAAAAAD4v1wAAAAMAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-08-21T23:39:22.071Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 2,
-              "Title": "GetCompanyInfoCalls.cshtml",
-              "DocumentMoniker": "C:\\Users\\User\\Source\\Repos\\Web_miniCRM\\Web_miniCRM\\Views\\Company\\GetCompanyInfoCalls.cshtml",
-              "RelativeDocumentMoniker": "Web_miniCRM\\Views\\Company\\GetCompanyInfoCalls.cshtml",
-              "ToolTip": "C:\\Users\\User\\Source\\Repos\\Web_miniCRM\\Web_miniCRM\\Views\\Company\\GetCompanyInfoCalls.cshtml",
-              "RelativeToolTip": "Web_miniCRM\\Views\\Company\\GetCompanyInfoCalls.cshtml",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAAADcAAAAFAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2024-08-21T23:36:08.695Z",
+              "WhenOpened": "2024-08-26T23:25:42.113Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
               "DocumentIndex": 3,
-              "Title": "CompanyController.cs",
-              "DocumentMoniker": "C:\\Users\\User\\Source\\Repos\\Web_miniCRM\\Web_miniCRM\\Controllers\\CompanyController.cs",
-              "RelativeDocumentMoniker": "Web_miniCRM\\Controllers\\CompanyController.cs",
-              "ToolTip": "C:\\Users\\User\\Source\\Repos\\Web_miniCRM\\Web_miniCRM\\Controllers\\CompanyController.cs",
-              "RelativeToolTip": "Web_miniCRM\\Controllers\\CompanyController.cs",
-              "ViewState": "AQIAAH8AAAAAAAAAAAA3wKAAAAACAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-08-21T23:31:07.036Z",
+              "Title": "Index.cshtml",
+              "DocumentMoniker": "C:\\Users\\User\\Source\\Repos\\Web_miniCRM\\Web_miniCRM\\Views\\Home\\Index.cshtml",
+              "RelativeDocumentMoniker": "Web_miniCRM\\Views\\Home\\Index.cshtml",
+              "ToolTip": "C:\\Users\\User\\Source\\Repos\\Web_miniCRM\\Web_miniCRM\\Views\\Home\\Index.cshtml",
+              "RelativeToolTip": "Web_miniCRM\\Views\\Home\\Index.cshtml",
+              "ViewState": "AQIAAAMAAAAAAAAAAAAAAA0AAAB2AAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2024-08-26T22:53:26.169Z",
               "EditorCaption": ""
             }
           ]

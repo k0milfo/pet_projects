@@ -42,7 +42,8 @@ namespace Web_miniCRM.DAL.Repositories
 			return await _db.Companies
 				.Include(i => i.Manager)
             .Include(i => i.Informations)
-			.Include(i => i.Calls)
+            .Include(i => i.Calls)
+			.Include(i => i.Meetings)
 			.Include(i => i.Invoices)
 				.ThenInclude(i => i.InvoiceItems)
 					.ThenInclude(ii => ii.Product)
@@ -63,7 +64,7 @@ namespace Web_miniCRM.DAL.Repositories
 		public async Task<Company> Update(Company entity)
 		{
 			_db.Update(entity);
-			_db.SaveChangesAsync();
+			await _db.SaveChangesAsync();
 			return entity;
 		}
 	}

@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using Web_miniCRM.DAL.Interfaces;
-using Web_miniCRM.DAL.Repositories;
+﻿using Web_miniCRM.DAL.Interfaces;
 using Web_miniCRM.Domain.Entity;
 using Web_miniCRM.Domain.Enum;
 using Web_miniCRM.Domain.Response;
@@ -111,7 +105,7 @@ namespace Web_miniCRM.Service.Implementations
 			var baseResponse = new BaseResponse<bool>();
 			try
 			{
-				_managerRepository.Insert(NewManager);
+				await _managerRepository.Insert(NewManager);
 				baseResponse.StatusCode = StatusCode.OK;
 				baseResponse.Data = true;
 				return baseResponse;

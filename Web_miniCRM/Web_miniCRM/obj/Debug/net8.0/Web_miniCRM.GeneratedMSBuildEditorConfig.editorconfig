@@ -18,6 +18,10 @@ build_property.GenerateRazorMetadataSourceChecksumAttributes =
 build_property.MSBuildProjectDirectory = C:\Users\User\Source\Repos\Web_miniCRM\Web_miniCRM
 build_property._RazorSourceGeneratorDebug = 
 
+[C:/Users/User/Source/Repos/Web_miniCRM/Web_miniCRM/Views/Call/ChangingDataCall.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQ2FsbFxDaGFuZ2luZ0RhdGFDYWxsLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
 [C:/Users/User/Source/Repos/Web_miniCRM/Web_miniCRM/Views/Call/CreateCall.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQ2FsbFxDcmVhdGVDYWxsLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
@@ -66,6 +70,14 @@ build_metadata.AdditionalFiles.CssScope =
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQ29tcGFueVxVcHNlcnRJdGVtLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
+[C:/Users/User/Source/Repos/Web_miniCRM/Web_miniCRM/Views/HeadDepartment/CreateHeadDepartment.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSGVhZERlcGFydG1lbnRcQ3JlYXRlSGVhZERlcGFydG1lbnQuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/User/Source/Repos/Web_miniCRM/Web_miniCRM/Views/HeadDepartment/GetHeadDepartments.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSGVhZERlcGFydG1lbnRcR2V0SGVhZERlcGFydG1lbnRzLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
 [C:/Users/User/Source/Repos/Web_miniCRM/Web_miniCRM/Views/Home/Index.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxJbmRleC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
@@ -106,6 +118,10 @@ build_metadata.AdditionalFiles.CssScope =
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSW52b2ljZVxVcHNlcnRJdGVtLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
+[C:/Users/User/Source/Repos/Web_miniCRM/Web_miniCRM/Views/Manager/CreateManager.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcTWFuYWdlclxDcmVhdGVNYW5hZ2VyLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
 [C:/Users/User/Source/Repos/Web_miniCRM/Web_miniCRM/Views/Manager/GetManagerInfoById.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcTWFuYWdlclxHZXRNYW5hZ2VySW5mb0J5SWQuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
@@ -128,6 +144,10 @@ build_metadata.AdditionalFiles.CssScope =
 
 [C:/Users/User/Source/Repos/Web_miniCRM/Web_miniCRM/Views/Manager/GetManagers.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcTWFuYWdlclxHZXRNYW5hZ2Vycy5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/User/Source/Repos/Web_miniCRM/Web_miniCRM/Views/Meeting/ChangingDataMeeting.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcTWVldGluZ1xDaGFuZ2luZ0RhdGFNZWV0aW5nLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
 [C:/Users/User/Source/Repos/Web_miniCRM/Web_miniCRM/Views/Meeting/CreateMeeting.cshtml]

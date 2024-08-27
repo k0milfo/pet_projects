@@ -1,23 +1,18 @@
-﻿@{
-	ViewData["Title"] = "Managers";
-}
+﻿<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<h1 class="text-center1">Менеджеры</h1>
+	<link rel="stylesheet" href="~/css/styles.css">
+</head>
 
-<!-- Подключение CSS файла -->
-<link rel="stylesheet" href="~/css/styles.css" />
-
-<div class="text-center1">
-	<h1 class="display-4">Managers</h1>
-</div>
-
-<!-- Основной контейнер для кнопок и таблицы -->
-<div class="button-container">
+<div class="button-container"">
 	<div class="custom-button">
-		<button class="custom-button" type="button" id="myButton" onclick="location.href='@Url.Action("CreateCompany", "Company")'">
-			Добавить (требуется изменение)
+		<button class="custom-button" type="button" id="myButton" onclick="location.href='@Url.Action("CreateManager", "Manager")'">
+			Добавить
 		</button>
 	</div>
 
-	<div class="table-container">
+	<div class="table-container" style="margin-left: -63px;">
 		<table>
 			<thead>
 				<tr>

@@ -16,7 +16,7 @@ namespace Web_miniCRM.DAL.Repositories
 		public async Task<bool> Delete(Call entity)
 		{
 			_db.Remove(entity);
-			_db.SaveChanges();
+			await _db.SaveChangesAsync();
 			return true;
 		}
 
@@ -47,7 +47,7 @@ namespace Web_miniCRM.DAL.Repositories
 		public async Task<Call> Update(Call entity)
 		{
 			_db.Update(entity);
-			_db.SaveChangesAsync();
+			await _db.SaveChangesAsync();
 			return entity;
 		}
 	}

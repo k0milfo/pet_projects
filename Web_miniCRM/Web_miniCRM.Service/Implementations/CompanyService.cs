@@ -70,9 +70,9 @@ namespace Web_miniCRM.Service.Implementations
 			}
 		}
 
-		public async Task<IBaseResponse<IEnumerable<Company>>> GetCompanies()
+		public async Task<IBaseResponse<List<Company>>> GetCompanies()
 		{
-			var baseResponse = new BaseResponse<IEnumerable<Company>>();
+			var baseResponse = new BaseResponse<List<Company>>();
 			try
 			{
 				var companies = await _companyRepository.GetAll();
@@ -89,7 +89,7 @@ namespace Web_miniCRM.Service.Implementations
 			}
 			catch (Exception ex)
 			{
-				return new BaseResponse<IEnumerable<Company>>()
+				return new BaseResponse<List<Company>>()
 				{
 					Description = $"[GetCompanies] : {ex.Message}"
 				};

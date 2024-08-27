@@ -55,6 +55,12 @@
 						<td>@call.PhoneNumber</td>
 						<td>@call.NameContactPerson</td>
 						<td>@call.Details</td>
+						<td>
+							<div>
+								<button class="custom-button" type="button" id="ButtonUpdate" onclick="location.href='@Url.Action("ChangingDataCall", "Call", new { id = call.CallId})'">Изменить</button>
+								<button class="custom-button" type="button" id="ButtonDelete" onclick="location.href='@Url.Action("DeleteCall", "Call", new { id = call.CallId, companyId = call.CompanyId})'">Удалить</button>
+							</div>
+						</td>
 					</tr>
 				}
 			</tbody>

@@ -1,6 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Web_miniCRM.Domain.Entity;
-using Web_miniCRM.Service.Implementations;
 using Web_miniCRM.Service.Interfaces;
 namespace Web_miniCRM.Controllers
 {
@@ -135,6 +134,35 @@ namespace Web_miniCRM.Controllers
 			{
 				return View("Error");
 			}
+		}
+
+		[HttpGet]
+		public async Task<IActionResult> CreateManager(int? id)
+		{
+			var NewManager = new Manager();
+
+			return View(NewManager);
+		}
+
+		[HttpPost]
+		public async Task<IActionResult> UpsertManager(Manager model)
+		{
+			if (ModelState.IsValid)
+			{
+				if (model.ManagerId == 0)
+				{
+					await _managerService.Insert(model);
+				}
+				else
+				{
+					await _managerService.Update(model.ManagerId, model);
+				}
+			}
+			else
+			{
+				return RedirectToAction("Error");
+			}
+			return RedirectToAction("GetManagers");
 		}
 	}
 }

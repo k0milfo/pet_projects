@@ -33,6 +33,9 @@ builder.Services.AddScoped<ICallService, CallService>();
 builder.Services.AddScoped<IMeetingRepository, MeetingRepository>();
 builder.Services.AddScoped<IMeetingService, MeetingService>();
 
+builder.Services.AddScoped<IHeadDepartmentRepository, HeadDepartmentRepository>();
+builder.Services.AddScoped<IHeadDepartmentService, HeadDepartmentService>();
+
 var app = builder.Build();
 // Configure the HTTP request pipeline.
 if (!app.Environment.IsDevelopment())

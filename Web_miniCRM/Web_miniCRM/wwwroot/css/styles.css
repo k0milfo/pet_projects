@@ -153,3 +153,25 @@ button#add-product-btn {
     left: 490px;
     position: relative;
 }
+
+
+.card-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    max-width: 400px; /* Ограничение общей ширины контейнера */
+    margin: 0 auto; /* Центрирование контейнера */
+}
+
+.card {
+    max-width: 350px;
+    background-color: #f9f9f9;
+    padding: 15px;
+    margin-bottom: 10px;
+    border-radius: 8px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    width: 100%; /* Заставляет карточки занимать всю ширину контейнера */
+    word-wrap: break-word; /* Перенос слов на следующую строку при необходимости */
+    overflow-wrap: break-word; /* Перенос текста */
+    white-space: pre-wrap; /* Сохранение пробелов и переносов строк */
+}

@@ -48,8 +48,13 @@
 						<td>@meeting.Address</td>
 						<td>@meeting.NameContactPerson</td>
 						<td>@meeting.Details</td>
-						<td>
 						<td><a href="@Url.Action("GetManagerInfoById", "Manager", new { id = meeting.ManagerId })" class="company-link" data-company-id="meeting.ManagerId">@meeting.Manager.FirstName @meeting.Manager.FirstName</a></td>
+						<td>
+							<div>
+								<button class="custom-button" type="button" id="ButtonUpdate" onclick="location.href='@Url.Action("ChangingDataMeeting", "Meeting", new { id = meeting.MeetingId})'">Изменить</button>
+								<button class="custom-button" type="button" id="ButtonDelete" onclick="location.href='@Url.Action("DeleteMeeting", "Meeting", new { id = meeting.MeetingId, managerId = meeting.ManagerId})'">Удалить</button>
+							</div>
+						</td>
 					</tr>
 				}
 			</tbody>

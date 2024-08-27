@@ -15,9 +15,9 @@ namespace Web_miniCRM.Service.Implementations
             _invoiceRepository = invoiceRepository;
         }
 
-        public async Task<IBaseResponse<IEnumerable<Invoice>>> GetInvoices()
+        public async Task<IBaseResponse<List<Invoice>>> GetInvoices()
         {
-            var baseResponse = new BaseResponse<IEnumerable<Invoice>>();
+            var baseResponse = new BaseResponse<List<Invoice>>();
             try
             {
                 var invoices = await _invoiceRepository.GetAll();
@@ -34,7 +34,7 @@ namespace Web_miniCRM.Service.Implementations
             }
             catch (Exception ex)
             {
-                return new BaseResponse<IEnumerable<Invoice>>()
+                return new BaseResponse<List<Invoice>>()
                 {
                     Description = $"[GetInvoices] : {ex.Message}"
                 };

@@ -47,14 +47,20 @@
 				</tr>
 			</thead>
 			<tbody>
-				@foreach (var managerCompany in Model.FilteredMeetings)
+				@foreach (var meeting in Model.FilteredMeetings)
 				{
 					<tr>
-						<td>@managerCompany.Date</td>
-						<td><a href="@Url.Action("GetCompanyInfo", "Company", new { id = managerCompany.CompanyId })" class="company-link" data-company-id="@managerCompany.CompanyId">@managerCompany.Company.CompanyName</a></td>
-						<td>@managerCompany.Address</td>
-						<td>@managerCompany.NameContactPerson</td>
-						<td>@managerCompany.Details</td>
+						<td>@meeting.Date</td>
+						<td><a href="@Url.Action("GetCompanyInfo", "Company", new { id = meeting.CompanyId })" class="company-link" data-company-id="@meeting.CompanyId">@meeting.Company.CompanyName</a></td>
+						<td>@meeting.Address</td>
+						<td>@meeting.NameContactPerson</td>
+						<td>@meeting.Details</td>
+						<td>
+							<div>
+								<button class="custom-button" type="button" id="ButtonUpdate" onclick="location.href='@Url.Action("ChangingDataMeeting", "Meeting", new { id = meeting.MeetingId})'">Изменить</button>
+								<button class="custom-button" type="button" id="ButtonDelete" onclick="location.href='@Url.Action("DeleteMeeting", "Meeting", new { id = meeting.MeetingId, managerId = meeting.ManagerId})'">Удалить</button>
+							</div>
+						</td>
 					</tr>
 				}
 			</tbody>

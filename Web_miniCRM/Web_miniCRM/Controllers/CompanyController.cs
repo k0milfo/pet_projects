@@ -18,11 +18,12 @@ namespace Web_miniCRM.Controllers
 		}
 
 		[HttpGet]
-		public async Task<IActionResult> GetCompanyInfo(int id)
+		public async Task<IActionResult> GetCompanyInfo(int id, int? managerId)
 		{
 			var response = await _companyServices.GetCompanyId(id);
+			//TempData["SuccessMessage"] = response.Data.ManagerId == managerId ? "Action" : null;
 
-			if (response.StatusCode == Domain.Enum.StatusCode.OK && response.Data != null)
+            if (response.StatusCode == Domain.Enum.StatusCode.OK && response.Data != null)
 			{
 				return View(response.Data);
 			}

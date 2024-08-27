@@ -107,6 +107,34 @@ namespace Web_miniCRM.DAL.Migrations
                     b.ToTable("Companies");
                 });
 
+            modelBuilder.Entity("Web_miniCRM.Domain.Entity.HeadDepartment", b =>
+                {
+                    b.Property<int>("HeadDepartmentId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("HeadDepartmentId"));
+
+                    b.Property<int?>("DepartmentNumber")
+                        .HasColumnType("int");
+
+                    b.Property<string>("Email")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("FirstName")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("LastName")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("NumberPhone")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("HeadDepartmentId");
+
+                    b.ToTable("HeadDepartments");
+                });
+
             modelBuilder.Entity("Web_miniCRM.Domain.Entity.Information", b =>
                 {
                     b.Property<int>("InformationId")
@@ -212,6 +240,9 @@ namespace Web_miniCRM.DAL.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<int?>("HeadDepartmentId")
+                        .HasColumnType("int");
+
                     b.Property<string>("LastName")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
@@ -221,6 +252,8 @@ namespace Web_miniCRM.DAL.Migrations
                         .HasColumnType("nvarchar(max)");
 
                     b.HasKey("ManagerId");
+
+                    b.HasIndex("HeadDepartmentId");
 
                     b.ToTable("Managers");
                 });
@@ -377,6 +410,16 @@ namespace Web_miniCRM.DAL.Migrations
                     b.Navigation("Product");
                 });
 
+            modelBuilder.Entity("Web_miniCRM.Domain.Entity.Manager", b =>
+                {
+                    b.HasOne("Web_miniCRM.Domain.Entity.HeadDepartment", "HeadDepartment")
+                        .WithMany("Managers")
+                        .HasForeignKey("HeadDepartmentId")
+                        .OnDelete(DeleteBehavior.Restrict);
+
+                    b.Navigation("HeadDepartment");
+                });
+
             modelBuilder.Entity("Web_miniCRM.Domain.Entity.Meeting", b =>
                 {
                     b.HasOne("Web_miniCRM.Domain.Entity.Company", "Company")
@@ -404,6 +447,11 @@ namespace Web_miniCRM.DAL.Migrations
                     b.Navigation("Invoices");
 
                     b.Navigation("Meetings");
+                });
+
+            modelBuilder.Entity("Web_miniCRM.Domain.Entity.HeadDepartment", b =>
+                {
+                    b.Navigation("Managers");
                 });
 
             modelBuilder.Entity("Web_miniCRM.Domain.Entity.Invoice", b =>
