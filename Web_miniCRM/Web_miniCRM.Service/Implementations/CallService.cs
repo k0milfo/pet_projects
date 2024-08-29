@@ -29,7 +29,7 @@ namespace Web_miniCRM.Service.Implementations
 				}
 				else
 				{
-					_callRepository.Delete(call);
+					await _callRepository.Delete(call);
 					baseResponse.Data = true;
 					baseResponse.StatusCode = StatusCode.OK;
 					baseResponse.Description = "Элемент удален";

@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Web_miniCRM.Domain.Entity;
+using Web_miniCRM.Service.Implementations;
 using Web_miniCRM.Service.Interfaces;
 namespace Web_miniCRM.Controllers
 {
@@ -17,6 +18,20 @@ namespace Web_miniCRM.Controllers
 		public async Task<IActionResult> GetManagers()
 		{
 			var response = await _managerService.GetManagers();
+			if (response.StatusCode == Domain.Enum.StatusCode.OK)
+			{
+				return View(response.Data);
+			}
+			else
+			{
+				return View("Error");
+			}
+		}
+
+		[HttpGet]
+		public async Task<IActionResult> GetManagersByDepartmentId(int id)
+		{
+			var response = await _managerService.GetManagersByDepartmentId(id);
 			if (response.StatusCode == Domain.Enum.StatusCode.OK)
 			{
 				return View(response.Data);
@@ -51,8 +66,8 @@ namespace Web_miniCRM.Controllers
 
 			if (manager.StatusCode == Domain.Enum.StatusCode.OK)
 			{
-				var filteredInvoice = (allInvoices.Where(invoice 
-					=> (!startDate.HasValue || invoice.InvoiceDate >= startDate) 
+				var filteredInvoice = (allInvoices.Where(invoice
+					=> (!startDate.HasValue || invoice.InvoiceDate >= startDate)
 					&& (!endDate.HasValue || invoice.InvoiceDate <= endDate))).ToList();
 
 				var managerViewModel = new ManagerViewModelFiltering
@@ -162,7 +177,32 @@ namespace Web_miniCRM.Controllers
 			{
 				return RedirectToAction("Error");
 			}
-			return RedirectToAction("GetManagers");
+			return RedirectToAction("GetManagersByDepartmentId", "HeadDepartment", new { departmentNumber = model.DepartmentNumber});
+		}
+
+		[HttpGet]
+		public async Task<IActionResult> ChangingDataManager(int id)
+		{
+			var response = await _managerService.Get(id);
+			if (response.StatusCode == Domain.Enum.StatusCode.OK)
+			{
+				return View(response.Data);
+			}
+			return RedirectToAction("Error");
+		}
+
+		[HttpGet]
+		public async Task<IActionResult> DeleteManager(int id, int _departmentNumber)
+		{
+			var response = await _managerService.Delete(id);
+			if (response.StatusCode == Domain.Enum.StatusCode.OK)
+			{
+				return RedirectToAction("GetManagersByDepartmentId", "HeadDepartment", new { departmentNumber = _departmentNumber });
+			}
+			else
+			{
+				return RedirectToAction("Error");
+			}
 		}
 	}
 }

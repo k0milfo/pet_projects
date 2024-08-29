@@ -1,0 +1,48 @@
+﻿@model Web_miniCRM.Domain.Entity.HeadDepartment
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<h1 class="text-center1" style="margin-left:-80px;">@Model.FirstName @Model.LastName</h1>
+</head>
+
+<div class="button-container">
+	<button class="custom-button" type="button" id="myButton1" onclick="location.href='@Url.Action("GetByDepartmentId", "HeadDepartment", new { id = Model.HeadDepartmentId })'" class="manager-link" data-manager-id="@Model.DepartmentNumber">
+		Информация о руководителе отдела
+	</button>
+	<button class="custom-button" type="button" id="myButton1" onclick="location.href='@Url.Action("GetManagersDepartment", "HeadDepartment", new { departmentNumber = Model.DepartmentNumber })'" class="manager-link" data-manager-id="@Model.DepartmentNumber">
+		Менеджеры отдела
+	</button>
+	<button class="custom-button" type="button" id="myButton1" onclick="location.href='@Url.Action("GetCompanyDepartment", "HeadDepartment", new { departmentNumber = Model.DepartmentNumber })'" class="manager-link" data-manager-id="@Model.DepartmentNumber">
+		Компании отдела
+	</button>
+	<button class="custom-button" type="button" id="myButton2" onclick="location.href='@Url.Action("GetManagersByDepartmentId", "HeadDepartment", new { id = Model.DepartmentNumber })'" class="manager-link" data-manager-id="@Model.DepartmentNumber">
+		Звонки отдела
+	</button>
+	<button class="custom-button" type="button" id="myButton3" onclick="location.href='@Url.Action("GetManagersByDepartmentId", "HeadDepartment", new { id = Model.DepartmentNumber })'" class="manager-link" data-manager-id="@Model.DepartmentNumber">
+		Встречи отдела
+	</button>
+	<button class="custom-button" type="button" id="myButton4" onclick="location.href='@Url.Action("GetManagersByDepartmentId", "HeadDepartment", new { id = Model.DepartmentNumber })'" class="manager-link" data-manager-id="@Model.DepartmentNumber">
+		Счета отдела
+	</button>
+	<div class="table-container-Manager_Invoices_Calls_Meetings" style="margin-top: 126px;">
+		<table>
+			<thead>
+				<tr>
+					<label>Информация о руководителе</label>
+					<th>Отдел</th>
+					<th>Номер телефона</th>
+					<th>Email</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr>
+					<td>@Model.DepartmentNumber</td>
+					<td>@Model.NumberPhone</td>
+					<td>@Model.Email</td>
+				</tr>
+			</tbody>
+		</table>
+	</div>
+</div>
+

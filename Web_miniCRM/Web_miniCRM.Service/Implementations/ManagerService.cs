@@ -29,7 +29,7 @@ namespace Web_miniCRM.Service.Implementations
 				}
 				else
 				{
-					_managerRepository.Delete(manager);
+					await _managerRepository.Delete(manager);
 					baseResponse.StatusCode = StatusCode.OK;
 					baseResponse.Description = "Элемент удален";
 					baseResponse.Data = true;
@@ -100,6 +100,33 @@ namespace Web_miniCRM.Service.Implementations
 			}
 		}
 
+		public async Task<IBaseResponse<List<Manager>>> GetManagersByDepartmentId(int id)
+		{
+			var baseResponse = new BaseResponse<List<Manager>>();
+
+			try
+			{
+				var managers = await _managerRepository.GetManagersByDepartmentId(id);
+				if (managers.Count == 0)
+				{
+					baseResponse.StatusCode = StatusCode.InternalServerError;
+					baseResponse.Description = "Найдено 0 элементов";
+					return baseResponse;
+				}
+				baseResponse.StatusCode = StatusCode.OK;
+				baseResponse.Data = managers;
+				return baseResponse;
+			}
+			catch (Exception ex)
+			{
+				return new BaseResponse<List<Manager>>()
+				{
+					StatusCode = StatusCode.InternalServerError,
+					Description = $"[GetAll] : {ex.Message}"
+				};
+			}
+		}
+
 		public async Task<IBaseResponse<bool>> Insert(Manager NewManager)
 		{
 			var baseResponse = new BaseResponse<bool>();
@@ -135,10 +162,16 @@ namespace Web_miniCRM.Service.Implementations
 				}
 				else
 				{
+					manager.FirstName = NewManager.FirstName;
+					manager.LastName = NewManager.LastName;
+					manager.Email = NewManager.Email;
+					manager.NumberPhone = NewManager.NumberPhone;
+					manager.DepartmentNumber = NewManager.DepartmentNumber;
 					manager.Calls = NewManager.Calls;
 					manager.Companies = NewManager.Companies;
 					manager.Meetings = NewManager.Meetings;
-					_managerRepository.Update(manager);
+
+					await _managerRepository.Update(manager);
 					baseResponse.StatusCode = StatusCode.OK;
 					
 					return baseResponse;

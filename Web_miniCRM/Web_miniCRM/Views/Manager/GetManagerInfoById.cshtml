@@ -38,7 +38,7 @@
 						<td>@Model.DepartmentNumber</td>
 						<td>@Model.NumberPhone</td>
 						<td>@Model.Email</td>
-						<td>(Здесь будет имя со ссылкой на руководителя)</td>
+					<td><a href="@Url.Action("GetHeadDepartmentInfoById", "HeadDepartment", new { id = Model.HeadDepartmentId })" class="manager-link" data-manager-id="@Model.HeadDepartmentId">@Model.HeadDepartment.FirstName @Model.HeadDepartment.LastName</a></td>
 					</tr>
 			</tbody>
 		</table>

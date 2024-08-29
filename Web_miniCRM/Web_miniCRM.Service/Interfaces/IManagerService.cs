@@ -10,5 +10,6 @@ namespace Web_miniCRM.Service.Interfaces
 		Task<IBaseResponse<Manager>> Update(int id, Manager manager);
 		Task<IBaseResponse<bool>> Insert(Manager NewManager);
 		Task<IBaseResponse<bool>> Delete(int id);
+		Task<IBaseResponse<List<Manager>>> GetManagersByDepartmentId(int id);
 	}
 }

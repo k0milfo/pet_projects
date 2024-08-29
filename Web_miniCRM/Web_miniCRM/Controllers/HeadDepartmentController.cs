@@ -8,11 +8,13 @@ namespace Web_miniCRM.Controllers
     public class HeadDepartmentController : Controller
     {
         private readonly IHeadDepartmentService _headDepartmentService;
-
-        public HeadDepartmentController(IHeadDepartmentService headDepartmentService)
+        private readonly IManagerService _managerService;
+        public HeadDepartmentController(IHeadDepartmentService headDepartmentService, IManagerService managerService)
         {
             _headDepartmentService = headDepartmentService;
-        }
+			_managerService = managerService;
+
+		}
 
         [HttpGet]
         public async Task<IActionResult> CreateHeadDepartment(int? id)
@@ -53,5 +55,47 @@ namespace Web_miniCRM.Controllers
             }
             return View("Error");
         }
-    }
+        [HttpGet]
+        public async Task<IActionResult> GetByDepartmentId(int id)
+        {
+            var manager = await _headDepartmentService.Get(id);
+            if (manager.StatusCode == Domain.Enum.StatusCode.OK)
+            {
+                return View(manager.Data);
+            }
+            else
+            {
+                return View("Error");
+            }
+        }
+		[HttpGet]
+		public async Task<IActionResult> GetCompanyDepartment(int departmentNumber)
+		{
+            var response = await _headDepartmentService.GetByDepartmentNumber(departmentNumber);
+            var responseData = response.Data;
+            var companies = responseData.Managers.SelectMany(i => i.Companies).ToList();
+			if (response.StatusCode == Domain.Enum.StatusCode.OK)
+			{
+				return View(companies);
+			}
+			else
+			{
+				return View("Error");
+			}
+		}
+
+		[HttpGet]
+		public async Task<IActionResult> GetManagersDepartment(int departmentNumber)
+		{
+			var ManagersByDepartment = await _headDepartmentService.GetByDepartmentNumber(departmentNumber);
+			if (ManagersByDepartment.StatusCode == Domain.Enum.StatusCode.OK)
+			{
+				return View(ManagersByDepartment.Data);
+			}
+			else
+			{
+				return View("Error");
+			}
+		}
+	}
 }

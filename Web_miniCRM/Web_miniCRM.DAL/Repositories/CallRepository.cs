@@ -15,9 +15,9 @@ namespace Web_miniCRM.DAL.Repositories
 
 		public async Task<bool> Delete(Call entity)
 		{
-			_db.Remove(entity);
-			await _db.SaveChangesAsync();
-			return true;
+				_db.Remove(entity);
+				await _db.SaveChangesAsync();
+				return true;
 		}
 
 		public async Task<Call> Get(int id)

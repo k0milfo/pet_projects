@@ -51,7 +51,13 @@
         </div>
         <div class="card">
             <h3>Информация</h3>
-            @if (Model.Informations != null && Model.Informations.Count > 0)
+            <textarea name="Informations[0].Details" style="width: 100%; height: 200px;">
+                @Model.Informations[0].Details
+                            </textarea>
+            @* <input type="text" id="CompanyInformations" placeholder="Информация о компании" name="Informations[0].Details" value="@Model.Informations[0].Details"/> *@
+
+
+@*             @if (Model.Informations != null && Model.Informations.Count > 0)
             {
                 @for (int i = 0; i < Model.Informations.Count; i++)
                 {
@@ -62,12 +68,12 @@
             }
             else
             {
-                <p>Нет доступной информации о клиенте</p>
-            }
+                <p>Нет доступной информации о компании</p>
+            } *@
         </div>
     </div>
 
-    <button class="custom-button additional-button" style="width: 200px; margin-top: -453px !important; margin-left: 126px !important;" type="submit">Сохранить</button>
+    <button class="custom-button additional-button" style="width: 200px; margin-top: -293px !important; margin-left: 126px !important;" type="submit">Сохранить</button>
 </form>
 @* }
 else

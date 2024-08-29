@@ -1,4 +1,4 @@
-﻿@model List<Web_miniCRM.Domain.Entity.Manager>
+﻿@model Web_miniCRM.Domain.Entity.HeadDepartment
 
 <head>
 	<meta charset="UTF-8">
@@ -25,7 +25,7 @@
 				</tr>
 			</thead>
 			<tbody>
-				@foreach (var manager in Model)
+				@foreach (var manager in Model.Managers)
 				{
 					<tr>
 						<td><a href="@Url.Action("GetManagerInfoById", "Manager", new { id = manager.ManagerId })" class="manager-link" data-manager-id="@manager.ManagerId">@manager.FirstName @manager.LastName</a></td>
@@ -34,8 +34,8 @@
 						<td>@manager.Email</td>
 						<td>
 							<div>
-								<button class="custom-button" type="button" id="ButtonUpdate" onclick="location.href='@Url.Action("ChangingDataManager", "Manager", new { id = @manager.ManagerId})'">Изменить</button>
-								<button class="custom-button" type="button" id="ButtonDelete" onclick="location.href='@Url.Action("DeleteManager", "Manager", new { id = @manager.ManagerId, _departmentNumber = @manager.DepartmentNumber})'">Удалить</button>
+								<button class="custom-button" type="button" id="ButtonUpdate" onclick="location.href='@Url.Action("ChangingDataManager", "Manager", new { id = manager.ManagerId})'">Изменить</button>
+								<button class="custom-button" type="button" id="ButtonDelete" onclick="location.href='@Url.Action("DeleteManager", "Manager", new { id = manager.ManagerId})'">Удалить</button>
 							</div>
 						</td>
 					</tr>
@@ -44,3 +44,4 @@
 		</table>
 	</div>
 </div>
+

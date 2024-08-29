@@ -1,4 +1,11 @@
 ﻿@model Web_miniCRM.Domain.Entity.Company
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<h1 class="text-center1" style="margin-left:-80px;">@Model.CompanyName</h1>
+</head>
+
 <form asp-action="UpsertCompany" method="post">
 	<div class="main-container">
 		<input type="hidden" id="CompanyId" name="CompanyId" value="@Model.CompanyId" />

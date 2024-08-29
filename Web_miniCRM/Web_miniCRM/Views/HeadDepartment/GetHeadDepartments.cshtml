@@ -28,8 +28,7 @@
 				@foreach (var headDepartment in Model)
 				{
 					<tr>
-						@* <td><a href="@Url.Action("GetManagerInfoById", "Manager", new { id = manager.ManagerId })" class="manager-link" data-manager-id="@manager.ManagerId">@manager.FirstName @manager.LastName</a></td> *@
-						<td>@headDepartment.FirstName @headDepartment.LastName</td>
+						<td><a href="@Url.Action("GetByDepartmentId", "HeadDepartment", new { id = headDepartment.HeadDepartmentId })" class="manager-link" data-manager-id="@headDepartment.HeadDepartmentId">@headDepartment.FirstName @headDepartment.LastName</a></td>
 						<td>@headDepartment.DepartmentNumber</td>
 						<td>@headDepartment.NumberPhone</td>
 						<td>@headDepartment.Email</td>

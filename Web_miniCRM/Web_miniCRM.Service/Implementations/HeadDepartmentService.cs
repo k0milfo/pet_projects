@@ -73,7 +73,33 @@ namespace Web_miniCRM.Service.Implementations
             }
         }
 
-        public async Task<IBaseResponse<List<HeadDepartment>>> GetHeadDepartments()
+		public async Task<IBaseResponse<HeadDepartment>> GetByDepartmentNumber(int DepartmentNumber)
+		{
+			var baseResponse = new BaseResponse<HeadDepartment>();
+			try
+			{
+				var headDepartmentRepository = await _headDepartmentRepository.GetByDepartmentNumber(DepartmentNumber);
+				if (headDepartmentRepository == null)
+				{
+					baseResponse.Description = $"Элемент не найден";
+					baseResponse.StatusCode = StatusCode.InternalServerError;
+					return baseResponse;
+				}
+				baseResponse.Data = headDepartmentRepository;
+				baseResponse.StatusCode = StatusCode.OK;
+				return baseResponse;
+			}
+			catch (Exception ex)
+			{
+				return new BaseResponse<HeadDepartment>()
+				{
+					StatusCode = StatusCode.InternalServerError,
+					Description = $"[Get] : {ex.Message}"
+				};
+			}
+		}
+
+		public async Task<IBaseResponse<List<HeadDepartment>>> GetHeadDepartments()
         {
             var baseResponse = new BaseResponse<List<HeadDepartment>>();
 
@@ -141,7 +167,7 @@ namespace Web_miniCRM.Service.Implementations
                     _headDepartment.LastName = _headDepartment.LastName;
                     _headDepartment.Email = _headDepartment.Email;
                     _headDepartment.NumberPhone = _headDepartment.NumberPhone;
-                    _headDepartmentRepository.Update(_headDepartment);
+                    await _headDepartmentRepository.Update(_headDepartment);
                     baseResponse.StatusCode = StatusCode.OK;
 
                     return baseResponse;

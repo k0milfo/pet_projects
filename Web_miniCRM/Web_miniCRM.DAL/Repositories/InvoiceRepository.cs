@@ -23,7 +23,7 @@ namespace Web_miniCRM.DAL.Repositories
         public async Task<bool> Delete(Invoice entity)
         {
             _db.Remove(entity);
-            _db.SaveChangesAsync();
+            await _db.SaveChangesAsync();
 
             return true;
         }

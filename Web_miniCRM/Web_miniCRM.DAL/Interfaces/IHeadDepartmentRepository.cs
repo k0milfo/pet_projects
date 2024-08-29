@@ -4,6 +4,6 @@ namespace Web_miniCRM.DAL.Interfaces
 {
     public interface IHeadDepartmentRepository : IBaseRepository<HeadDepartment>
     {
-
-    }
+		Task<HeadDepartment> GetByDepartmentNumber(int id);
+	}
 }

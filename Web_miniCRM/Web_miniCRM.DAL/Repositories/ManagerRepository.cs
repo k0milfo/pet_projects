@@ -28,12 +28,23 @@ namespace Web_miniCRM.DAL.Repositories
 					.ThenInclude(j => j.Product)
 				.Include(ii => ii.Meetings)
 				.Include(iii => iii.Calls)
+				.Include(i => i.HeadDepartment)
 				.FirstOrDefaultAsync(iiii => iiii.ManagerId == id);
 		}
 
 		public async Task<List<Manager>> GetAll()
 		{
 			return await _db.Managers.ToListAsync();
+		}
+
+		public async Task<List<Manager>> GetManagersByDepartmentId(int id)
+		{
+			return await _db.Managers.Where(i => i.HeadDepartmentId == id)
+				.Include(i => i.Companies)
+				.Include(i => i.Calls)
+				.Include(i => i.Invoices)
+				.Include(i => i.Meetings)
+				.ToListAsync();
 		}
 
 		public async Task<bool> Insert(Manager entity)
