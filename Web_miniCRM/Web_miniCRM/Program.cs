@@ -4,6 +4,7 @@ using Web_miniCRM.DAL.Interfaces;
 using Web_miniCRM.DAL.Repositories;
 using Web_miniCRM.Service.Interfaces;
 using Web_miniCRM.Service.Implementations;
+using Microsoft.AspNetCore.Identity;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -14,6 +15,22 @@ builder.Services.AddControllersWithViews();
 var connection = builder.Configuration.GetConnectionString("DefaultConnection");
 builder.Services.AddDbContext<ApplicationDbContext>(options => 
 options.UseSqlServer(connection));
+
+builder.Services.AddIdentity<ApplicationUser, IdentityRole>()
+    .AddEntityFrameworkStores<ApplicationDbContext>()
+    .AddDefaultTokenProviders()
+	.AddRoles<IdentityRole>();
+
+builder.Services.Configure<IdentityOptions>(options =>
+{
+	options.Password.RequireDigit = false;
+	options.Password.RequiredLength = 5;
+	options.Password.RequireNonAlphanumeric = false;
+	options.Password.RequireUppercase = false;
+	options.Password.RequireLowercase = false;
+});
+
+
 
 builder.Services.AddScoped<ICompanyRepository, CompanyRepository>();
 builder.Services.AddScoped<ICompanyService, CompanyService>();
@@ -36,7 +53,46 @@ builder.Services.AddScoped<IMeetingService, MeetingService>();
 builder.Services.AddScoped<IHeadDepartmentRepository, HeadDepartmentRepository>();
 builder.Services.AddScoped<IHeadDepartmentService, HeadDepartmentService>();
 
+
+
 var app = builder.Build();
+
+
+using (var scope = app.Services.CreateScope())
+{
+	var services = scope.ServiceProvider;
+	var roleManager = services.GetRequiredService<RoleManager<IdentityRole>>();
+	var userManager = services.GetRequiredService<UserManager<ApplicationUser>>();
+
+	// Создаем роли, если они не существуют
+	string[] roleNames = { "admin", "headdepartment", "manager" };
+	foreach (var roleName in roleNames)
+	{
+		var roleExist = await roleManager.RoleExistsAsync(roleName);
+		if (!roleExist)
+		{
+			await roleManager.CreateAsync(new IdentityRole(roleName));
+		}
+	}
+
+	// Создаем пользователя admin и присваиваем ему роль admin
+	var adminUser = await userManager.FindByEmailAsync("admin");
+	if (adminUser == null)
+	{
+		var user = new ApplicationUser
+		{
+			UserName = "admin", //admin@example.com
+            Email = "admin@example.com"
+		};
+		var createAdmin = await userManager.CreateAsync(user, "admin"); //AdminPassword123
+        if (createAdmin.Succeeded)
+		{
+			await userManager.AddToRoleAsync(user, "admin");
+		}
+	}
+}
+
+
 // Configure the HTTP request pipeline.
 if (!app.Environment.IsDevelopment())
 {
@@ -50,10 +106,12 @@ app.UseStaticFiles();
 
 app.UseRouting();
 
+app.UseAuthentication();
 app.UseAuthorization();
 
 app.MapControllerRoute(
 	name: "default",
-	pattern: "{controller=Home}/{action=Index}/{id?}");
+//pattern: "{controller=Home}/{action=Index}/{id?}");
+pattern: "{controller=Account}/{action=Login}/{id?}");
 
 app.Run();

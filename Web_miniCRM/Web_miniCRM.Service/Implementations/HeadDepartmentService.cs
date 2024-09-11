@@ -94,7 +94,7 @@ namespace Web_miniCRM.Service.Implementations
 				return new BaseResponse<HeadDepartment>()
 				{
 					StatusCode = StatusCode.InternalServerError,
-					Description = $"[Get] : {ex.Message}"
+					Description = $"[GetByDepartmentNumber] : {ex.Message}"
 				};
 			}
 		}

@@ -1,4 +1,7 @@
-﻿<!DOCTYPE html>
+﻿@using Microsoft.AspNetCore.Identity
+@inject UserManager<ApplicationUser> _userManager
+
+<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="utf-8" />
@@ -12,9 +15,38 @@
 </head>
 <body>
     <header>
-        <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3">
-            <div class="container-fluid">
-                <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index">miniCRM</a>
+        <nav class="navbar navbar-expand-sm navbar-light bg-white border-bottom box-shadow mb-3">
+            @if (User.IsInRole("admin"))
+            {
+                <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index" style="margin-left: 10px;">miniCRM</a>
+            }
+            else if (User.IsInRole("manager"))
+            {
+                var managerId = _userManager.Users.Where(i => i.Email == User.Identity.Name).FirstOrDefault()?.ManagerId;
+                if (managerId != null)
+                {
+                    <a class="navbar-brand" asp-area="" asp-controller="Manager" asp-action="GetManagerInfoById" asp-route-id="@managerId" style="margin-left: 10px;">miniCRM</a>
+                }
+            }
+            else if (User.IsInRole("headdepartment"))
+            {
+                var headDepartmentId = _userManager.Users.Where(i => i.Email == User.Identity.Name).FirstOrDefault()?.HeadDepartmentId;
+                if (headDepartmentId != null)
+                {
+                    <a class="navbar-brand" asp-area="" asp-controller="HeadDepartment" asp-action="GetByDepartmentId" asp-route-id="@headDepartmentId" style="margin-left: 10px;">miniCRM</a>
+                }
+            }
+            else
+            {
+                <a class="navbar-brand" style="margin-left: 10px;">miniCRM</a>
+            }
+
+            @if (User.Identity.IsAuthenticated)
+            {
+                <form asp-controller="Account" asp-action="Logout" method="post" class="form-inline ml-auto" style="margin-left: 1150px;">
+                    <button type="submit" class="btn btn-link">Выход</button>
+                </form>
+            }
         </nav>
     </header>
     <div class="container">
@@ -22,16 +54,6 @@
             @RenderBody()
         </main>
     </div>
+    @RenderSection("Scripts", required: false)
 </body>
 </html>
-   @*  <footer class="border-top footer text-muted">
-        <div class="container">
-            &copy; 2024 - Web_miniCRM - <a asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
-        </div>
-    </footer>
-    <script src="~/lib/jquery/dist/jquery.min.js"></script>
-    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
-    <script src="~/js/site.js" asp-append-version="true"></script>
-    @await RenderSectionAsync("Scripts", required: false)
-</body>
-</html> *@

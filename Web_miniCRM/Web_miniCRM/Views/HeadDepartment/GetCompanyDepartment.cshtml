@@ -1,20 +1,40 @@
-﻿@model List<Web_miniCRM.Domain.Entity.Company>
+﻿@model Web_miniCRM.Domain.Entity.DepartmentViewModelFiltering
 
 <head>
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<h1 class="text-center1">Компании</h1>
-	<link rel="stylesheet" href="~/css/styles.css">
+	<h1 class="text-center1" style="margin-left:-80px;">Компании отдела</h1>
 </head>
 
-<!-- Основной контейнер для кнопок и таблицы -->
 <div class="button-container">
-	<div class="custom-button">
+	<button class="custom-button" type="button" id="myButton1" onclick="location.href='@Url.Action("GetByDepartmentId", "HeadDepartment", new { id = Model.HeadDepartment.HeadDepartmentId })'" class="manager-link" data-manager-id="@Model.HeadDepartment.DepartmentNumber">
+		Информация о руководителе отдела
+	</button>
+	<button class="custom-button" type="button" id="myButton1" onclick="location.href='@Url.Action("GetManagersDepartment", "HeadDepartment", new { departmentNumber = Model.HeadDepartment.DepartmentNumber })'" class="manager-link" data-manager-id="@Model.HeadDepartment.DepartmentNumber">
+		Менеджеры отдела
+	</button>
+	<button class="custom-button" type="button" id="myButton1" onclick="location.href='@Url.Action("GetCompanyDepartment", "HeadDepartment", new { departmentNumber = Model.HeadDepartment.DepartmentNumber })'" class="manager-link" data-manager-id="@Model.HeadDepartment.DepartmentNumber">
+		Компании отдела
+	</button>
+	<button class="custom-button" type="button" id="myButton2" onclick="location.href='@Url.Action("GetCallsDepartment", "HeadDepartment", new { departmentNumber = Model.HeadDepartment.DepartmentNumber })'" class="manager-link" data-manager-id="@Model.HeadDepartment.DepartmentNumber">
+		Звонки отдела
+	</button>
+	<button class="custom-button" type="button" id="myButton3" onclick="location.href='@Url.Action("GetMeetingsDepartment", "HeadDepartment", new { departmentNumber = Model.HeadDepartment.DepartmentNumber })'" class="manager-link" data-manager-id="@Model.HeadDepartment.DepartmentNumber">
+		Встречи отдела
+	</button>
+	<button class="custom-button" type="button" id="myButton4" onclick="location.href='@Url.Action("GetInvoicesDepartment", "HeadDepartment", new { departmentNumber = Model.HeadDepartment.DepartmentNumber })'" class="manager-link" data-manager-id="@Model.HeadDepartment.DepartmentNumber">
+		Счета отдела
+	</button>
+</div>
+
+<!-- Основной контейнер для кнопок и таблицы -->
+<div class="button-container" style="margin-left: 230px;">
+	<div class="custom-button" style="margin-top: -277px;">
 		<button class="custom-button" type="button" id="myButton" onclick="location.href='@Url.Action("CreateCompany", "Company")'">
 			Добавить
 		</button>
 	</div>
-	<form asp-action="FindCompany" method="get">
+	<form asp-controller="Company" asp-action="FindCompany" method="get">
 		<input type="text" name="item" id="find-company" value="" placeholder="ИНН или Название" />
 		<button class="custom-button" type="submit">Поиск</button>
 		@if (TempData["SuccessMessage"] != null)
@@ -25,7 +45,7 @@
 		}
 	</form>
 
-	<div class="table-container-Companies">
+	<div class="table-container-Companies" style="margin-left: -100px; margin-top: -115px;">
 		<table>
 			<thead>
 				<tr>
@@ -38,7 +58,7 @@
 				</tr>
 			</thead>
 			<tbody>
-				@foreach (var company in Model)
+				@foreach (var company in Model.FilteredCompanies)
 				{
 					<tr>
 						<td><a href="@Url.Action("GetCompanyInfo", "Company", new { id = company.CompanyId })" class="company-link" data-company-id="@company.CompanyId">@company.CompanyName</a></td>

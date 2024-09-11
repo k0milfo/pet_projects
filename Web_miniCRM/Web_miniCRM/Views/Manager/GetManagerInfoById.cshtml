@@ -1,4 +1,6 @@
-﻿@model Web_miniCRM.Domain.Entity.Manager
+﻿@using Microsoft.AspNetCore.Identity
+@model Web_miniCRM.Domain.Entity.Manager
+@inject SignInManager<ApplicationUser> SignInManager
 
 <head>
 	<meta charset="UTF-8">
@@ -38,7 +40,16 @@
 						<td>@Model.DepartmentNumber</td>
 						<td>@Model.NumberPhone</td>
 						<td>@Model.Email</td>
-					<td><a href="@Url.Action("GetHeadDepartmentInfoById", "HeadDepartment", new { id = Model.HeadDepartmentId })" class="manager-link" data-manager-id="@Model.HeadDepartmentId">@Model.HeadDepartment.FirstName @Model.HeadDepartment.LastName</a></td>
+					@* <td><a href="@Url.Action("GetByDepartmentId", "HeadDepartment", new { id = Model.HeadDepartmentId })" class="manager-link" data-manager-id="@Model.HeadDepartmentId">@Model.HeadDepartment.FirstName @Model.HeadDepartment.LastName</a></td> *@
+					@if (User.IsInRole("headdepartment") || User.IsInRole("admin"))
+					{
+						<td><a href="@Url.Action("GetByDepartmentId", "HeadDepartment", new { id = Model.HeadDepartmentId })">@Model.HeadDepartment.FirstName @Model.HeadDepartment.LastName</a></td>
+					}
+					@if (User.IsInRole("manager"))
+					{
+						<td>@Model.HeadDepartment.FirstName @Model.HeadDepartment.LastName</td>
+					}
+					
 					</tr>
 			</tbody>
 		</table>

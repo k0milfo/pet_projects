@@ -29,4 +29,22 @@
     <button class="custom-button" type="button" id="myButton4" onclick="location.href='@Url.Action("GetManagers", "Manager")'">
         Менеджеры
     </button>
+
+    <button class="custom-button" type="button" id="myButton5" onclick="location.href='@Url.Action("Login", "Account")'">
+        Авторизация
+    </button>
+
+    <button class="custom-button" type="button" id="myButton5" onclick="location.href='@Url.Action("CreateManager", "Manager")'">
+        Создание менеджера
+    </button>
+    <button class="custom-button" type="button" id="myButton6" onclick="location.href='@Url.Action("CreateHeadDepartment", "HeadDepartment")'">
+        Создание руководителя отдела
+    </button>
+    
+    <button class="custom-button" type="button" id="myButton6" onclick="location.href='@Url.Action("GetHeadDepartments", "HeadDepartment", new {departmentNumber = 1})'">
+        Руководители отделов
+    </button>
+    <button class="custom-button" type="button" id="myButton6" onclick="location.href='@Url.Action("GetManagersDepartment", "HeadDepartment", new {departmentNumber = 1})'">
+        Менеджеры 1 отдела
+    </button>
 </div>

@@ -1,4 +1,5 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using Microsoft.AspNetCore.Identity;
+using Microsoft.EntityFrameworkCore;
 using Web_miniCRM.DAL.Interfaces;
 using Web_miniCRM.Domain.Entity;
 
@@ -7,13 +8,17 @@ namespace Web_miniCRM.DAL.Repositories
 	public class ManagerRepository : IManagerRepository
 	{
 		private readonly ApplicationDbContext _db;
+		private readonly UserManager<ApplicationUser> _userManager;
 
-		public ManagerRepository(ApplicationDbContext dbContext)
+		public ManagerRepository(ApplicationDbContext dbContext, UserManager<ApplicationUser> userManager)
 		{
 			_db = dbContext;
+			_userManager = userManager;
 		}
 		public async Task<bool> Delete(Manager entity)
 		{
+			var manager = await _userManager.FindByEmailAsync(entity.Email);
+			var identityResult = await _userManager.DeleteAsync(manager);
 			_db.Remove(entity);
 			await _db.SaveChangesAsync();
 			return true;
@@ -32,7 +37,12 @@ namespace Web_miniCRM.DAL.Repositories
 				.FirstOrDefaultAsync(iiii => iiii.ManagerId == id);
 		}
 
-		public async Task<List<Manager>> GetAll()
+        public async Task<Manager> GetByEmail(string email)
+        {
+            return await _db.Managers.FirstOrDefaultAsync(item => item.Email.Equals(email));
+        }
+
+        public async Task<List<Manager>> GetAll()
 		{
 			return await _db.Managers.ToListAsync();
 		}

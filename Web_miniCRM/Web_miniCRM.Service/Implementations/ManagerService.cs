@@ -127,7 +127,33 @@ namespace Web_miniCRM.Service.Implementations
 			}
 		}
 
-		public async Task<IBaseResponse<bool>> Insert(Manager NewManager)
+        public async Task<IBaseResponse<Manager>> GetManagerByEmail(string email)
+        {
+            var baseResponse = new BaseResponse<Manager>();
+            try
+            {
+                var manager = await _managerRepository.GetByEmail(email);
+                if (manager == null)
+                {
+                    baseResponse.Description = $"Элемент не найден";
+                    baseResponse.StatusCode = StatusCode.InternalServerError;
+                    return baseResponse;
+                }
+                baseResponse.Data = manager;
+                baseResponse.StatusCode = StatusCode.OK;
+                return baseResponse;
+            }
+            catch (Exception ex)
+            {
+                return new BaseResponse<Manager>()
+                {
+                    StatusCode = StatusCode.InternalServerError,
+                    Description = $"[GetByEmail] : {ex.Message}"
+                };
+            }
+        }
+
+        public async Task<IBaseResponse<bool>> Insert(Manager NewManager)
 		{
 			var baseResponse = new BaseResponse<bool>();
 			try

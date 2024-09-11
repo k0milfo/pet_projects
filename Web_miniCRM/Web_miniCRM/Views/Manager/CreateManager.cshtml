@@ -12,6 +12,7 @@
     <h2>Создание менеджера</h2>
     <form asp-action="UpsertManager" method="post">
         <input type="hidden" name="ManagerId" value="@Model.ManagerId" />
+        <input type="hidden" name="HeadDepartmentId" value="@Model.HeadDepartmentId" />
 
         <label for="DepartmentNumber">Отдел:</label>
         <input type="text" id="DepartmentNumber" name="DepartmentNumber" />
@@ -27,6 +28,9 @@
 
         <label for="Email">Email</label>
         <input type="text" id="Email" name="Email" />
+
+        <label for="Password">Password</label>
+        <input type="text" id="Password" name="Password" />
 
         <button type="submit">Сохранить менеджера</button>
     </form>
