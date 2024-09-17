@@ -9,10 +9,12 @@ namespace Web_miniCRM.Service.Implementations
 	public class ManagerService : IManagerService
 	{
 		private readonly IManagerRepository _managerRepository;
+		private readonly IHeadDepartmentRepository _headDepartmentRepository;
 
-		public ManagerService(IManagerRepository managerRepository)
+		public ManagerService(IManagerRepository managerRepository, IHeadDepartmentRepository headDepartmentRepository)
 		{
 			_managerRepository = managerRepository;
+			_headDepartmentRepository = headDepartmentRepository;
 		}
 
 		public async Task<IBaseResponse<bool>> Delete(int id)
@@ -188,15 +190,17 @@ namespace Web_miniCRM.Service.Implementations
 				}
 				else
 				{
+					var response = await _headDepartmentRepository.GetNotFullByNumber(NewManager.DepartmentNumber);
+
+					manager.DepartmentNumber = NewManager.DepartmentNumber;
+					manager.HeadDepartmentId = response.HeadDepartmentId;
 					manager.FirstName = NewManager.FirstName;
 					manager.LastName = NewManager.LastName;
 					manager.Email = NewManager.Email;
 					manager.NumberPhone = NewManager.NumberPhone;
-					manager.DepartmentNumber = NewManager.DepartmentNumber;
 					manager.Calls = NewManager.Calls;
 					manager.Companies = NewManager.Companies;
 					manager.Meetings = NewManager.Meetings;
-
 					await _managerRepository.Update(manager);
 					baseResponse.StatusCode = StatusCode.OK;
 					

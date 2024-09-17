@@ -24,6 +24,11 @@ namespace Web_miniCRM.DAL.Repositories
 			return true;
 		}
 
+		public async Task<HeadDepartment> GetByEmail(string email)
+		{
+			return await _db.HeadDepartments.FirstOrDefaultAsync(item => item.Email.Equals(email));
+		}
+
 		public async Task<HeadDepartment> Get(int id)
 		{
 			//return await _db.HeadDepartments.FirstOrDefaultAsync(i => i.HeadDepartmentId == id);
@@ -61,6 +66,14 @@ namespace Web_miniCRM.DAL.Repositories
 	.Include(i => i.Managers)
 		.ThenInclude(i => i.Companies)
 				.FirstOrDefaultAsync(i => i.DepartmentNumber == DepartmentNumber);
+		}
+		public async Task<HeadDepartment> GetNotFullByNumber(int number)
+		{
+			//return await _db.HeadDepartments.FirstOrDefaultAsync(i => i.HeadDepartmentId == id);
+
+			return await _db.HeadDepartments
+	.Include(i => i.Managers)
+	.FirstOrDefaultAsync(i => i.DepartmentNumber == number);
 		}
 
 		public async Task<bool> Insert(HeadDepartment entity)

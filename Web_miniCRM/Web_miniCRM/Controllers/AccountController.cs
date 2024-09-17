@@ -1,6 +1,7 @@
-﻿using Microsoft.AspNetCore.Identity;
+﻿using Azure;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
-using System.Threading.Tasks;
+using Web_miniCRM.Domain.Entity;
 
 public class AccountController : Controller
 {
@@ -58,5 +59,38 @@ public class AccountController : Controller
 	{
 		await _signInManager.SignOutAsync();
 		return RedirectToAction("Login", "Account");
+	}
+    [HttpGet]
+    public async Task<IActionResult> CreateNewPassword(string email, string firstname, string lastname)
+    {
+		ViewBag.Email = email;
+		ViewBag.FirstName = firstname;
+		ViewBag.LastName = lastname;
+
+		return View();
+    }
+
+	[HttpPost]
+    public async Task<IActionResult> ResetPassword(string email, string password)
+    {
+		var user = await _userManager.FindByEmailAsync(email);
+		if (user == null)
+		{
+			return RedirectToAction("Error");
+		}
+
+		var result = await _userManager.RemovePasswordAsync(user);
+		if (!result.Succeeded)
+		{
+			return RedirectToAction("Error");
+		}
+
+		result = await _userManager.AddPasswordAsync(user, password);
+		if (!result.Succeeded)
+		{
+			return RedirectToAction("Error");
+		}
+
+        return user.ManagerId == null ? RedirectToAction("GetHeadDepartments", "HeadDepartment") : RedirectToAction("GetManagers", "Manager");
 	}
 }

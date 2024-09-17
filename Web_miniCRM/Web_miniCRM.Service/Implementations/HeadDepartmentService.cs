@@ -15,13 +15,13 @@ namespace Web_miniCRM.Service.Implementations
             _headDepartmentRepository = headDepartmentRepository;
         }
 
-        public async Task<IBaseResponse<bool>> Delete(int id)
+        public async Task<IBaseResponse<bool>> DeleteByEmail(string email)
         {
             var baseResponse = new BaseResponse<bool>();
             try
             {
-                var headDepartmentRepository = await _headDepartmentRepository.Get(id);
-                if (headDepartmentRepository == null)
+				var headDepartmentRepository = await _headDepartmentRepository.GetByEmail(email);
+				if (headDepartmentRepository == null)
                 {
                     baseResponse.StatusCode = StatusCode.InternalServerError;
                     baseResponse.Description = "Элемент не найден";
@@ -29,7 +29,7 @@ namespace Web_miniCRM.Service.Implementations
                 }
                 else
                 {
-                    _headDepartmentRepository.Delete(headDepartmentRepository);
+                    await _headDepartmentRepository.Delete(headDepartmentRepository);
                     baseResponse.StatusCode = StatusCode.OK;
                     baseResponse.Description = "Элемент удален";
                     baseResponse.Data = true;
@@ -72,6 +72,32 @@ namespace Web_miniCRM.Service.Implementations
                 };
             }
         }
+
+		public async Task<IBaseResponse<HeadDepartment>> GetByEmail(string email)
+		{
+			var baseResponse = new BaseResponse<HeadDepartment>();
+			try
+			{
+				var headDepartmentRepository = await _headDepartmentRepository.GetByEmail(email);
+				if (headDepartmentRepository == null)
+				{
+					baseResponse.Description = $"Элемент не найден";
+					baseResponse.StatusCode = StatusCode.InternalServerError;
+					return baseResponse;
+				}
+				baseResponse.Data = headDepartmentRepository;
+				baseResponse.StatusCode = StatusCode.OK;
+				return baseResponse;
+			}
+			catch (Exception ex)
+			{
+				return new BaseResponse<HeadDepartment>()
+				{
+					StatusCode = StatusCode.InternalServerError,
+					Description = $"[GetByEmail] : {ex.Message}"
+				};
+			}
+		}
 
 		public async Task<IBaseResponse<HeadDepartment>> GetByDepartmentNumber(int DepartmentNumber)
 		{
@@ -161,13 +187,13 @@ namespace Web_miniCRM.Service.Implementations
                 }
                 else
                 {
-                    _headDepartment.Managers = _headDepartment.Managers;
-                    _headDepartment.DepartmentNumber = _headDepartment.DepartmentNumber;
-                    _headDepartment.FirstName = _headDepartment.FirstName;
-                    _headDepartment.LastName = _headDepartment.LastName;
-                    _headDepartment.Email = _headDepartment.Email;
-                    _headDepartment.NumberPhone = _headDepartment.NumberPhone;
-                    await _headDepartmentRepository.Update(_headDepartment);
+					headDepartmentRepository.Managers = _headDepartment.Managers;
+					headDepartmentRepository.DepartmentNumber = _headDepartment.DepartmentNumber;
+					headDepartmentRepository.FirstName = _headDepartment.FirstName;
+					headDepartmentRepository.LastName = _headDepartment.LastName;
+					headDepartmentRepository.Email = _headDepartment.Email;
+					headDepartmentRepository.NumberPhone = _headDepartment.NumberPhone;
+                    await _headDepartmentRepository.Update(headDepartmentRepository);
                     baseResponse.StatusCode = StatusCode.OK;
 
                     return baseResponse;
@@ -182,5 +208,38 @@ namespace Web_miniCRM.Service.Implementations
                 };
             }
         }
-    }
+
+		public async Task<IBaseResponse<bool>> DeleteById(int id)
+		{
+			var baseResponse = new BaseResponse<bool>();
+			try
+			{
+                var headDepartmentRepository = await _headDepartmentRepository.Get(id);
+                if (headDepartmentRepository == null)
+				{
+					baseResponse.StatusCode = StatusCode.InternalServerError;
+					baseResponse.Description = "Элемент не найден";
+					baseResponse.Data = false;
+				}
+				else
+				{
+					await _headDepartmentRepository.Delete(headDepartmentRepository);
+					baseResponse.StatusCode = StatusCode.OK;
+					baseResponse.Description = "Элемент удален";
+					baseResponse.Data = true;
+				}
+
+				return baseResponse;
+			}
+			catch (Exception ex)
+			{
+				return new BaseResponse<bool>()
+				{
+					StatusCode = StatusCode.InternalServerError,
+					Description = $"[Delete] : {ex.Message}"
+				};
+			}
+		}
+
+	}
 }

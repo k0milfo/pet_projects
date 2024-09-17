@@ -22,6 +22,7 @@
 					<th>Отдел</th>
 					<th>Номер телефона</th>
 					<th>Email</th>
+					
 				</tr>
 			</thead>
 			<tbody>
@@ -35,6 +36,7 @@
 						<td>
 							<div>
 								<button class="custom-button" type="button" id="ButtonUpdate" onclick="location.href='@Url.Action("ChangingDataManager", "Manager", new { id = @manager.ManagerId})'">Изменить</button>
+								<button class="custom-button" type="button" id="ButtonCreateNewPassword" onclick="location.href='@Url.Action("CreateNewPassword", "Account", new { email = manager.Email, firstname = manager.FirstName, lastname = manager.LastName})'">Сбросить пароль</button>
 								<button class="custom-button" type="button" id="ButtonDelete" onclick="location.href='@Url.Action("DeleteManager", "Manager", new { id = @manager.ManagerId, _departmentNumber = @manager.DepartmentNumber})'">Удалить</button>
 							</div>
 						</td>

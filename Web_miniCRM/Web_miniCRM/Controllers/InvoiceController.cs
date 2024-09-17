@@ -85,13 +85,13 @@ namespace Web_miniCRM.Controllers
 			return RedirectToAction("Error");
 		}
 
-		[HttpDelete]
+		[HttpGet]
 		public async Task<IActionResult> DeleteInvoice(int id, int managerId)
 		{
 			var response = await _invoiceServices.DeleteInvoice(id);
 			if (response.StatusCode == Domain.Enum.StatusCode.OK)
 			{
-				return RedirectToAction("GetManagerInfoInvoice", new {id = managerId});
+				return RedirectToAction("GetManagerInfoInvoice", "Manager", new {id = managerId});
 			}
 			return RedirectToAction("Error");
 		}

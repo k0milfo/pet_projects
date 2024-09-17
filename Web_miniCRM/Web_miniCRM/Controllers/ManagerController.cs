@@ -166,7 +166,7 @@ namespace Web_miniCRM.Controllers
 		}
 
 		[HttpPost]
-		public async Task<IActionResult> UpsertManager(Manager model, string password)
+		public async Task<IActionResult> UpsertManager(Manager model, string? password)
 		{
 			var identityResult = await _userManager.FindByEmailAsync(model.Email);
 

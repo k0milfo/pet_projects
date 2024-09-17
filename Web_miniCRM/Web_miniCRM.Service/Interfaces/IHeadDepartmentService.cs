@@ -10,6 +10,9 @@ namespace Web_miniCRM.Service.Interfaces
 		Task<IBaseResponse<HeadDepartment>> GetByDepartmentNumber(int id);
 		Task<IBaseResponse<HeadDepartment>> Update(int id, HeadDepartment manager);
         Task<IBaseResponse<bool>> Insert(HeadDepartment NewManager);
-        Task<IBaseResponse<bool>> Delete(int id);
-    }
+        Task<IBaseResponse<bool>> DeleteById(int id);
+		Task<IBaseResponse<bool>> DeleteByEmail(string Email);
+		Task<IBaseResponse<HeadDepartment>> GetByEmail(string email);
+
+	}
 }

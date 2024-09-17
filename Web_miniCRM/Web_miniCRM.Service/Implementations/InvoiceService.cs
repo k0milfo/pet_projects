@@ -87,8 +87,8 @@ namespace Web_miniCRM.Service.Implementations
                 }
 
                 await _invoiceRepository.Delete(invoice);
-
-                return baseResponse;
+				baseResponse.StatusCode = StatusCode.OK;
+				return baseResponse;
             }
             catch (Exception ex)
             {
@@ -135,7 +135,7 @@ namespace Web_miniCRM.Service.Implementations
                 }
                 invoice.Informations = new List<Domain.Entity.Information>(NewInvoice.Informations);
                 invoice.InvoiceItems = new List<InvoiceItemInfo>(NewInvoice.InvoiceItems);
-
+                invoice.InvoiceDate = NewInvoice.InvoiceDate;
                 await _invoiceRepository.Update(invoice);
 
                 return baseResponse;

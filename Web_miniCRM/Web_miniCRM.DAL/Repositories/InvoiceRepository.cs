@@ -37,9 +37,9 @@ namespace Web_miniCRM.DAL.Repositories
 			.FirstOrDefaultAsync(c => c.InvoiceId == id);
         }
 
-        public Task<List<Invoice>> GetAll()
+        public async Task<List<Invoice>> GetAll()
         {
-            return _db.Invoices.Include(c => c.Company).ToListAsync();
+            return await _db.Invoices.Include(c => c.Company).ToListAsync();
         }
 
         public async Task<Invoice> Update(Invoice entity)

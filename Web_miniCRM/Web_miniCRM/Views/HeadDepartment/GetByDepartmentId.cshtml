@@ -8,7 +8,7 @@
 
 <div class="button-container">
 	<button class="custom-button" type="button" id="myButton1" onclick="location.href='@Url.Action("GetByDepartmentId", "HeadDepartment", new { id = Model.HeadDepartment.HeadDepartmentId })'" class="manager-link" data-manager-id="@Model.HeadDepartment.DepartmentNumber">
-		Информация о руководителе отдела
+		Показатели отдела по менеджерам
 	</button>
 	<button class="custom-button" type="button" id="myButton1" onclick="location.href='@Url.Action("GetManagersDepartment", "HeadDepartment", new { departmentNumber = Model.HeadDepartment.DepartmentNumber })'" class="manager-link" data-manager-id="@Model.HeadDepartment.DepartmentNumber">
 		Менеджеры отдела
@@ -33,7 +33,7 @@
 		<button type="submit" class="custom-button" style="margin-top: 5px">Фильтр</button>
 	</form>
 
-	<div class="table-container-Manager_Invoices_Calls_Meetings" style="margin-top: -46px; margin-left: -100px;">
+	<div class="table-container-Manager_Invoices_Calls_Meetings" style="margin-top: -46px; margin-left: -50px;">
 		<table>
 			<thead>
 				<tr>
@@ -54,11 +54,6 @@
 						<td>@Model.FilteredMeetings.Where(i => i.ManagerId == manager.ManagerId).Count()</td>
 						<td>@Model.FilteredInvoices.Where(i => i.ShippedInvoiced == true && i.ManagerId == manager.ManagerId).Count()</td>
 						<td>@Model.FilteredInvoices.Where(i => i.ShippedInvoiced == true && i.ManagerId == manager.ManagerId).SelectMany(i => i.InvoiceItems).Sum(ii => ii.Product.Price * ii.Quantity)</td>
-						@* <td>@manager.Calls.Count</td> *@
-						@* <td>@manager.Meetings.Count</td> *@
-						@* <td>@manager.Invoices.Where(i => i.ShippedInvoiced == true).Count()</td> *@
-						@* <td>@manager.Invoices.Where(i => i.ShippedInvoiced == true).Count()</td>
-						<td>@manager.Invoices.Where(i => i.ShippedInvoiced == true).SelectMany(i => i.InvoiceItems).Sum(ii => ii.Product.Price * ii.Quantity)</td> *@
 					</tr>
 				}
 

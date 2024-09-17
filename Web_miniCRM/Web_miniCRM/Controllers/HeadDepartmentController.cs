@@ -80,7 +80,7 @@ namespace Web_miniCRM.Controllers
 			{
 				return RedirectToAction("Error");
 			}
-			return RedirectToAction("GetHeadDepartments");
+			return RedirectToAction("GetHeadDepartments", "HeadDepartment");
 		}
 
 		[HttpGet]
@@ -248,6 +248,31 @@ namespace Web_miniCRM.Controllers
 				//TempData["SuccessMessage"] = "Произошла ошибка загрузки данных, проверьте наличие зарегистрированных звонков";
 				//return View("ErrorCalls", new { managerId = id });
 				return View("Error");
+			}
+		}
+
+		[HttpGet]
+		public async Task<IActionResult> ChangingDataHeadDepartment(string email)
+		{
+			var response = await _headDepartmentService.GetByEmail(email);
+			if (response.StatusCode == Domain.Enum.StatusCode.OK)
+			{
+				return View(response.Data);
+			}
+			return RedirectToAction("Error");
+		}
+
+		[HttpGet]
+		public async Task<IActionResult> DeleteHeadDepartment(string email, int _departmentNumber)
+		{
+			var response = await _headDepartmentService.DeleteByEmail(email);
+			if (response.StatusCode == Domain.Enum.StatusCode.OK)
+			{
+				return RedirectToAction("GetHeadDepartments", "HeadDepartment");
+			}
+			else
+			{
+				return RedirectToAction("Error");
 			}
 		}
 	}

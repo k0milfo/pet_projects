@@ -1,8 +1,8 @@
-﻿@model Web_miniCRM.Domain.Entity.Manager
+﻿@model Web_miniCRM.Domain.Entity.HeadDepartment
 
-<form asp-action="UpsertManager" method="post">
-	<input type="hidden" id="ManagerId" name="ManagerId" value="@Model.ManagerId" />
-	@* <input type="hidden" id="HeadDepartmentId" name="HeadDepartmentId" value="@Model.HeadDepartmentId" /> *@
+<form asp-action="UpsertHeadDepartment" method="post">
+	<input type="hidden" id="Email" name="Email" value="@Model.Email" />
+	<input type="hidden" id="HeadDepartmentId" name="HeadDepartmentId" value="@Model.HeadDepartmentId" />
 
 	<div class="main-container">
 		<div class="form-group">

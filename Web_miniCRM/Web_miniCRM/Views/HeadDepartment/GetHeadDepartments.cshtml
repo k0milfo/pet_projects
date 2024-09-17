@@ -32,12 +32,13 @@
 						<td>@headDepartment.DepartmentNumber</td>
 						<td>@headDepartment.NumberPhone</td>
 						<td>@headDepartment.Email</td>
-@* 						<td>
+						<td>
 							<div>
-								<button class="custom-button" type="button" id="ButtonUpdate" onclick="location.href='@Url.Action("ChangingDataCompany", "Company", new { id = manager.CompanyId})'">Изменить</button>
-								<button class="custom-button" type="button" id="ButtonDelete" onclick="location.href='@Url.Action("DeleteCompany", "Company", new { id = manager.CompanyId})'">Удалить</button>
+								<button class="custom-button" type="button" id="ButtonUpdate" onclick="location.href='@Url.Action("ChangingDataHeadDepartment", "HeadDepartment", new { email = headDepartment.Email})'">Изменить</button>
+								<button class="custom-button" type="button" id="ButtonCreateNewPassword" onclick="location.href='@Url.Action("CreateNewPassword", "Account", new { email = headDepartment.Email, firstname = headDepartment.FirstName, lastname = headDepartment.LastName})'">Сбросить пароль</button>
+								<button class="custom-button" type="button" id="ButtonDelete" onclick="location.href='@Url.Action("DeleteHeadDepartment", "HeadDepartment", new { email = headDepartment.Email})'">Удалить</button>
 							</div>
-						</td> *@
+						</td>
 					</tr>
 				}
 			</tbody>

@@ -1,7 +1,24 @@
 {
   "Version": 1,
   "WorkspaceRootPath": "C:\\Users\\User\\Source\\Repos\\Web_miniCRM\\",
-  "Documents": [],
+  "Documents": [
+    {
+      "AbsoluteMoniker": "D:0:0:{3BCDA969-ABBF-4CF2-980B-B12B31D5C252}|Web_miniCRM\\Web_miniCRM.csproj|c:\\users\\user\\source\\repos\\web_minicrm\\web_minicrm\\views\\company\\getcompanyinfo.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{3BCDA969-ABBF-4CF2-980B-B12B31D5C252}|Web_miniCRM\\Web_miniCRM.csproj|solutionrelative:web_minicrm\\views\\company\\getcompanyinfo.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{3BCDA969-ABBF-4CF2-980B-B12B31D5C252}|Web_miniCRM\\Web_miniCRM.csproj|c:\\users\\user\\source\\repos\\web_minicrm\\web_minicrm\\controllers\\invoicecontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{3BCDA969-ABBF-4CF2-980B-B12B31D5C252}|Web_miniCRM\\Web_miniCRM.csproj|solutionrelative:web_minicrm\\controllers\\invoicecontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{3BCDA969-ABBF-4CF2-980B-B12B31D5C252}|Web_miniCRM\\Web_miniCRM.csproj|c:\\users\\user\\source\\repos\\web_minicrm\\web_minicrm\\views\\invoice\\getinvoiceinfo.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{3BCDA969-ABBF-4CF2-980B-B12B31D5C252}|Web_miniCRM\\Web_miniCRM.csproj|solutionrelative:web_minicrm\\views\\invoice\\getinvoiceinfo.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{0FEDBDF0-6679-410C-BCE3-EB2BCC01FFA4}|Web_miniCRM.Service\\Web_miniCRM.Service.csproj|c:\\users\\user\\source\\repos\\web_minicrm\\web_minicrm.service\\implementations\\invoiceservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{0FEDBDF0-6679-410C-BCE3-EB2BCC01FFA4}|Web_miniCRM.Service\\Web_miniCRM.Service.csproj|solutionrelative:web_minicrm.service\\implementations\\invoiceservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    }
+  ],
   "DocumentGroupContainers": [
     {
       "Orientation": 0,
@@ -9,7 +26,7 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": -1,
+          "SelectedChildIndex": 2,
           "Children": [
             {
               "$type": "Bookmark",
@@ -18,6 +35,58 @@
             {
               "$type": "Bookmark",
               "Name": "ST:129:0:{116d2292-e37d-41cd-a077-ebacac4c8cc4}"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "GetCompanyInfo.cshtml",
+              "DocumentMoniker": "C:\\Users\\User\\Source\\Repos\\Web_miniCRM\\Web_miniCRM\\Views\\Company\\GetCompanyInfo.cshtml",
+              "RelativeDocumentMoniker": "Web_miniCRM\\Views\\Company\\GetCompanyInfo.cshtml",
+              "ToolTip": "C:\\Users\\User\\Source\\Repos\\Web_miniCRM\\Web_miniCRM\\Views\\Company\\GetCompanyInfo.cshtml",
+              "RelativeToolTip": "Web_miniCRM\\Views\\Company\\GetCompanyInfo.cshtml",
+              "ViewState": "AQIAAAkAAAAAAAAAAAAAABcAAABjAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2024-09-17T23:46:28.801Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "InvoiceService.cs",
+              "DocumentMoniker": "C:\\Users\\User\\Source\\Repos\\Web_miniCRM\\Web_miniCRM.Service\\Implementations\\InvoiceService.cs",
+              "RelativeDocumentMoniker": "Web_miniCRM.Service\\Implementations\\InvoiceService.cs",
+              "ToolTip": "C:\\Users\\User\\Source\\Repos\\Web_miniCRM\\Web_miniCRM.Service\\Implementations\\InvoiceService.cs",
+              "RelativeToolTip": "Web_miniCRM.Service\\Implementations\\InvoiceService.cs",
+              "ViewState": "AQIAAFoAAAAAAAAAAAAYwGQAAAAIAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-09-17T23:09:14.088Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "InvoiceController.cs",
+              "DocumentMoniker": "C:\\Users\\User\\Source\\Repos\\Web_miniCRM\\Web_miniCRM\\Controllers\\InvoiceController.cs",
+              "RelativeDocumentMoniker": "Web_miniCRM\\Controllers\\InvoiceController.cs",
+              "ToolTip": "C:\\Users\\User\\Source\\Repos\\Web_miniCRM\\Web_miniCRM\\Controllers\\InvoiceController.cs",
+              "RelativeToolTip": "Web_miniCRM\\Controllers\\InvoiceController.cs",
+              "ViewState": "AQIAAFIAAAAAAAAAAAAcwFkAAAACAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-09-17T23:08:27.378Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "GetInvoiceInfo.cshtml",
+              "DocumentMoniker": "C:\\Users\\User\\Source\\Repos\\Web_miniCRM\\Web_miniCRM\\Views\\Invoice\\GetInvoiceInfo.cshtml",
+              "RelativeDocumentMoniker": "Web_miniCRM\\Views\\Invoice\\GetInvoiceInfo.cshtml",
+              "ToolTip": "C:\\Users\\User\\Source\\Repos\\Web_miniCRM\\Web_miniCRM\\Views\\Invoice\\GetInvoiceInfo.cshtml",
+              "RelativeToolTip": "Web_miniCRM\\Views\\Invoice\\GetInvoiceInfo.cshtml",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2024-09-17T23:07:48.683Z",
+              "EditorCaption": ""
             }
           ]
         }

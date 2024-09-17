@@ -1,4 +1,5 @@
 ﻿@using Microsoft.AspNetCore.Identity
+@using Web_miniCRM.Domain.Entity
 @model Web_miniCRM.Domain.Entity.Manager
 @inject SignInManager<ApplicationUser> SignInManager
 
@@ -40,7 +41,7 @@
 						<td>@Model.DepartmentNumber</td>
 						<td>@Model.NumberPhone</td>
 						<td>@Model.Email</td>
-					@* <td><a href="@Url.Action("GetByDepartmentId", "HeadDepartment", new { id = Model.HeadDepartmentId })" class="manager-link" data-manager-id="@Model.HeadDepartmentId">@Model.HeadDepartment.FirstName @Model.HeadDepartment.LastName</a></td> *@
+				
 					@if (User.IsInRole("headdepartment") || User.IsInRole("admin"))
 					{
 						<td><a href="@Url.Action("GetByDepartmentId", "HeadDepartment", new { id = Model.HeadDepartmentId })">@Model.HeadDepartment.FirstName @Model.HeadDepartment.LastName</a></td>

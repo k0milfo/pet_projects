@@ -5,6 +5,7 @@ using Web_miniCRM.DAL.Repositories;
 using Web_miniCRM.Service.Interfaces;
 using Web_miniCRM.Service.Implementations;
 using Microsoft.AspNetCore.Identity;
+using Web_miniCRM.Domain.Entity;
 
 var builder = WebApplication.CreateBuilder(args);
 

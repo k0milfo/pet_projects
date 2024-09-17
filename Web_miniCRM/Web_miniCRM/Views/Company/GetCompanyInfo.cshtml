@@ -20,17 +20,8 @@
 	<button class="custom-button" type="button" id="myButton4" onclick="location.href='@Url.Action("GetCompanyInfoInvoices", "Company", new { id = Model.CompanyId })'">
 		Счета
 	</button>
-@*     @if (TempData["SuccessMessage"] != null && TempData["SuccessMessage"].Equals("Action"))
-    { *@
-@*         <button class="custom-button additional-button" style="margin-top: -172px !important" type="button" id="myButton5" onclick="location.href='@Url.Action("CreateCompany", "Company", new {id = Model.ManagerId})'">
-           Пустая кнопка
-        </button> *@
-@*     } *@
-</div>
 
-@* @if (TempData["SuccessMessage"] != null && TempData["SuccessMessage"].Equals("Action"))
-{ *@
-<form asp-action="UpsertCompany" method="post">
+<form asp-action="UpsertCompany" method="post" style="margin-top: -5px; margin-left: 85px; width: 900px;">
     <input type="hidden" name="ManagerId" value="@Model.ManagerId" />
     <input type="hidden" name="CompanyId" value="@Model.CompanyId" />
     <input type="hidden" name="CompanyName" value="@Model.CompanyName" />
@@ -54,53 +45,8 @@
             <textarea name="Informations[0].Details" style="width: 100%; height: 200px;">
                 @Model.Informations[0].Details
                             </textarea>
-            @* <input type="text" id="CompanyInformations" placeholder="Информация о компании" name="Informations[0].Details" value="@Model.Informations[0].Details"/> *@
-
-
-@*             @if (Model.Informations != null && Model.Informations.Count > 0)
-            {
-                @for (int i = 0; i < Model.Informations.Count; i++)
-                {
-                    <textarea name="Informations[@i].Details" style="width: 100%; height: 200px;">
-                        @Model.Informations[i].Details
-                            </textarea>
-                }
-            }
-            else
-            {
-                <p>Нет доступной информации о компании</p>
-            } *@
         </div>
     </div>
 
     <button class="custom-button additional-button" style="width: 200px; margin-top: -453px !important; margin-left: 126px !important;" type="submit">Сохранить</button>
 </form>
-@* }
-else
-{
-    <div class="card-container" style="margin-left: 370px; margin-top: -168px; max-width: 400px;">
-        <div class="card">
-            <p><strong>Контактное лицо:</strong> @Model.NameContactPerson</p>
-        </div>
-        <div class="card">
-            <p><strong>Телефон:</strong> @Model.PhoneNumber</p>
-        </div>
-        <div class="card">
-            <p><strong>Email:</strong> @Model.Email</p>
-        </div>
-        <div class="card">
-            <h3>Информация</h3>
-            @if (Model.Informations != null && Model.Informations.Count > 0)
-            {
-                @foreach (var item in Model.Informations)
-                {
-                    <p>@item.Details</p>
-                }
-            }
-            else
-            {
-                <p>Нет доступной информации о клиенте</p>
-            }
-        </div>
-    </div>
-} *@

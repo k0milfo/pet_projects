@@ -21,6 +21,7 @@ namespace Web_miniCRM.DAL
         public DbSet<Meeting> Meetings { get; set; }
         public DbSet<InvoiceItemInfo> InvoicesItemInfo { get; set; }
         public DbSet<Info> Informations { get; set; }
+        public DbSet<ApplicationUser> ApplicationUser { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {

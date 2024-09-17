@@ -9,7 +9,7 @@
 
 <div class="button-container">
 	<button class="custom-button" type="button" id="myButton1" onclick="location.href='@Url.Action("GetByDepartmentId", "HeadDepartment", new { id = Model.HeadDepartment.HeadDepartmentId })'" class="manager-link" data-manager-id="@Model.HeadDepartment.DepartmentNumber">
-		Информация о руководителе отдела
+		Показатели отдела по менеджерам
 	</button>
 	<button class="custom-button" type="button" id="myButton1" onclick="location.href='@Url.Action("GetManagersDepartment", "HeadDepartment", new { departmentNumber = Model.HeadDepartment.DepartmentNumber })'" class="manager-link" data-manager-id="@Model.HeadDepartment.DepartmentNumber">
 		Менеджеры отдела
