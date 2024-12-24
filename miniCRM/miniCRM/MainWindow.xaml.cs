@@ -24,10 +24,12 @@ namespace miniCRM
         {
             InitializeComponent();
             add_clients1.Visibility = Visibility.Hidden;
+            add_phone_call.Visibility = Visibility.Hidden;
         }
 
         private void Clients_Click(object sender, RoutedEventArgs e)
         {
+            add_phone_call.Visibility = Visibility.Hidden;
             mainFrame.Navigate(new Page_Clients());
             add_clients1.Visibility = Visibility.Visible;
         }
@@ -36,6 +38,11 @@ namespace miniCRM
         {
             AddClientWindow add = new AddClientWindow();
             add.Show();
+        }
+
+        private void add_phone_call_Click(object sender, RoutedEventArgs e)
+        {
+
         }
     }
 }

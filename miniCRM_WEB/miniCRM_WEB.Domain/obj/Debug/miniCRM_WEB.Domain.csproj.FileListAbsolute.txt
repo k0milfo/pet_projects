@@ -1,0 +1,6 @@
+C:\Users\User\Source\Repos\miniCRM_WEB\miniCRM_WEB.Domain\bin\Debug\miniCRM_WEB.Domain.dll
+C:\Users\User\Source\Repos\miniCRM_WEB\miniCRM_WEB.Domain\bin\Debug\miniCRM_WEB.Domain.pdb
+C:\Users\User\Source\Repos\miniCRM_WEB\miniCRM_WEB.Domain\obj\Debug\miniCRM_WEB.Domain.csproj.AssemblyReference.cache
+C:\Users\User\Source\Repos\miniCRM_WEB\miniCRM_WEB.Domain\obj\Debug\miniCRM_WEB.Domain.csproj.CoreCompileInputs.cache
+C:\Users\User\Source\Repos\miniCRM_WEB\miniCRM_WEB.Domain\obj\Debug\miniCRM_WEB.Domain.dll
+C:\Users\User\Source\Repos\miniCRM_WEB\miniCRM_WEB.Domain\obj\Debug\miniCRM_WEB.Domain.pdb

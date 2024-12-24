@@ -25,6 +25,7 @@
             </Frame.RenderTransform>
         </Frame>
         <Button x:Name="add_clients1" Content="Добавить" HorizontalAlignment="Left" Margin="119,20,0,0" VerticalAlignment="Top" Width="100" Height="28" Click="add_clients1_Click"/>
+        <Button x:Name="add_phone_call" Content="Добавить" HorizontalAlignment="Left" Margin="119,62,0,0" VerticalAlignment="Top" Height="28" Width="100" Click="add_phone_call_Click"/>
 
     </Grid>
 

@@ -22,6 +22,7 @@
                             <StackPanel>
                                 <Button x:Name="Edit_Button" Content="Изменить" Click="EditButton_Click"/>
                                 <Button x:Name="Delete_button" Content="Удалить" Click="DeleteButtin_Click"/>
+                                <Button x:Name="Account_history" Content="История" Click="History_Click"/>
                             </StackPanel>
                         </DataTemplate>
                     </DataGridTemplateColumn.CellTemplate>

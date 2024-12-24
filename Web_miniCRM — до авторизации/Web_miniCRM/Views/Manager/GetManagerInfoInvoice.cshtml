@@ -1,0 +1,99 @@
+﻿@model Web_miniCRM.Domain.Entity.ManagerViewModelFiltering
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<h1 class="text-center1" style="margin-left:-80px;">@Model.Manager.FirstName @Model.Manager.LastName</h1>
+</head>
+
+<div class="button-container">
+	<button class="custom-button" type="button" id="myButton1" onclick="location.href='@Url.Action("GetManagerInfoById", "Manager", new { id = Model.Manager.ManagerId })'" class="manager-link" data-manager-id="@Model.Manager.ManagerId">
+		Информация о менеджере
+	</button>
+	<button class="custom-button" type="button" id="myButton1" onclick="location.href='@Url.Action("GetManagerInfoCompany", "Manager", new { id = Model.Manager.ManagerId })'" class="manager-link" data-manager-id="@Model.Manager.ManagerId">
+		Компании
+	</button>
+	<button class="custom-button" type="button" id="myButton2" onclick="location.href='@Url.Action("GetManagerInfoCalls", "Manager", new { id = Model.Manager.ManagerId })'" class="manager-link" data-manager-id="@Model.Manager.ManagerId">
+		Звонки
+	</button>
+	<button class="custom-button" type="button" id="myButton3" onclick="location.href='@Url.Action("GetManagerInfoMeetings", "Manager", new { id = Model.Manager.ManagerId })'" class="manager-link" data-manager-id="@Model.Manager.ManagerId">
+		Встречи
+	</button>
+	<button class="custom-button" type="button" id="myButton4" onclick="location.href='@Url.Action("GetManagerInfoInvoice", "Manager", new { id = Model.Manager.ManagerId })'" class="manager-link" data-manager-id="@Model.Manager.ManagerId">
+		Счета
+	</button>
+	<button class="custom-button additional-button" type="button" id="myButton5" onclick="location.href='@Url.Action("CreateInvoice", "Invoice", new {id = Model.Manager.ManagerId})'">
+		Создать счет
+	</button>
+
+	<form asp-action="GetManagerInfoInvoice" method="get" style="margin-top: 194px">
+		<input type="hidden" name="id" value="@Model.Manager.ManagerId" />
+		<label>Счета за период</label>
+		<input type="date" name="startDateRange" placeholder="От" />
+		<input type="date" name="endDateRange" placeholder="До" />
+		<button type="submit" class="custom-button" style="margin-top: 5px">Фильтр</button>
+	</form>
+
+
+	<div class="table-container-Manager_Invoices_Calls_Meetings">
+	<table>
+		<thead>
+			<tr>
+				<label>Отгруженные счета</label>
+				<th>Номер</th>
+				<th>Компания</th>
+				<th>Дата счета</th>
+				<th>Сумма</th>
+			</tr>
+		</thead>
+		<tbody>
+				@foreach(var invoice in Model.FilteredInvoices.Where(i => i.ShippedInvoiced == true))
+				{
+					<tr>
+						<td>@invoice.InvoiceId</td>
+						<td><a href="@Url.Action("GetCompanyInfo", "Company", new { id = invoice.CompanyId })">@invoice.Company.CompanyName</a></td>
+						<td>@invoice.InvoiceDate</td>
+						<td>@invoice.InvoiceItems.Sum(item => item.Product.Price * item.Quantity)</td>
+						<td>
+							<div>
+								<button class="custom-button" type="button" id="ButtonUpdate" onclick="location.href='@Url.Action("GetInvoiceInfo", "Invoice", new { id = invoice.InvoiceId })'">Изменить</button>
+								<button class="custom-button" type="button" id="ButtonDelete" onclick="location.href='@Url.Action("DeleteInvoice", "Invoice", new { id = invoice.InvoiceId, managerId = invoice.ManagerId})'">Удалить</button>
+							</div>
+						</td>
+					</tr>
+				}
+		</tbody>
+	</table>
+</div>
+
+	<div class="table-container-Manager_Invoices_Calls_Meetings">
+	<table>
+		<thead>
+			<tr>
+				<label>На согласовании</label>
+				<th>Номер</th>
+				<th>Компания</th>
+				<th>Дата счета</th>
+				<th>Сумма</th>
+			</tr>
+		</thead>
+		<tbody>
+				@foreach (var invoice in Model.FilteredInvoices.Where(i => i.ShippedInvoiced == false))
+				{
+					<tr>
+						<td>@invoice.InvoiceId</td>
+						<td><a href="@Url.Action("GetCompanyInfo", "Company", new { id = invoice.CompanyId })">@invoice.Company.CompanyName</a></td>
+						<td>@invoice.InvoiceDate</td>
+						<td>@invoice.InvoiceItems.Sum(item => item.Product.Price * item.Quantity)</td>
+						<td>
+							<div>
+								<button class="custom-button" type="button" id="ButtonUpdate" onclick="location.href='@Url.Action("GetInvoiceInfo", "Invoice", new { id = invoice.InvoiceId })'">Изменить</button>
+								<button class="custom-button" type="button" id="ButtonDelete" onclick="location.href='@Url.Action("DeleteInvoice", "Invoice", new { id = invoice.InvoiceId, managerId = invoice.ManagerId})'">Удалить</button>
+							</div>
+						</td>
+					</tr>
+				}
+		</tbody>
+	</table>
+</div>
+</div>

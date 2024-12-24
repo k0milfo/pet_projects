@@ -12,7 +12,15 @@ namespace Web_miniCRM.DAL
 
         }
 
-        public DbSet<Company> Companies { get; set; }
+		protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
+		{
+			if (!optionsBuilder.IsConfigured)
+			{
+				optionsBuilder.UseSqlServer("Server=localhost;Database=miniCRM;User Id=sa;Password=YourStrong!Password;Encrypt=False;");
+			}
+		}
+
+		public DbSet<Company> Companies { get; set; }
         public DbSet<Product> Products { get; set; }
         public DbSet<Invoice> Invoices { get; set; }
         public DbSet<Manager> Managers { get; set; }

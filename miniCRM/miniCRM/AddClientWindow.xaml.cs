@@ -19,7 +19,7 @@ namespace miniCRM
 {
     public partial class AddClientWindow : Window
     {
-        public bool flag {  get; set; }
+        public bool flag { get; set; }
         DataBase dataBase = new DataBase();
         public AddClientWindow()
         {
@@ -33,20 +33,27 @@ namespace miniCRM
             using (SqlCommand command = new SqlCommand(querystring, dataBase.GetConnection()))
             {
                 dataBase.openConnection();
-                int id = (int)command.ExecuteScalar();
-                if (id != 0)
+                if (command.ExecuteScalar() == null || (int)command.ExecuteScalar() == 0)
                 {
+                    command.CommandText = $"INSERT INTO clients_db (company, contact_person, number_phone, email) VALUES ('{company.Text}', '{name.Text}', '{number_phone.Text}', '{email.Text}')"; ;
+                    command.ExecuteNonQuery();
+                    Page_Clients.currentPage.initialize_ClitntsTable();
+                    dataBase.closeConnection();
+                }
+                else
+                {
+                    int id = (int)command.ExecuteScalar();
                     MessageBoxResult result = MessageBoxResult.Yes;
-                    if (!flag) 
-                    { 
-                    result = MessageBox.Show($"Компания {company.Text} существует, обновить данные?", "Важное сообщение)", MessageBoxButton.YesNo);
+                    if (!flag)
+                    {
+                        result = MessageBox.Show($"Компания {company.Text} существует, обновить данные?", "Важное сообщение)", MessageBoxButton.YesNo);
                     }
-                    
+
                     if (result == MessageBoxResult.Yes)
                     {
                         command.CommandText = $"UPDATE clients_db SET contact_person = '{name.Text}', number_phone = '{number_phone.Text}', email = '{email.Text}' WHERE id = {id}";
                         command.ExecuteNonQuery();
-                        Page_Clients.currentPage.initializeClitntsTable();
+                        Page_Clients.currentPage.initialize_ClitntsTable();
                         dataBase.closeConnection();
                     }
                     if (result == MessageBoxResult.No)
@@ -54,13 +61,6 @@ namespace miniCRM
                         dataBase.closeConnection();
                         this.Close();
                     }
-                }
-                if(id == 0)
-                {  
-                    command.CommandText = $"INSERT INTO clients_db (company, contact_person, number_phone, email) VALUES ('{company.Text}', '{name.Text}', '{number_phone.Text}', '{email.Text}')"; ;
-                    command.ExecuteNonQuery();
-                    Page_Clients.currentPage.initializeClitntsTable();
-                    dataBase.closeConnection();
                 }
             }
             this.Close();

@@ -1,0 +1,19 @@
+﻿
+@model User
+@{
+	ViewData["Title"] = "Home Page";
+}
+@{
+	var user = new User()
+			{
+				Name = "dsf",
+				Email = "dsfsf@mail.ru",
+				Age = 40
+			};
+}
+<div class="text-center">
+	<h1 class="display-4">@user.Name</h1>
+	<p>
+		<a class="btn btn-primary btn-lg" asp-controller="Home" asp-action="xyz">Xyz</a>
+	</p>
+</div>

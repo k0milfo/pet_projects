@@ -1,0 +1,23 @@
+﻿<div class="text-center1">
+	@if (TempData["SuccessMessage"] != null)
+	{
+		<div class="alert alert-success">
+			@TempData["SuccessMessage"]
+		</div>
+	}
+</div>
+
+<div class="button-container">
+	<button class="custom-button" type="button" id="myButton1" onclick="location.href='@Url.Action("GetManagerInfoCompany", "Manager", new { id = Model.managerId })'">
+		Компании
+	</button>
+	<button class="custom-button" type="button" id="myButton2" onclick="location.href='@Url.Action("GetCallsByManagerId", "Call", new { id = Model.managerId })'" class="manager-link" data-manager-id="@Model.managerId">
+		Звонки
+	</button>
+	<button class="custom-button" type="button" id="myButton3" onclick="location.href='@Url.Action("GetMeetingsByManagerId", "Meeting", new { id = Model.managerId })'" class="manager-link" data-manager-id="@Model.managerId">
+		Встречи
+	</button>
+	<button class="custom-button" type="button" id="myButton4" onclick="location.href='@Url.Action("GetManagerInfoInvoice", "Manager", new { id = Model.managerId })'" class="manager-link" data-manager-id="@Model.managerId">
+		Счета
+	</button>
+</div>

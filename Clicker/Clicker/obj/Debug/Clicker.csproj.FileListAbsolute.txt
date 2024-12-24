@@ -1,0 +1,10 @@
+C:\Users\User\Source\Repos\Clicker\Clicker\bin\Debug\Clicker.exe.config
+C:\Users\User\Source\Repos\Clicker\Clicker\bin\Debug\Clicker.exe
+C:\Users\User\Source\Repos\Clicker\Clicker\bin\Debug\Clicker.pdb
+C:\Users\User\Source\Repos\Clicker\Clicker\bin\Debug\WindowsInput.dll
+C:\Users\User\Source\Repos\Clicker\Clicker\bin\Debug\WindowsInput.xml
+C:\Users\User\Source\Repos\Clicker\Clicker\obj\Debug\Clicker.csproj.AssemblyReference.cache
+C:\Users\User\Source\Repos\Clicker\Clicker\obj\Debug\Clicker.csproj.CoreCompileInputs.cache
+C:\Users\User\Source\Repos\Clicker\Clicker\obj\Debug\Clicker.csproj.Up2Date
+C:\Users\User\Source\Repos\Clicker\Clicker\obj\Debug\Clicker.exe
+C:\Users\User\Source\Repos\Clicker\Clicker\obj\Debug\Clicker.pdb

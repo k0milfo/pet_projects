@@ -1,0 +1,3 @@
+﻿<Project>
+  <Import Project="..\build\miniCRM_WEB.props" />
+</Project>

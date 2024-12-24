@@ -1,0 +1,69 @@
+﻿@model Web_miniCRM.Domain.Entity.DepartmentViewModelFiltering
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<h1 class="text-center1" style="margin-left:-80px;">@Model.HeadDepartment.FirstName @Model.HeadDepartment.LastName</h1>
+</head>
+
+<div class="button-container">
+	<button class="custom-button" type="button" id="myButton1" onclick="location.href='@Url.Action("GetByDepartmentId", "HeadDepartment", new { id = Model.HeadDepartment.HeadDepartmentId })'" class="manager-link" data-manager-id="@Model.HeadDepartment.DepartmentNumber">
+		Информация о руководителе отдела
+	</button>
+	<button class="custom-button" type="button" id="myButton1" onclick="location.href='@Url.Action("GetManagersDepartment", "HeadDepartment", new { departmentNumber = Model.HeadDepartment.DepartmentNumber })'" class="manager-link" data-manager-id="@Model.HeadDepartment.DepartmentNumber">
+		Менеджеры отдела
+	</button>
+	<button class="custom-button" type="button" id="myButton1" onclick="location.href='@Url.Action("GetCompanyDepartment", "HeadDepartment", new { departmentNumber = Model.HeadDepartment.DepartmentNumber })'" class="manager-link" data-manager-id="@Model.HeadDepartment.DepartmentNumber">
+		Компании отдела
+	</button>
+	<button class="custom-button" type="button" id="myButton2" onclick="location.href='@Url.Action("GetCallsDepartment", "HeadDepartment", new { departmentNumber = Model.HeadDepartment.DepartmentNumber })'" class="manager-link" data-manager-id="@Model.HeadDepartment.DepartmentNumber">
+		Звонки отдела
+	</button>
+	<button class="custom-button" type="button" id="myButton3" onclick="location.href='@Url.Action("GetMeetingsDepartment", "HeadDepartment", new { departmentNumber = Model.HeadDepartment.DepartmentNumber })'" class="manager-link" data-manager-id="@Model.HeadDepartment.DepartmentNumber">
+		Встречи отдела
+	</button>
+	<button class="custom-button" type="button" id="myButton4" onclick="location.href='@Url.Action("GetInvoicesDepartment", "HeadDepartment", new { departmentNumber = Model.HeadDepartment.DepartmentNumber })'" class="manager-link" data-manager-id="@Model.HeadDepartment.DepartmentNumber">
+		Счета отдела
+	</button>
+	<form asp-action="GetByDepartmentId" method="get">
+		<input type="hidden" name="id" value="@Model.HeadDepartment.HeadDepartmentId" />
+		<label>Счета за период</label>
+		<input type="date" name="startDateRange" placeholder="От" />
+		<input type="date" name="endDateRange" placeholder="До" />
+		<button type="submit" class="custom-button" style="margin-top: 5px">Фильтр</button>
+	</form>
+
+	<div class="table-container-Manager_Invoices_Calls_Meetings" style="margin-top: -46px; margin-left: -100px;">
+		<table>
+			<thead>
+				<tr>
+					<label>Показатели отдела</label>
+					<th>Менеджер</th>
+					<th>Звонки</th>
+					<th>Встречи</th>
+					<th>Отгруженные счета</th>
+					<th>Доход</th>
+				</tr>
+			</thead>
+			<tbody>
+				@foreach (var manager in Model.HeadDepartment.Managers)
+				{
+					<tr>
+						<td>@manager.FirstName @manager.LastName</td>
+						<td>@Model.FilteredCalls.Where(i => i.ManagerId == manager.ManagerId).Count()</td>
+						<td>@Model.FilteredMeetings.Where(i => i.ManagerId == manager.ManagerId).Count()</td>
+						<td>@Model.FilteredInvoices.Where(i => i.ShippedInvoiced == true && i.ManagerId == manager.ManagerId).Count()</td>
+						<td>@Model.FilteredInvoices.Where(i => i.ShippedInvoiced == true && i.ManagerId == manager.ManagerId).SelectMany(i => i.InvoiceItems).Sum(ii => ii.Product.Price * ii.Quantity)</td>
+						@* <td>@manager.Calls.Count</td> *@
+						@* <td>@manager.Meetings.Count</td> *@
+						@* <td>@manager.Invoices.Where(i => i.ShippedInvoiced == true).Count()</td> *@
+						@* <td>@manager.Invoices.Where(i => i.ShippedInvoiced == true).Count()</td>
+						<td>@manager.Invoices.Where(i => i.ShippedInvoiced == true).SelectMany(i => i.InvoiceItems).Sum(ii => ii.Product.Price * ii.Quantity)</td> *@
+					</tr>
+				}
+
+			</tbody>
+		</table>
+	</div>
+</div>
+

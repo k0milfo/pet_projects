@@ -1,0 +1,15 @@
+C:\Users\User\Source\Repos\testTrade\testTrade\bin\Debug\net8.0\testTrade.exe
+C:\Users\User\Source\Repos\testTrade\testTrade\bin\Debug\net8.0\testTrade.deps.json
+C:\Users\User\Source\Repos\testTrade\testTrade\bin\Debug\net8.0\testTrade.runtimeconfig.json
+C:\Users\User\Source\Repos\testTrade\testTrade\bin\Debug\net8.0\testTrade.dll
+C:\Users\User\Source\Repos\testTrade\testTrade\bin\Debug\net8.0\testTrade.pdb
+C:\Users\User\Source\Repos\testTrade\testTrade\obj\Debug\net8.0\testTrade.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\User\Source\Repos\testTrade\testTrade\obj\Debug\net8.0\testTrade.AssemblyInfoInputs.cache
+C:\Users\User\Source\Repos\testTrade\testTrade\obj\Debug\net8.0\testTrade.AssemblyInfo.cs
+C:\Users\User\Source\Repos\testTrade\testTrade\obj\Debug\net8.0\testTrade.csproj.CoreCompileInputs.cache
+C:\Users\User\Source\Repos\testTrade\testTrade\obj\Debug\net8.0\testTrade.sourcelink.json
+C:\Users\User\Source\Repos\testTrade\testTrade\obj\Debug\net8.0\testTrade.dll
+C:\Users\User\Source\Repos\testTrade\testTrade\obj\Debug\net8.0\refint\testTrade.dll
+C:\Users\User\Source\Repos\testTrade\testTrade\obj\Debug\net8.0\testTrade.pdb
+C:\Users\User\Source\Repos\testTrade\testTrade\obj\Debug\net8.0\testTrade.genruntimeconfig.cache
+C:\Users\User\Source\Repos\testTrade\testTrade\obj\Debug\net8.0\ref\testTrade.dll

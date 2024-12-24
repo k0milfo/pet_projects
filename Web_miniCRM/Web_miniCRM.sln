@@ -15,7 +15,12 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Web_miniCRM.DAL", "Web_mini
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Service", "Service", "{8CF4390D-578A-4427-A920-D6B4FACD2219}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Web_miniCRM.Service", "Web_miniCRM.Service\Web_miniCRM.Service.csproj", "{0FEDBDF0-6679-410C-BCE3-EB2BCC01FFA4}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Web_miniCRM.Service", "Web_miniCRM.Service\Web_miniCRM.Service.csproj", "{0FEDBDF0-6679-410C-BCE3-EB2BCC01FFA4}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Элементы решения", "Элементы решения", "{AD137B44-7EF9-44EF-9F11-08EF1AFF4919}"
+	ProjectSection(SolutionItems) = preProject
+		DockerFile.txt = DockerFile.txt
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

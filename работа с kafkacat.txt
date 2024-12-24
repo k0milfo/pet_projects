@@ -1,0 +1,12 @@
+Работа с kafkacat:
+Скачал в docker из: docker pull confluentinc/cp-kafkacat
+Далее подключил контейнер и зашел в контейнер: docker run --rm --network mas_my_network -it confluentinc/cp-kafkacat /bin/bash
+Создание нового топика: kafkacat -b kafka:9092 -t new_topic -P
+Проверка существующих топиков: kafkacat -b kafka:9092 -L
+Отправка сообщения в топик: echo "Hello, Kafka!" | kafkacat -b kafka:9092 -t new_topic -P // new_topic - топик который уже имеется в kafka
+
+Читает сообщения из топика: kafkacat -b kafka:9092 -t new_topic -C // вместо new_topic нужно выбрать свой топик
+или
+если kafkacat подключен из другого контейнера использовать: kafkacat -b kafka:29092 -t sensor-data -C // в данном случае используется kafka:29092 потому что так прописано в KAFKA_ADVERTISED_LISTENERS: PLAINTEXT://kafka:29092,PLAINTEXT_HOST://localhost:9092 из docker-compose
+
+

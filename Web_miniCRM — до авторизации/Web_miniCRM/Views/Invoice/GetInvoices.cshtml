@@ -1,0 +1,11 @@
+﻿@model List<Web_miniCRM.Domain.Entity.Invoice>
+
+@foreach(var item in Model)
+{
+    <p>ID счета: @item.InvoiceId</p>
+    <p>Компания: @item.Company.CompanyName</p>
+    @* @foreach(var i in item.InvoiceItems)
+    {
+        <p>Товар: @i.Product.Name Количество: @i.Quantity</p>
+    } *@
+}

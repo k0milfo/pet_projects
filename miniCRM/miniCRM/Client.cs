@@ -12,6 +12,11 @@ namespace miniCRM
         public string Name { get; set; }
         public string Phone_number { get; set; }
         public string Email { get; set; }
+        //public List<string[]> history_list { get; set; }
+        //public string title_actions { get; set; }
+        //public DateTime datetime { get; set; }
+        //public string description { get; set; }
+
         public Client(string Company, string Name, string Phone_number, string Email) 
         {
             this.Company = Company;

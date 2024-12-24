@@ -1,0 +1,17 @@
+﻿@model WebAppMVC.Models.CreateViewModel
+@{
+	ViewData["Title"] = "Регистрация пользователя";
+}
+
+<div class="card col-md-12">
+    <form asp-action="CreateUser" asp-controller="Home" method="post">
+        <div class="mb-3">
+            <label class="form-label">Name</label>
+            <span asp-validation-for="Name" class="text-danger"></span>
+            <input type="text" asp-for="Name" class="form-control" />
+        </div>
+        <div>
+            <button class="btn btn-primary float-right" type="submit">Отправить</button>
+        </div>
+    </form>
+</div>
