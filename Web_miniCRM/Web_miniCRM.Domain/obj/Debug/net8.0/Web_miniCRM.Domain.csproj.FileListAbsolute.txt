@@ -1,0 +1,13 @@
+C:\Users\User\Source\Repos\Web_miniCRM\Web_miniCRM.Domain\bin\Debug\net8.0\Web_miniCRM.Domain.deps.json
+C:\Users\User\Source\Repos\Web_miniCRM\Web_miniCRM.Domain\bin\Debug\net8.0\Web_miniCRM.Domain.dll
+C:\Users\User\Source\Repos\Web_miniCRM\Web_miniCRM.Domain\bin\Debug\net8.0\Web_miniCRM.Domain.pdb
+C:\Users\User\Source\Repos\Web_miniCRM\Web_miniCRM.Domain\obj\Debug\net8.0\Web_miniCRM.Domain.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\User\Source\Repos\Web_miniCRM\Web_miniCRM.Domain\obj\Debug\net8.0\Web_miniCRM.Domain.AssemblyInfoInputs.cache
+C:\Users\User\Source\Repos\Web_miniCRM\Web_miniCRM.Domain\obj\Debug\net8.0\Web_miniCRM.Domain.AssemblyInfo.cs
+C:\Users\User\Source\Repos\Web_miniCRM\Web_miniCRM.Domain\obj\Debug\net8.0\Web_miniCRM.Domain.csproj.CoreCompileInputs.cache
+C:\Users\User\Source\Repos\Web_miniCRM\Web_miniCRM.Domain\obj\Debug\net8.0\Web_miniCRM.Domain.sourcelink.json
+C:\Users\User\Source\Repos\Web_miniCRM\Web_miniCRM.Domain\obj\Debug\net8.0\Web_miniCRM.Domain.dll
+C:\Users\User\Source\Repos\Web_miniCRM\Web_miniCRM.Domain\obj\Debug\net8.0\refint\Web_miniCRM.Domain.dll
+C:\Users\User\Source\Repos\Web_miniCRM\Web_miniCRM.Domain\obj\Debug\net8.0\Web_miniCRM.Domain.pdb
+C:\Users\User\Source\Repos\Web_miniCRM\Web_miniCRM.Domain\obj\Debug\net8.0\ref\Web_miniCRM.Domain.dll
+C:\Users\User\Source\Repos\Web_miniCRM\Web_miniCRM.Domain\obj\Debug\net8.0\Web_miniCRM.Domain.csproj.AssemblyReference.cache

@@ -1,0 +1,85 @@
+﻿@model dynamic
+
+<form asp-action="UpsertItem" method="post">
+
+@if (TempData["SuccessMessage"] != null)
+{
+    <div class="alert alert-success">
+        @TempData["SuccessMessage"]
+    </div>
+}
+
+<label for="InvoiceDate">Дата счета:</label>
+<input type="date" id="InvoiceDate" name="InvoiceDate" value="@Model.Invoice.InvoiceDate?.ToString("yyyy-MM-dd")" />
+<input type="hidden" id="InvoiceId" name="InvoiceId" value="@Model.Invoice.InvoiceId" />
+<input type="hidden" id="CompanyId" name="CompanyId" value="@Model.Invoice.CompanyId" />
+
+<div class="product-info">
+    <div id="product-container">
+        @for (int i = 0; i < Model.Invoice.InvoiceItems.Count; i++)
+        {
+            <div class="product-entry">
+                <h5>@Model.Invoice.InvoiceItems[i].Product.Name</h5>
+                    <select name="InvoiceItems[@i].ProductId">
+                        @foreach (var product in Model.Products)
+                        {
+                            if (product.ProductId == Model.Invoice.InvoiceItems[i].ProductId)
+                            {
+                                <option value="@product.ProductId" selected>@product.Name</option>
+                            }
+                            else
+                            {
+                                <option value="@product.ProductId">@product.Name</option>
+                            }
+                        }
+                    </select>
+                <input type="number" name="InvoiceItems[@i].Quantity" value="@Model.Invoice.InvoiceItems[i].Quantity" min="1" required />
+
+                @if (i > 0)
+                {
+                    <button type="button" class="remove-product-btn">Удалить</button>
+                }
+            </div>
+        }
+    </div>
+    <button type="button" id="add-product-btn">Добавить продукт</button>
+    <p>Информация по счету</p>
+    @if (Model.Invoice.Informations.Count > 0)
+    {
+        <input type="text" name="Informations[0].Details" value="@Model.Invoice.Informations[0].Details" />
+    }
+</div>
+<button type="submit">Сохранить изменения</button>
+<button type="submit" name="action" value="CreateExelInvoice">Создать Excel</button>
+    <button type="button" id="myButton" onclick="location.href='@Url.Action("GetManagerInfoInvoice", "Manager", new {id = Model.Invoice.ManagerId})'">Вернуться к счетам</button>
+</form>
+
+<script>
+    document.addEventListener('DOMContentLoaded', function () {
+        var productContainer = document.getElementById('product-container');
+        var addProductBtn = document.getElementById('add-product-btn');
+        var productCount = @Model.Invoice.InvoiceItems.Count;
+
+        addProductBtn.addEventListener('click', function () {
+            var currentCount = productContainer.getElementsByClassName('product-entry').length;
+
+            var productDiv = document.createElement('div');
+            productDiv.classList.add('product-entry');
+
+            var selectHtml = '<select name="InvoiceItems[' + currentCount + '].ProductId">';
+    @foreach (var product in Model.Products)
+    {
+        <text>
+                    selectHtml += '<option value="@product.ProductId">@product.Name</option>';
+        </text>
+    }
+                selectHtml += '</select>';
+
+            var quantityInput = '<input type="number" name="InvoiceItems[' + currentCount + '].Quantity" placeholder="Количество" min="1" required />';
+            var removeBtn = '<button type="button" class="remove-product-btn">Удалить</button>';
+
+            productDiv.innerHTML = selectHtml + quantityInput + removeBtn;
+            productContainer.appendChild(productDiv);
+        });
+    });
+</script>

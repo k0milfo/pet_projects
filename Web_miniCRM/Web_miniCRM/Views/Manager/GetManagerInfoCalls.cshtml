@@ -1,0 +1,68 @@
+﻿@model Web_miniCRM.Domain.Entity.ManagerViewModelFiltering
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<h1 class="text-center1" style="margin-left:-80px;">@Model.Manager.FirstName @Model.Manager.LastName</h1>
+</head>
+
+<div class="button-container">
+	<button class="custom-button" type="button" id="myButton1" onclick="location.href='@Url.Action("GetManagerInfoById", "Manager", new { id = Model.Manager.ManagerId })'">
+		Информация о менеджере
+	</button>
+	<button class="custom-button" type="button" id="myButton1" onclick="location.href='@Url.Action("GetManagerInfoCompany", "Manager", new { id = Model.Manager.ManagerId })'">
+		Компании
+	</button>
+	<button class="custom-button" type="button" id="myButton2" onclick="location.href='@Url.Action("GetManagerInfoCalls", "Manager", new { id = Model.Manager.ManagerId })'">
+		Звонки
+	</button>
+	<button class="custom-button" type="button" id="myButton3" onclick="location.href='@Url.Action("GetManagerInfoMeetings", "Manager", new { id = Model.Manager.ManagerId })'">
+		Встречи
+	</button>
+	<button class="custom-button" type="button" id="myButton4" onclick="location.href='@Url.Action("GetManagerInfoInvoice", "Manager", new { id = Model.Manager.ManagerId })'">
+		Счета
+	</button>
+	<button class="custom-button additional-button" type="button" id="myButton5" onclick="location.href='@Url.Action("CreateCall", "Call", new {id = Model.Manager.ManagerId})'">
+		Зарегистрировать звонок
+	</button>
+
+	<form asp-action="GetManagerInfoCalls" method="get" style="margin-top: 170px">
+		<input type="hidden" name="id" value="@Model.Manager.ManagerId" />
+		<label>Звонки за период</label>
+		<input type="date" name="startDateRange" placeholder="От" />
+		<input type="date" name="endDateRange" placeholder="До" />
+		<button type="submit" class="custom-button" style="margin-top: 5px">Фильтр</button>
+	</form>
+
+	<div class="table-container-Manager_Invoices_Calls_Meetings">
+		<table>
+			<thead>
+				<tr>
+					<label>Звонки</label>
+					<th>Дата</th>
+					<th>Компания</th>
+					<th>Номер</th>
+					<th>Контактное лицо</th>
+					<th>Детали</th>
+				</tr>
+			</thead>
+			<tbody>
+				@foreach (var call in Model.FilteredCalls)
+				{
+					<tr>
+						<td>@call.Date</td>
+						<td><a href="@Url.Action("GetCompanyInfo", "Company", new { id = call.CompanyId })" class="company-link" data-company-id="@call.CompanyId">@call.Company.CompanyName</a></td>
+						<td>@call.PhoneNumber</td>
+						<td>@call.NameContactPerson</td>
+						<td>@call.Details</td>
+						<td>
+							<div>
+								<button class="custom-button" type="button" id="ButtonUpdate" onclick="location.href='@Url.Action("ChangingDataCall", "Call", new { id = call.CallId})'">Изменить</button>
+								<button class="custom-button" type="button" id="ButtonDelete" onsubmit="return confirm('Вы уверены, что хотите удалить этот звонок?');" onclick="location.href='@Url.Action("DeleteCall", "Call", new { id = call.CallId, companyId = call.CompanyId})'">Удалить</button>
+							</div>
+						</td>
+					</tr>
+				}
+			</tbody>
+		</table>
+	</div>

@@ -1,0 +1,28 @@
+﻿@{
+    ViewData["Title"] = "Home Page";
+}
+
+<div class="text-center">
+    <h1 class="display-4">Welcome</h1>
+</div>
+
+<div class="button-container">
+    <button class="custom-button" type="button" id="myButton6" onclick="location.href='@Url.Action("CreateHeadDepartment", "HeadDepartment")'">
+        Создание руководителя отдела
+    </button>
+    <button class="custom-button" type="button" id="myButton4" onclick="location.href='@Url.Action("GetHeadDepartments", "HeadDepartment")'">
+        Руководители отделов
+    </button>
+    <button class="custom-button" type="button" id="myButton5" onclick="location.href='@Url.Action("CreateManager", "Manager")'">
+        Создание менеджера
+    </button>
+    <button class="custom-button" type="button" id="myButton4" onclick="location.href='@Url.Action("GetManagers", "Manager")'">
+        Менеджеры
+    </button>
+    <button class="custom-button" type="button" id="myButton6" onclick="location.href='@Url.Action("CreateProduct", "Product")'">
+        Создать продукт
+    </button>
+    <button class="custom-button" type="button" id="myButton1" onclick="location.href='@Url.Action("GetProducts", "Product")'">
+        Склад
+    </button>
+</div>
