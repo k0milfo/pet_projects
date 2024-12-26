@@ -1,0 +1,82 @@
+﻿@model Web_miniCRM.Domain.Entity.Manager
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<h1 class="text-center1" style="margin-left:-80px;">@Model.FirstName @Model.LastName</h1>
+</head>
+
+<div class="button-container">
+	<button class="custom-button" type="button" id="myButton1" onclick="location.href='@Url.Action("GetManagerInfoById", "Manager", new { id = Model.ManagerId })'" class="manager-link" data-manager-id="@Model.ManagerId">
+		Информация о менеджере
+	</button>
+	<button class="custom-button" type="button" id="myButton1" onclick="location.href='@Url.Action("GetManagerInfoCompany", "Manager", new { id = Model.ManagerId })'" class="manager-link" data-manager-id="@Model.ManagerId">
+		Компании
+	</button>
+	<button class="custom-button" type="button" id="myButton2" onclick="location.href='@Url.Action("GetManagerInfoCalls", "Manager", new { id = Model.ManagerId })'" class="manager-link" data-manager-id="@Model.ManagerId">
+		Звонки
+	</button>
+	<button class="custom-button" type="button" id="myButton3" onclick="location.href='@Url.Action("GetManagerInfoMeetings", "Manager", new { id = Model.ManagerId })'" class="manager-link" data-manager-id="@Model.ManagerId">
+		Встречи
+	</button>
+	<button class="custom-button" type="button" id="myButton4" onclick="location.href='@Url.Action("GetManagerInfoInvoice", "Manager", new { id = Model.ManagerId })'" class="manager-link" data-manager-id="@Model.ManagerId">
+		Счета
+	</button>
+	<button class="custom-button additional-button" type="button" id="myButton5" onclick="location.href='@Url.Action("CreateCompany", "Company", new {id = Model.ManagerId})'">
+		Добавить компанию
+	</button>
+	<div class="table-container-ManagerCompany">
+		<table>
+			<thead>
+				<tr>
+					<label>Основные компании</label>
+					<th>Компания</th>
+					<th>Контактное лицо</th>
+					<th>Номер телефона</th>
+					<th>Email</th>
+					<th>ИНН</th>
+				</tr>
+			</thead>
+			<tbody>
+				@foreach (var managerCompany in Model.Companies.Where(i => i.MainCompany == true))
+				{
+					<tr>
+						<td><a href="@Url.Action("GetCompanyInfo", "Company", new { id = managerCompany.CompanyId, managerId = Model.ManagerId })" class="company-link" data-company-id="@managerCompany.CompanyId">@managerCompany.CompanyName</a></td>
+						<td>@managerCompany.NameContactPerson</td>
+						<td>@managerCompany.PhoneNumber</td>
+						<td>@managerCompany.Email</td>
+						<td>@managerCompany.INN</td>
+					</tr>
+				}
+			</tbody>
+		</table>
+	</div>
+
+	<div class="table-container-ManagerCompany">
+		<table>
+			<thead>
+				<label>Компании в разработке</label>
+				<tr>
+					<th>Компания</th>
+					<th>Контактное лицо</th>
+					<th>Номер телефона</th>
+					<th>Email</th>
+					<th>ИНН</th>
+				</tr>
+			</thead>
+			<tbody>
+				@foreach (var managerCompany in Model.Companies.Where(i => i.MainCompany == false))
+				{
+					<tr>
+						<td><a href="@Url.Action("GetCompanyInfo", "Company", new { id = managerCompany.CompanyId })" class="company-link" data-company-id="@managerCompany.CompanyId">@managerCompany.CompanyName</a></td>
+						<td>@managerCompany.NameContactPerson</td>
+						<td>@managerCompany.PhoneNumber</td>
+						<td>@managerCompany.Email</td>
+						<td>@managerCompany.INN</td>
+					</tr>
+				}
+			</tbody>
+		</table>
+	</div>
+
+</div>

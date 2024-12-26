@@ -1,0 +1,60 @@
+﻿@using Microsoft.AspNetCore.Identity
+@using Web_miniCRM.Domain.Entity
+@inject UserManager<ApplicationUser> _userManager
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewData["Title"] - miniCRM</title>
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/css/custom-button.css" />
+    <link rel="stylesheet" href="~/css/tableStyles.css" />
+    <link rel="stylesheet" href="~/Web_miniCRM.styles.css" asp-append-version="true" />
+</head>
+<body>
+    <header>
+        <nav class="navbar navbar-expand-sm navbar-light bg-white border-bottom box-shadow mb-3">
+            @if (User.IsInRole("admin"))
+            {
+                <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index" style="margin-left: 10px;">miniCRM</a>
+            }
+            else if (User.IsInRole("manager"))
+            {
+                var managerId = _userManager.Users.Where(i => i.Email == User.Identity.Name).FirstOrDefault()?.ManagerId;
+                if (managerId != null)
+                {
+                    <a class="navbar-brand" asp-area="" asp-controller="Manager" asp-action="GetManagerInfoById" asp-route-id="@managerId" style="margin-left: 10px;">miniCRM</a>
+                }
+            }
+            else if (User.IsInRole("headdepartment"))
+            {
+                var headDepartmentId = _userManager.Users.Where(i => i.Email == User.Identity.Name).FirstOrDefault()?.HeadDepartmentId;
+                if (headDepartmentId != null)
+                {
+                    <a class="navbar-brand" asp-area="" asp-controller="HeadDepartment" asp-action="GetByDepartmentId" asp-route-id="@headDepartmentId" style="margin-left: 10px;">miniCRM</a>
+                }
+            }
+            else
+            {
+                <a class="navbar-brand" style="margin-left: 10px;">miniCRM</a>
+            }
+
+            @if (User.Identity.IsAuthenticated)
+            {
+                <form asp-controller="Account" asp-action="Logout" method="post" class="form-inline ml-auto" style="margin-left: 1150px;">
+                    <button type="submit" class="btn btn-link">Выход</button>
+                </form>
+            }
+        </nav>
+    </header>
+    <div class="container">
+        <main role="main" class="pb-3">
+            @RenderBody()
+        </main>
+    </div>
+    @RenderSection("Scripts", required: false)
+</body>
+</html>

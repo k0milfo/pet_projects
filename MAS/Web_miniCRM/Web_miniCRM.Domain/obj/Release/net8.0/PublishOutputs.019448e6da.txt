@@ -1,0 +1,14 @@
+C:\Users\User\Source\Repos\Web_miniCRM\out\Web_miniCRM.Domain.dll
+C:\Users\User\Source\Repos\Web_miniCRM\out\Web_miniCRM.Domain.deps.json
+C:\Users\User\Source\Repos\Web_miniCRM\out\Web_miniCRM.Domain.pdb
+C:\Users\User\Source\Repos\Web_miniCRM\out\Microsoft.AspNetCore.JsonPatch.dll
+C:\Users\User\Source\Repos\Web_miniCRM\out\Microsoft.AspNetCore.Mvc.Razor.Extensions.dll
+C:\Users\User\Source\Repos\Web_miniCRM\out\Microsoft.AspNetCore.Razor.Language.dll
+C:\Users\User\Source\Repos\Web_miniCRM\out\Microsoft.CodeAnalysis.dll
+C:\Users\User\Source\Repos\Web_miniCRM\out\Microsoft.CodeAnalysis.CSharp.dll
+C:\Users\User\Source\Repos\Web_miniCRM\out\Microsoft.CodeAnalysis.Razor.dll
+C:\Users\User\Source\Repos\Web_miniCRM\out\Microsoft.DotNet.PlatformAbstractions.dll
+C:\Users\User\Source\Repos\Web_miniCRM\out\Microsoft.Extensions.DependencyModel.dll
+C:\Users\User\Source\Repos\Web_miniCRM\out\Newtonsoft.Json.dll
+C:\Users\User\Source\Repos\Web_miniCRM\out\Newtonsoft.Json.Bson.dll
+C:\Users\User\Source\Repos\Web_miniCRM\out\System.Security.Permissions.dll

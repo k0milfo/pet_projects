@@ -1,0 +1,11 @@
+C:\Users\User\Source\Repos\CourseTG\CourseTG\obj\Debug\CourseTG.csproj.AssemblyReference.cache
+C:\Users\User\Source\Repos\CourseTG\CourseTG\obj\Debug\CourseTG.Form1.resources
+C:\Users\User\Source\Repos\CourseTG\CourseTG\obj\Debug\CourseTG.csproj.GenerateResource.cache
+C:\Users\User\Source\Repos\CourseTG\CourseTG\obj\Debug\CourseTG.csproj.CoreCompileInputs.cache
+C:\Users\User\Source\Repos\CourseTG\CourseTG\obj\Debug\CourseTG.Program.resources
+C:\Users\User\Source\Repos\CourseTG\CourseTG\bin\Debug\ExchangeRate.exe.config
+C:\Users\User\Source\Repos\CourseTG\CourseTG\bin\Debug\ExchangeRate.exe
+C:\Users\User\Source\Repos\CourseTG\CourseTG\bin\Debug\ExchangeRate.pdb
+C:\Users\User\Source\Repos\CourseTG\CourseTG\obj\Debug\ExchangeRate.Properties.Resources.resources
+C:\Users\User\Source\Repos\CourseTG\CourseTG\obj\Debug\ExchangeRate.exe
+C:\Users\User\Source\Repos\CourseTG\CourseTG\obj\Debug\ExchangeRate.pdb

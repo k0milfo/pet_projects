@@ -1,0 +1,11 @@
+{
+  "Version": 1,
+  "Hash": "XbRc/FS+hn2ggXQ74mIvW9keALS/nmPQkfpREWzGBIs=",
+  "Source": "DataIngestionService",
+  "BasePath": "_content/DataIngestionService",
+  "Mode": "Default",
+  "ManifestType": "Build",
+  "ReferencedProjectsConfiguration": [],
+  "DiscoveryPatterns": [],
+  "Assets": []
+}
