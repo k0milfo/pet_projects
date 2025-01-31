@@ -1,5 +1,8 @@
 ﻿using Confluent.Kafka;
+using DataIngestionService.RabbitMQ;
 using Microsoft.AspNetCore.Mvc;
+using RabbitMQ.Client;
+using System.Text;
 
 namespace DataIngestionService.Controllers
 {
@@ -7,45 +10,32 @@ namespace DataIngestionService.Controllers
 	[ApiController]
 	public class DataIngestionController : ControllerBase
 	{
-		private readonly IProducer<string, string> _producer;
-		private readonly string _topic;
+		private readonly IRabbitMqService _mqService;
 
-		public DataIngestionController(IProducer<string, string> producer)
+		public DataIngestionController(IRabbitMqService mqService)
 		{
-			_producer = producer;
-			_topic = "sensor-data";
+			_mqService = mqService;
 		}
 
 		[HttpPost]
-		public async Task<IActionResult> Post([FromBody] SensorData data)
+		public IActionResult Post(string message)
 		{
-			try
-			{
-				var message = new Message<string, string>
-				{
-					Key = data.DeviceId,
-					Value = data.ToString()
-				};
+			_mqService.SendMessage(message);
 
-				var result = await _producer.ProduceAsync(_topic, message);
-				return Ok(new { Message = "Data sent to Kafka", Result = result });
-			}
-			catch (ProduceException<string, string> e)
-			{
-				return StatusCode(500, new { Error = e.Error.Reason });
-			}
+			return Ok("Сообщение отправлено");
 		}
 	}
 	public class SensorData
 	{
-		public string DeviceId { get; set; }
+		public int? id { get; set; }
+		public string? DeviceId { get; set; }
 		public double Temperature { get; set; }
 		public double Humidity { get; set; }
-		public string Timestamp { get; set; }
+		public string? DateTime { get; set; }
 
 		public override string ToString()
 		{
-			return $"{{\"DeviceId\":\"{DeviceId}\", \"Temperature\":{Temperature}, \"Humidity\":{Humidity}, \"Timestamp\":\"{Timestamp}\"}}";
+			return $"{{\"DeviceId\":\"{DeviceId}\", \"Temperature\":{Temperature}, \"Humidity\":{Humidity}, \"DateTime\":\"{DateTime}\"}}";
 		}
 	}
 }

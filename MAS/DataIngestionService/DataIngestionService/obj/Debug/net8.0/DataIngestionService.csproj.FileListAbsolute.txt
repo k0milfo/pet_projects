@@ -51,3 +51,9 @@ C:\Users\User\Source\Repos\MAS\DataIngestionService\DataIngestionService\obj\Deb
 C:\Users\User\Source\Repos\MAS\DataIngestionService\DataIngestionService\obj\Debug\net8.0\DataIngestionService.pdb
 C:\Users\User\Source\Repos\MAS\DataIngestionService\DataIngestionService\obj\Debug\net8.0\DataIngestionService.genruntimeconfig.cache
 C:\Users\User\Source\Repos\MAS\DataIngestionService\DataIngestionService\obj\Debug\net8.0\ref\DataIngestionService.dll
+C:\Users\User\Source\Repos\MAS\DataIngestionService\DataIngestionService\bin\Debug\net8.0\RabbitMQ.Client.dll
+C:\Users\User\Source\Repos\MAS\DataIngestionService\DataIngestionService\bin\Debug\net8.0\Swashbuckle.AspNetCore.Swagger.dll
+C:\Users\User\Source\Repos\MAS\DataIngestionService\DataIngestionService\bin\Debug\net8.0\Swashbuckle.AspNetCore.SwaggerGen.dll
+C:\Users\User\Source\Repos\MAS\DataIngestionService\DataIngestionService\obj\Debug\net8.0\DataIngestionService.MvcApplicationPartsAssemblyInfo.cs
+C:\Users\User\Source\Repos\MAS\DataIngestionService\DataIngestionService\bin\Debug\net8.0\Microsoft.OpenApi.dll
+C:\Users\User\Source\Repos\MAS\DataIngestionService\DataIngestionService\bin\Debug\net8.0\Swashbuckle.AspNetCore.SwaggerUI.dll

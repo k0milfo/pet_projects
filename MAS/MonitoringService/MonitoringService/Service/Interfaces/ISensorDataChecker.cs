@@ -5,7 +5,7 @@ namespace Monitoring_Service.Service.Interfaces
 {
     public interface ISensorDataChecker
 	{
-		void Handle(ConsumeResult<string, string> consumeResult);
+		Task Handle(string message);
 		bool IsCritical(SensorData data);
 	}
 }

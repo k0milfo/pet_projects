@@ -1,25 +1,18 @@
-#See https://aka.ms/customizecontainer to learn how to customize your debug container and how Visual Studio uses this Dockerfile to build your images for faster debugging.
+FROM mcr.microsoft.com/dotnet/sdk:8.0 AS build
+WORKDIR /src
+COPY ["DataIngestionService/DataIngestionService.csproj", "DataIngestionService/"]
+RUN dotnet restore "DataIngestionService/DataIngestionService.csproj"
+COPY . .
+WORKDIR "/src/DataIngestionService"
 
-FROM mcr.microsoft.com/dotnet/aspnet:8.0 AS base
-USER app
+RUN dotnet publish "DataIngestionService.csproj" -c Debug -o /app/publish
+
+# Стадия 2: Создание рабочего образа
+FROM mcr.microsoft.com/dotnet/aspnet:8.0 AS runtime
 WORKDIR /app
+COPY --from=build /app/publish .
+
 EXPOSE 8080
 EXPOSE 8081
 
-FROM mcr.microsoft.com/dotnet/sdk:8.0 AS build
-ARG BUILD_CONFIGURATION=Release
-WORKDIR /src
-COPY ["DataIngestionService.csproj", "."]
-RUN dotnet restore "DataIngestionService.csproj"
-COPY . .
-WORKDIR "/src"
-RUN dotnet build "DataIngestionService.csproj" -c $BUILD_CONFIGURATION -o /app/build
-
-FROM build AS publish
-ARG BUILD_CONFIGURATION=Release
-RUN dotnet publish "DataIngestionService.csproj" -c $BUILD_CONFIGURATION -o /app/publish /p:UseAppHost=false
-
-FROM base AS final
-WORKDIR /app
-COPY --from=publish /app/publish .
-ENTRYPOINT ["dotnet", "DataIngestionService.dll"]
+CMD ["dotnet", "DataIngestionService.dll"]

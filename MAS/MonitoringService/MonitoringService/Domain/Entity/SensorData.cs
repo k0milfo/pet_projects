@@ -1,11 +1,14 @@
 ﻿using Confluent.Kafka;
 using System.Text.Json;
+using System.Text.Json.Serialization;
 
 namespace Monitoring_Service.Domain.Entity
 {
     public class SensorData
     {
-        public SensorData(string json)
+		[JsonConstructor]
+		public SensorData() { }
+		public SensorData(string json)
         {
             var data = JsonSerializer.Deserialize<SensorData>(json);
             if (data != null)
@@ -16,12 +19,11 @@ namespace Monitoring_Service.Domain.Entity
 				DateTime = data.DateTime;
             }
         }
-
-        public int Id {  get; set; }
-        public string DeviceId { get; set; }
+        public int? id {  get; set; }
+        public string? DeviceId { get; set; }
         public double Temperature { get; set; }
         public double Humidity { get; set; }
-        public string DateTime { get; set; }
+        public string? DateTime { get; set; }
 
 		public override string ToString()
         {

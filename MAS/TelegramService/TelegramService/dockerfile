@@ -1,0 +1,18 @@
+FROM mcr.microsoft.com/dotnet/sdk:8.0 AS build
+WORKDIR /src
+COPY ["TelegramService/TelegramService.csproj", "TelegramService/"]
+RUN dotnet restore "TelegramService/TelegramService.csproj"
+COPY . .
+WORKDIR "/src/TelegramService"
+
+RUN dotnet publish "TelegramService.csproj" -c Debug -o /app/publish
+
+# Стадия 2: Создание рабочего образа
+FROM mcr.microsoft.com/dotnet/aspnet:8.0 AS runtime
+WORKDIR /app
+COPY --from=build /app/publish .
+
+EXPOSE 8080
+EXPOSE 8081
+
+CMD ["dotnet", "TelegramService.dll"]

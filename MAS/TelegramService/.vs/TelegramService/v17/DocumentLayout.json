@@ -1,0 +1,109 @@
+{
+  "Version": 1,
+  "WorkspaceRootPath": "C:\\Users\\User\\Source\\Repos\\MAS\\TelegramService\\",
+  "Documents": [
+    {
+      "AbsoluteMoniker": "D:0:0:{DF029D23-A388-4FED-9014-081E2FB9B8C0}|TelegramService\\TelegramService.csproj|c:\\users\\user\\source\\repos\\mas\\telegramservice\\telegramservice\\service\\implementations\\telegramalert.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{DF029D23-A388-4FED-9014-081E2FB9B8C0}|TelegramService\\TelegramService.csproj|solutionrelative:telegramservice\\service\\implementations\\telegramalert.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{DF029D23-A388-4FED-9014-081E2FB9B8C0}|TelegramService\\TelegramService.csproj|c:\\users\\user\\source\\repos\\mas\\telegramservice\\telegramservice\\service\\implementations\\telegramregistration.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{DF029D23-A388-4FED-9014-081E2FB9B8C0}|TelegramService\\TelegramService.csproj|solutionrelative:telegramservice\\service\\implementations\\telegramregistration.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{DF029D23-A388-4FED-9014-081E2FB9B8C0}|TelegramService\\TelegramService.csproj|c:\\users\\user\\source\\repos\\mas\\telegramservice\\telegramservice\\dal\\repositories\\userdatarepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{DF029D23-A388-4FED-9014-081E2FB9B8C0}|TelegramService\\TelegramService.csproj|solutionrelative:telegramservice\\dal\\repositories\\userdatarepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{DF029D23-A388-4FED-9014-081E2FB9B8C0}|TelegramService\\TelegramService.csproj|c:\\users\\user\\source\\repos\\mas\\telegramservice\\telegramservice\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{DF029D23-A388-4FED-9014-081E2FB9B8C0}|TelegramService\\TelegramService.csproj|solutionrelative:telegramservice\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{DF029D23-A388-4FED-9014-081E2FB9B8C0}|TelegramService\\TelegramService.csproj|c:\\users\\user\\source\\repos\\mas\\telegramservice\\telegramservice\\domain\\entity\\alertdata.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{DF029D23-A388-4FED-9014-081E2FB9B8C0}|TelegramService\\TelegramService.csproj|solutionrelative:telegramservice\\domain\\entity\\alertdata.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    }
+  ],
+  "DocumentGroupContainers": [
+    {
+      "Orientation": 0,
+      "VerticalTabListWidth": 256,
+      "DocumentGroups": [
+        {
+          "DockedWidth": 200,
+          "SelectedChildIndex": 6,
+          "Children": [
+            {
+              "$type": "Bookmark",
+              "Name": "ST:128:0:{116d2292-e37d-41cd-a077-ebacac4c8cc4}"
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:129:0:{116d2292-e37d-41cd-a077-ebacac4c8cc4}"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "UserDataRepository.cs",
+              "DocumentMoniker": "C:\\Users\\User\\Source\\Repos\\MAS\\TelegramService\\TelegramService\\DAL\\Repositories\\UserDataRepository.cs",
+              "RelativeDocumentMoniker": "TelegramService\\DAL\\Repositories\\UserDataRepository.cs",
+              "ToolTip": "C:\\Users\\User\\Source\\Repos\\MAS\\TelegramService\\TelegramService\\DAL\\Repositories\\UserDataRepository.cs",
+              "RelativeToolTip": "TelegramService\\DAL\\Repositories\\UserDataRepository.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-01-28T23:20:06.49Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "Program.cs",
+              "DocumentMoniker": "C:\\Users\\User\\Source\\Repos\\MAS\\TelegramService\\TelegramService\\Program.cs",
+              "RelativeDocumentMoniker": "TelegramService\\Program.cs",
+              "ToolTip": "C:\\Users\\User\\Source\\Repos\\MAS\\TelegramService\\TelegramService\\Program.cs",
+              "RelativeToolTip": "TelegramService\\Program.cs",
+              "ViewState": "AQIAABIAAAAAAAAAAAAAAAAAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-01-28T23:17:42.42Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "TelegramRegistration.cs",
+              "DocumentMoniker": "C:\\Users\\User\\Source\\Repos\\MAS\\TelegramService\\TelegramService\\Service\\Implementations\\TelegramRegistration.cs",
+              "RelativeDocumentMoniker": "TelegramService\\Service\\Implementations\\TelegramRegistration.cs",
+              "ToolTip": "C:\\Users\\User\\Source\\Repos\\MAS\\TelegramService\\TelegramService\\Service\\Implementations\\TelegramRegistration.cs",
+              "RelativeToolTip": "TelegramService\\Service\\Implementations\\TelegramRegistration.cs",
+              "ViewState": "AQIAACoAAAAAAAAAAAAowDEAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-01-28T23:15:20.509Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
+              "Title": "AlertData.cs",
+              "DocumentMoniker": "C:\\Users\\User\\Source\\Repos\\MAS\\TelegramService\\TelegramService\\Domain\\Entity\\AlertData.cs",
+              "RelativeDocumentMoniker": "TelegramService\\Domain\\Entity\\AlertData.cs",
+              "ToolTip": "C:\\Users\\User\\Source\\Repos\\MAS\\TelegramService\\TelegramService\\Domain\\Entity\\AlertData.cs",
+              "RelativeToolTip": "TelegramService\\Domain\\Entity\\AlertData.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-01-28T23:12:08.665Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "TelegramAlert.cs",
+              "DocumentMoniker": "C:\\Users\\User\\Source\\Repos\\MAS\\TelegramService\\TelegramService\\Service\\Implementations\\TelegramAlert.cs",
+              "RelativeDocumentMoniker": "TelegramService\\Service\\Implementations\\TelegramAlert.cs",
+              "ToolTip": "C:\\Users\\User\\Source\\Repos\\MAS\\TelegramService\\TelegramService\\Service\\Implementations\\TelegramAlert.cs",
+              "RelativeToolTip": "TelegramService\\Service\\Implementations\\TelegramAlert.cs",
+              "ViewState": "AQIAABMAAAAAAAAAAAAAACMAAACIAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-01-28T23:11:22.7Z",
+              "EditorCaption": ""
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

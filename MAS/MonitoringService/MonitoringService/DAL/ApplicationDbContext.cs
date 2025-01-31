@@ -11,5 +11,11 @@ namespace Monitoring_Service.DAL
 			: base(options)
 		{
 		}
+		protected override void OnModelCreating(ModelBuilder modelBuilder)
+		{
+			modelBuilder.Entity<SensorData>()
+				.Property(e => e.id)
+				.ValueGeneratedOnAdd();
+		}
 	}
 }

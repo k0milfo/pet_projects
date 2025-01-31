@@ -3,24 +3,36 @@
   "WorkspaceRootPath": "C:\\Users\\User\\Source\\Repos\\MAS\\MonitoringService\\MonitoringService\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{F5DD34E1-D7FA-436C-8A4F-460876953D54}|MonitoringService.csproj|c:\\users\\user\\source\\repos\\mas\\monitoringservice\\monitoringservice\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{F5DD34E1-D7FA-436C-8A4F-460876953D54}|MonitoringService.csproj|solutionrelative:program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{F5DD34E1-D7FA-436C-8A4F-460876953D54}|MonitoringService.csproj|c:\\users\\user\\source\\repos\\mas\\monitoringservice\\monitoringservice\\migrationextensions.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{F5DD34E1-D7FA-436C-8A4F-460876953D54}|MonitoringService.csproj|solutionrelative:migrationextensions.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{F5DD34E1-D7FA-436C-8A4F-460876953D54}|MonitoringService.csproj|c:\\users\\user\\source\\repos\\mas\\monitoringservice\\monitoringservice\\dal\\repositories\\databaseservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{F5DD34E1-D7FA-436C-8A4F-460876953D54}|MonitoringService.csproj|solutionrelative:dal\\repositories\\databaseservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{F5DD34E1-D7FA-436C-8A4F-460876953D54}|MonitoringService.csproj|c:\\users\\user\\source\\repos\\mas\\monitoringservice\\monitoringservice\\service\\monitoringcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{F5DD34E1-D7FA-436C-8A4F-460876953D54}|MonitoringService.csproj|solutionrelative:service\\monitoringcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{F5DD34E1-D7FA-436C-8A4F-460876953D54}|MonitoringService.csproj|c:\\users\\user\\source\\repos\\mas\\monitoringservice\\monitoringservice\\service\\databasecontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{F5DD34E1-D7FA-436C-8A4F-460876953D54}|MonitoringService.csproj|solutionrelative:service\\databasecontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{F5DD34E1-D7FA-436C-8A4F-460876953D54}|MonitoringService.csproj|c:\\users\\user\\source\\repos\\mas\\monitoringservice\\monitoringservice\\dal\\interfaces\\isensordatarepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{F5DD34E1-D7FA-436C-8A4F-460876953D54}|MonitoringService.csproj|solutionrelative:dal\\interfaces\\isensordatarepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{F5DD34E1-D7FA-436C-8A4F-460876953D54}|MonitoringService.csproj|c:\\users\\user\\source\\repos\\mas\\monitoringservice\\monitoringservice\\dal\\repositories\\sensordatarepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{F5DD34E1-D7FA-436C-8A4F-460876953D54}|MonitoringService.csproj|solutionrelative:dal\\repositories\\sensordatarepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{F5DD34E1-D7FA-436C-8A4F-460876953D54}|MonitoringService.csproj|c:\\users\\user\\source\\repos\\mas\\monitoringservice\\monitoringservice\\dal\\applicationdbcontext.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{F5DD34E1-D7FA-436C-8A4F-460876953D54}|MonitoringService.csproj|solutionrelative:dal\\applicationdbcontext.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{F5DD34E1-D7FA-436C-8A4F-460876953D54}|MonitoringService.csproj|c:\\users\\user\\source\\repos\\mas\\monitoringservice\\monitoringservice\\domain\\entity\\sensordata.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{F5DD34E1-D7FA-436C-8A4F-460876953D54}|MonitoringService.csproj|solutionrelative:domain\\entity\\sensordata.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{F5DD34E1-D7FA-436C-8A4F-460876953D54}|MonitoringService.csproj|c:\\users\\user\\source\\repos\\mas\\monitoringservice\\monitoringservice\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{F5DD34E1-D7FA-436C-8A4F-460876953D54}|MonitoringService.csproj|solutionrelative:program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{F5DD34E1-D7FA-436C-8A4F-460876953D54}|MonitoringService.csproj|c:\\users\\user\\source\\repos\\mas\\monitoringservice\\monitoringservice\\service\\implementations\\sensordatachecker.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{F5DD34E1-D7FA-436C-8A4F-460876953D54}|MonitoringService.csproj|solutionrelative:service\\implementations\\sensordatachecker.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{F5DD34E1-D7FA-436C-8A4F-460876953D54}|MonitoringService.csproj|c:\\users\\user\\source\\repos\\mas\\monitoringservice\\monitoringservice\\service\\implementations\\routerservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{F5DD34E1-D7FA-436C-8A4F-460876953D54}|MonitoringService.csproj|solutionrelative:service\\implementations\\routerservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     }
   ],
   "DocumentGroupContainers": [
@@ -43,67 +55,105 @@
             {
               "$type": "Document",
               "DocumentIndex": 0,
-              "Title": "Program.cs",
-              "DocumentMoniker": "C:\\Users\\User\\Source\\Repos\\MAS\\MonitoringService\\MonitoringService\\Program.cs",
-              "RelativeDocumentMoniker": "Program.cs",
-              "ToolTip": "C:\\Users\\User\\Source\\Repos\\MAS\\MonitoringService\\MonitoringService\\Program.cs",
-              "RelativeToolTip": "Program.cs",
-              "ViewState": "AQIAABIAAAAAAAAAAAAAAAgAAAArAAAA",
+              "Title": "MigrationExtensions.cs",
+              "DocumentMoniker": "C:\\Users\\User\\Source\\Repos\\MAS\\MonitoringService\\MonitoringService\\MigrationExtensions.cs",
+              "RelativeDocumentMoniker": "MigrationExtensions.cs",
+              "ToolTip": "C:\\Users\\User\\Source\\Repos\\MAS\\MonitoringService\\MonitoringService\\MigrationExtensions.cs",
+              "RelativeToolTip": "MigrationExtensions.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-12-25T23:32:28.132Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 3,
-              "Title": "SensorData.cs",
-              "DocumentMoniker": "C:\\Users\\User\\Source\\Repos\\MAS\\MonitoringService\\MonitoringService\\Domain\\Entity\\SensorData.cs",
-              "RelativeDocumentMoniker": "Domain\\Entity\\SensorData.cs",
-              "ToolTip": "C:\\Users\\User\\Source\\Repos\\MAS\\MonitoringService\\MonitoringService\\Domain\\Entity\\SensorData.cs",
-              "RelativeToolTip": "Domain\\Entity\\SensorData.cs",
-              "ViewState": "AQIAAAMAAAAAAAAAAAAAABcAAAAsAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-12-25T23:21:41.325Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 2,
-              "Title": "ApplicationDbContext.cs",
-              "DocumentMoniker": "C:\\Users\\User\\Source\\Repos\\MAS\\MonitoringService\\MonitoringService\\DAL\\ApplicationDbContext.cs",
-              "RelativeDocumentMoniker": "DAL\\ApplicationDbContext.cs",
-              "ToolTip": "C:\\Users\\User\\Source\\Repos\\MAS\\MonitoringService\\MonitoringService\\DAL\\ApplicationDbContext.cs",
-              "RelativeToolTip": "DAL\\ApplicationDbContext.cs",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAUAAAAiAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-12-25T23:19:09.881Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 4,
-              "Title": "SensorDataChecker.cs",
-              "DocumentMoniker": "C:\\Users\\User\\Source\\Repos\\MAS\\MonitoringService\\MonitoringService\\Service\\Implementations\\SensorDataChecker.cs",
-              "RelativeDocumentMoniker": "Service\\Implementations\\SensorDataChecker.cs",
-              "ToolTip": "C:\\Users\\User\\Source\\Repos\\MAS\\MonitoringService\\MonitoringService\\Service\\Implementations\\SensorDataChecker.cs",
-              "RelativeToolTip": "Service\\Implementations\\SensorDataChecker.cs",
-              "ViewState": "AQIAAAYAAAAAAAAAAAAAABMAAAAeAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-12-25T21:24:05.907Z",
+              "WhenOpened": "2025-01-27T22:58:10.616Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
               "DocumentIndex": 1,
-              "Title": "DatabaseService.cs",
-              "DocumentMoniker": "C:\\Users\\User\\Source\\Repos\\MAS\\MonitoringService\\MonitoringService\\DAL\\Repositories\\DatabaseService.cs",
-              "RelativeDocumentMoniker": "DAL\\Repositories\\DatabaseService.cs",
-              "ToolTip": "C:\\Users\\User\\Source\\Repos\\MAS\\MonitoringService\\MonitoringService\\DAL\\Repositories\\DatabaseService.cs",
-              "RelativeToolTip": "DAL\\Repositories\\DatabaseService.cs",
-              "ViewState": "AQIAAAYAAAAAAAAAAAAAACkAAAADAAAA",
+              "Title": "MonitoringController.cs",
+              "DocumentMoniker": "C:\\Users\\User\\Source\\Repos\\MAS\\MonitoringService\\MonitoringService\\Service\\MonitoringController.cs",
+              "RelativeDocumentMoniker": "Service\\MonitoringController.cs",
+              "ToolTip": "C:\\Users\\User\\Source\\Repos\\MAS\\MonitoringService\\MonitoringService\\Service\\MonitoringController.cs",
+              "RelativeToolTip": "Service\\MonitoringController.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-12-25T22:52:06.477Z",
+              "WhenOpened": "2025-01-27T22:58:08.19Z",
               "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "DataBaseController.cs",
+              "DocumentMoniker": "C:\\Users\\User\\Source\\Repos\\MAS\\MonitoringService\\MonitoringService\\Service\\DataBaseController.cs",
+              "RelativeDocumentMoniker": "Service\\DataBaseController.cs",
+              "ToolTip": "C:\\Users\\User\\Source\\Repos\\MAS\\MonitoringService\\MonitoringService\\Service\\DataBaseController.cs",
+              "RelativeToolTip": "Service\\DataBaseController.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-01-27T22:57:55.964Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "ISensorDataRepository.cs",
+              "DocumentMoniker": "C:\\Users\\User\\Source\\Repos\\MAS\\MonitoringService\\MonitoringService\\DAL\\Interfaces\\ISensorDataRepository.cs",
+              "RelativeDocumentMoniker": "DAL\\Interfaces\\ISensorDataRepository.cs",
+              "ToolTip": "C:\\Users\\User\\Source\\Repos\\MAS\\MonitoringService\\MonitoringService\\DAL\\Interfaces\\ISensorDataRepository.cs",
+              "RelativeToolTip": "DAL\\Interfaces\\ISensorDataRepository.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-01-27T22:57:51.09Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
+              "Title": "SensorDataRepository.cs",
+              "DocumentMoniker": "C:\\Users\\User\\Source\\Repos\\MAS\\MonitoringService\\MonitoringService\\DAL\\Repositories\\SensorDataRepository.cs",
+              "RelativeDocumentMoniker": "DAL\\Repositories\\SensorDataRepository.cs",
+              "ToolTip": "C:\\Users\\User\\Source\\Repos\\MAS\\MonitoringService\\MonitoringService\\DAL\\Repositories\\SensorDataRepository.cs",
+              "RelativeToolTip": "DAL\\Repositories\\SensorDataRepository.cs",
+              "ViewState": "AQIAABcAAAAAAAAAAAAwwAAAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-01-27T22:57:42.984Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 5,
+              "Title": "ApplicationDbContext.cs",
+              "DocumentMoniker": "C:\\Users\\User\\Source\\Repos\\MAS\\MonitoringService\\MonitoringService\\DAL\\ApplicationDbContext.cs",
+              "RelativeDocumentMoniker": "DAL\\ApplicationDbContext.cs",
+              "ToolTip": "C:\\Users\\User\\Source\\Repos\\MAS\\MonitoringService\\MonitoringService\\DAL\\ApplicationDbContext.cs",
+              "RelativeToolTip": "DAL\\ApplicationDbContext.cs",
+              "ViewState": "AQIAAAUAAAAAAAAAAAAxwAAAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-01-27T22:57:18.982Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 6,
+              "Title": "Program.cs",
+              "DocumentMoniker": "C:\\Users\\User\\Source\\Repos\\MAS\\MonitoringService\\MonitoringService\\Program.cs",
+              "RelativeDocumentMoniker": "Program.cs",
+              "ToolTip": "C:\\Users\\User\\Source\\Repos\\MAS\\MonitoringService\\MonitoringService\\Program.cs",
+              "RelativeToolTip": "Program.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-01-27T20:27:58.641Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 7,
+              "Title": "RouterService.cs",
+              "DocumentMoniker": "C:\\Users\\User\\Source\\Repos\\MAS\\MonitoringService\\MonitoringService\\Service\\Implementations\\RouterService.cs",
+              "RelativeDocumentMoniker": "Service\\Implementations\\RouterService.cs",
+              "ToolTip": "C:\\Users\\User\\Source\\Repos\\MAS\\MonitoringService\\MonitoringService\\Service\\Implementations\\RouterService.cs",
+              "RelativeToolTip": "Service\\Implementations\\RouterService.cs",
+              "ViewState": "AQIAADAAAAAAAAAAAAAowB8AAAAsAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-01-27T20:24:27.542Z"
             }
           ]
         }
