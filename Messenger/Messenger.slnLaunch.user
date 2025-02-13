@@ -1,0 +1,15 @@
+[
+  {
+    "Name": "Новый профиль",
+    "Projects": [
+      {
+        "Path": "MessageService\\MessageService.csproj",
+        "Action": "Start"
+      },
+      {
+        "Path": "FrontendMessage\\FrontendMessage.csproj",
+        "Action": "Start"
+      }
+    ]
+  }
+]
