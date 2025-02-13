@@ -1,0 +1,16 @@
+﻿@page "/"
+@* @using Messenger.Frontend *@
+@using MudBlazor
+@inject IDialogService DialogService
+
+<MudButton Variant="Variant.Filled" Color="Color.Primary" OnClick="OpenChatDialog">
+    Открыть чат
+</MudButton>
+
+@code {
+    private void OpenChatDialog()
+    {
+        var options = new DialogOptions { CloseButton = true, MaxWidth = MaxWidth.Medium, FullWidth = true };
+        DialogService.Show<Chat>("Чат", options);
+    }
+}

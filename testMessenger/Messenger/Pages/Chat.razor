@@ -1,0 +1,42 @@
+﻿@using MudBlazor
+@inject IDialogService DialogService
+@page "/chat"
+<PageTitle>Chat</PageTitle>
+
+<h3>Chat</h3>
+
+		<MudPaper Elevation="5" Class="pa-4" Style="max-height: 400px; overflow-y: auto;">
+			<MudList T="string">
+				@foreach (var message in Messages)
+				{
+					<MudListItem>@message</MudListItem>
+				}
+			</MudList>
+		</MudPaper>
+		<MudTextField @bind-Value="NewMessage" Label="Введите сообщение" Variant="Variant.Outlined" FullWidth="true" />
+		<MudButton OnClick="CloseDialog" Color="Color.Secondary">Закрыть</MudButton>
+
+	<DialogActions>
+		<MudButton OnClick="SendMessage" Color="Color.Primary"></MudButton>
+	</DialogActions>
+
+@code {
+	[CascadingParameter] IMudDialogInstance MudDialog { get; set; }
+
+	private List<string> Messages = new();
+	private string NewMessage = string.Empty;
+
+	private void SendMessage()
+	{
+		if (!string.IsNullOrWhiteSpace(NewMessage))
+		{
+			Messages.Add(NewMessage);
+			NewMessage = string.Empty;
+		}
+	}
+
+	private void CloseDialog()
+	{
+		MudDialog.Close();
+	}
+}

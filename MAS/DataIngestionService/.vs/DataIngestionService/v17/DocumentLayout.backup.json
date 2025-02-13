@@ -1,0 +1,109 @@
+{
+  "Version": 1,
+  "WorkspaceRootPath": "C:\\Users\\User\\Source\\Repos\\MAS\\DataIngestionService\\",
+  "Documents": [
+    {
+      "AbsoluteMoniker": "D:0:0:{87325759-00FF-4979-9C63-844627DCE1D8}|DataIngestionService\\DataIngestionService.csproj|c:\\users\\user\\source\\repos\\mas\\dataingestionservice\\dataingestionservice\\properties\\launchsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}",
+      "RelativeMoniker": "D:0:0:{87325759-00FF-4979-9C63-844627DCE1D8}|DataIngestionService\\DataIngestionService.csproj|solutionrelative:dataingestionservice\\properties\\launchsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{87325759-00FF-4979-9C63-844627DCE1D8}|DataIngestionService\\DataIngestionService.csproj|c:\\users\\user\\source\\repos\\mas\\dataingestionservice\\dataingestionservice\\appsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}",
+      "RelativeMoniker": "D:0:0:{87325759-00FF-4979-9C63-844627DCE1D8}|DataIngestionService\\DataIngestionService.csproj|solutionrelative:dataingestionservice\\appsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{87325759-00FF-4979-9C63-844627DCE1D8}|DataIngestionService\\DataIngestionService.csproj|c:\\users\\user\\source\\repos\\mas\\dataingestionservice\\dataingestionservice\\controllers\\dataingestioncontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{87325759-00FF-4979-9C63-844627DCE1D8}|DataIngestionService\\DataIngestionService.csproj|solutionrelative:dataingestionservice\\controllers\\dataingestioncontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{87325759-00FF-4979-9C63-844627DCE1D8}|DataIngestionService\\DataIngestionService.csproj|c:\\users\\user\\source\\repos\\mas\\dataingestionservice\\dataingestionservice\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{87325759-00FF-4979-9C63-844627DCE1D8}|DataIngestionService\\DataIngestionService.csproj|solutionrelative:dataingestionservice\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{87325759-00FF-4979-9C63-844627DCE1D8}|DataIngestionService\\DataIngestionService.csproj|c:\\users\\user\\source\\repos\\mas\\dataingestionservice\\dataingestionservice\\rabbitmq\\rabbitmqservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{87325759-00FF-4979-9C63-844627DCE1D8}|DataIngestionService\\DataIngestionService.csproj|solutionrelative:dataingestionservice\\rabbitmq\\rabbitmqservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    }
+  ],
+  "DocumentGroupContainers": [
+    {
+      "Orientation": 0,
+      "VerticalTabListWidth": 256,
+      "DocumentGroups": [
+        {
+          "DockedWidth": 200,
+          "SelectedChildIndex": 2,
+          "Children": [
+            {
+              "$type": "Bookmark",
+              "Name": "ST:128:0:{116d2292-e37d-41cd-a077-ebacac4c8cc4}"
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:129:0:{116d2292-e37d-41cd-a077-ebacac4c8cc4}"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "launchSettings.json",
+              "DocumentMoniker": "C:\\Users\\User\\Source\\Repos\\MAS\\DataIngestionService\\DataIngestionService\\Properties\\launchSettings.json",
+              "RelativeDocumentMoniker": "DataIngestionService\\Properties\\launchSettings.json",
+              "ToolTip": "C:\\Users\\User\\Source\\Repos\\MAS\\DataIngestionService\\DataIngestionService\\Properties\\launchSettings.json",
+              "RelativeToolTip": "DataIngestionService\\Properties\\launchSettings.json",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAB4AAAAfAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001642|",
+              "WhenOpened": "2025-01-22T22:09:16.422Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "appsettings.json",
+              "DocumentMoniker": "C:\\Users\\User\\Source\\Repos\\MAS\\DataIngestionService\\DataIngestionService\\appsettings.json",
+              "RelativeDocumentMoniker": "DataIngestionService\\appsettings.json",
+              "ToolTip": "C:\\Users\\User\\Source\\Repos\\MAS\\DataIngestionService\\DataIngestionService\\appsettings.json",
+              "RelativeToolTip": "DataIngestionService\\appsettings.json",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAgAAAARAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001642|",
+              "WhenOpened": "2025-01-22T21:34:32.575Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
+              "Title": "RabbitMqService.cs",
+              "DocumentMoniker": "C:\\Users\\User\\Source\\Repos\\MAS\\DataIngestionService\\DataIngestionService\\RabbitMQ\\RabbitMqService.cs",
+              "RelativeDocumentMoniker": "DataIngestionService\\RabbitMQ\\RabbitMqService.cs",
+              "ToolTip": "C:\\Users\\User\\Source\\Repos\\MAS\\DataIngestionService\\DataIngestionService\\RabbitMQ\\RabbitMqService.cs",
+              "RelativeToolTip": "DataIngestionService\\RabbitMQ\\RabbitMqService.cs",
+              "ViewState": "AQIAAAgAAAAAAAAAAAAQwBUAAAAwAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-01-22T21:08:49.727Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "Program.cs",
+              "DocumentMoniker": "C:\\Users\\User\\Source\\Repos\\MAS\\DataIngestionService\\DataIngestionService\\Program.cs",
+              "RelativeDocumentMoniker": "DataIngestionService\\Program.cs",
+              "ToolTip": "C:\\Users\\User\\Source\\Repos\\MAS\\DataIngestionService\\DataIngestionService\\Program.cs",
+              "RelativeToolTip": "DataIngestionService\\Program.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAwAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-12-17T22:18:26.77Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "DataIngestionController.cs",
+              "DocumentMoniker": "C:\\Users\\User\\Source\\Repos\\MAS\\DataIngestionService\\DataIngestionService\\Controllers\\DataIngestionController.cs",
+              "RelativeDocumentMoniker": "DataIngestionService\\Controllers\\DataIngestionController.cs",
+              "ToolTip": "C:\\Users\\User\\Source\\Repos\\MAS\\DataIngestionService\\DataIngestionService\\Controllers\\DataIngestionController.cs",
+              "RelativeToolTip": "DataIngestionService\\Controllers\\DataIngestionController.cs",
+              "ViewState": "AQIAAAoAAAAAAAAAAAAxwBMAAAAMAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-12-17T21:44:31.452Z"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
