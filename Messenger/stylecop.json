@@ -1,0 +1,8 @@
+﻿{
+    "settings": {
+        "documentationRules": {
+            "documentExposedElements": false, // Отключает документацию для публичных элементов
+            "documentInternalElements": false // Отключает документацию для внутренних элементов
+        }
+    }
+}

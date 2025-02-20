@@ -3,11 +3,24 @@
     "Name": "Новый профиль",
     "Projects": [
       {
-        "Path": "MessageService\\MessageService.csproj",
+        "Path": "MessageService\\Pingo.Messages.WebApi.csproj",
         "Action": "Start"
       },
       {
         "Path": "FrontendMessage\\FrontendMessage.csproj",
+        "Action": "Start"
+      }
+    ]
+  },
+  {
+    "Name": "Тестирование",
+    "Projects": [
+      {
+        "Path": "Pingo.Messages.ComponentTests\\Pingo.Messages.ComponentTests.csproj",
+        "Action": "Start"
+      },
+      {
+        "Path": "MessageService\\Pingo.Messages.WebApi.csproj",
         "Action": "Start"
       }
     ]

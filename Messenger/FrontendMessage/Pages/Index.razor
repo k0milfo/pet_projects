@@ -1,19 +1,25 @@
-﻿@page "/"
+@page "/"
+@using Pingo.Messages.Entity
+
 @inject HttpClient Http
+
 <PageTitle>Chat</PageTitle>
 
 <MudList T="Message">
-	@foreach (var message in Messages)
-	{
-		<MudListItem>@message.dateTime.ToString("HH:mm") @message.text</MudListItem>
-	}
+    @if (Messages != null)
+    {
+        foreach (var message in Messages)
+        {
+            <MudListItem>@(message.UpdatedAt?.ToString("HH:mm") ?? message.SentAt.ToString("HH:mm")) @message.Text</MudListItem>
+        }
+    }
 </MudList>
 
 <MudTextField @bind-Value="NewMessage" Label="Введите сообщение" />
-<MudButton OnClick="SendMessage" Type="button">Send</MudButton>
+<MudButton OnClick="SendMessage" type="button">Send</MudButton>
 
 @code {
-	private List<Message> Messages = new();
+	private List<Message>? Messages = new();
 	private string NewMessage = string.Empty;
 
 	protected override async Task OnInitializedAsync()
@@ -24,22 +30,18 @@
 	private async Task SendMessage()
 	{
 		if (!string.IsNullOrWhiteSpace(NewMessage))
-		{
-			await Http.PostAsJsonAsync("api/Messages", NewMessage);
+        {
+            var messageId = Guid.NewGuid();
+            await Http.PutAsJsonAsync($"api/Messages/{messageId}", new Message(Id: messageId, Text: NewMessage, SentAt: TimeProvider.System.GetUtcNow(), UpdatedAt: null));
 			NewMessage = string.Empty;
 
 			Messages = await Http.GetFromJsonAsync<List<Message>>("api/Messages");
 		}
 	}
 
-	public class Message
-	{
-		public int id { get; set; }
-		public string text { get; set; }
-		public DateTime dateTime { get; set; }
-	}
-}
+    
 
+}
 
 <style>
     .chat-container {
