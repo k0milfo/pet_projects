@@ -5959,8 +5959,8 @@
     },
     "Pingo.Messages.WebApi/1.0.0": {
       "type": "project",
-      "path": "../MessageService/Pingo.Messages.WebApi.csproj",
-      "msbuildProject": "../MessageService/Pingo.Messages.WebApi.csproj"
+      "path": "../Pingo.Messages.WebApi/Pingo.Messages.WebApi.csproj",
+      "msbuildProject": "../Pingo.Messages.WebApi/Pingo.Messages.WebApi.csproj"
     }
   },
   "projectFileDependencyGroups": {
@@ -6015,6 +6015,9 @@
           "projectReferences": {
             "C:\\Users\\User\\Source\\Repos\\Messenger\\MessageService\\Pingo.Messages.WebApi.csproj": {
               "projectPath": "C:\\Users\\User\\Source\\Repos\\Messenger\\MessageService\\Pingo.Messages.WebApi.csproj"
+            },
+            "C:\\Users\\User\\Source\\Repos\\Messenger\\Pingo.Messages.WebApi\\Pingo.Messages.WebApi.csproj": {
+              "projectPath": "C:\\Users\\User\\Source\\Repos\\Messenger\\Pingo.Messages.WebApi\\Pingo.Messages.WebApi.csproj"
             },
             "C:\\Users\\User\\Source\\Repos\\Messenger\\Pingo.Messages\\Pingo.Messages.csproj": {
               "projectPath": "C:\\Users\\User\\Source\\Repos\\Messenger\\Pingo.Messages\\Pingo.Messages.csproj"

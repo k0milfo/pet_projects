@@ -11,7 +11,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Message", "Message", "{9DAE
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FrontendMessage", "FrontendMessage\FrontendMessage.csproj", "{1B84BBE1-F3B3-46AB-9038-563D24AF356B}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Pingo.Messages.WebApi", "MessageService\Pingo.Messages.WebApi.csproj", "{6FA117B8-FB28-4A8D-BF1D-87A8727C1D7C}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Pingo.Messages.WebApi", "Pingo.Messages.WebApi\Pingo.Messages.WebApi.csproj", "{6FA117B8-FB28-4A8D-BF1D-87A8727C1D7C}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Элементы решения", "Элементы решения", "{CC0B6126-5C9C-40E4-831B-763215FB1482}"
 	ProjectSection(SolutionItems) = preProject

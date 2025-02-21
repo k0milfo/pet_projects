@@ -3,8 +3,16 @@
   "WorkspaceRootPath": "C:\\Users\\User\\Source\\Repos\\Messenger\\",
   "Documents": [
     {
+      "AbsoluteMoniker": "D:0:0:{9CE1A82B-35CA-4AFC-8E53-2151CEE82022}|Pingo.Messages.ComponentTests\\Pingo.Messages.ComponentTests.csproj|c:\\users\\user\\source\\repos\\messenger\\pingo.messages.componenttests\\webappfactoryfixture.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{9CE1A82B-35CA-4AFC-8E53-2151CEE82022}|Pingo.Messages.ComponentTests\\Pingo.Messages.ComponentTests.csproj|solutionrelative:pingo.messages.componenttests\\webappfactoryfixture.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
       "AbsoluteMoniker": "D:0:0:{9CE1A82B-35CA-4AFC-8E53-2151CEE82022}|Pingo.Messages.ComponentTests\\Pingo.Messages.ComponentTests.csproj|c:\\users\\user\\source\\repos\\messenger\\pingo.messages.componenttests\\servicetests.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{9CE1A82B-35CA-4AFC-8E53-2151CEE82022}|Pingo.Messages.ComponentTests\\Pingo.Messages.ComponentTests.csproj|solutionrelative:pingo.messages.componenttests\\servicetests.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{9CE1A82B-35CA-4AFC-8E53-2151CEE82022}|Pingo.Messages.ComponentTests\\Pingo.Messages.ComponentTests.csproj|c:\\users\\user\\source\\repos\\messenger\\pingo.messages.componenttests\\pingo.messages.componenttests.csproj||{FA3CD31E-987B-443A-9B81-186104E8DAC1}|",
+      "RelativeMoniker": "D:0:0:{9CE1A82B-35CA-4AFC-8E53-2151CEE82022}|Pingo.Messages.ComponentTests\\Pingo.Messages.ComponentTests.csproj|solutionrelative:pingo.messages.componenttests\\pingo.messages.componenttests.csproj||{FA3CD31E-987B-443A-9B81-186104E8DAC1}|"
     }
   ],
   "DocumentGroupContainers": [
@@ -31,15 +39,39 @@
             {
               "$type": "Document",
               "DocumentIndex": 0,
+              "Title": "WebAppFactoryFixture.cs",
+              "DocumentMoniker": "C:\\Users\\User\\Source\\Repos\\Messenger\\Pingo.Messages.ComponentTests\\WebAppFactoryFixture.cs",
+              "RelativeDocumentMoniker": "Pingo.Messages.ComponentTests\\WebAppFactoryFixture.cs",
+              "ToolTip": "C:\\Users\\User\\Source\\Repos\\Messenger\\Pingo.Messages.ComponentTests\\WebAppFactoryFixture.cs",
+              "RelativeToolTip": "Pingo.Messages.ComponentTests\\WebAppFactoryFixture.cs",
+              "ViewState": "AgIAACEAAAAAAAAAAAAYwCsAAAAhAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-02-21T01:41:59.022Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "Pingo.Messages.ComponentTests.csproj",
+              "DocumentMoniker": "C:\\Users\\User\\Source\\Repos\\Messenger\\Pingo.Messages.ComponentTests\\Pingo.Messages.ComponentTests.csproj",
+              "RelativeDocumentMoniker": "Pingo.Messages.ComponentTests\\Pingo.Messages.ComponentTests.csproj",
+              "ToolTip": "C:\\Users\\User\\Source\\Repos\\Messenger\\Pingo.Messages.ComponentTests\\Pingo.Messages.ComponentTests.csproj",
+              "RelativeToolTip": "Pingo.Messages.ComponentTests\\Pingo.Messages.ComponentTests.csproj",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000758|",
+              "WhenOpened": "2025-02-21T01:41:52.149Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
               "Title": "ServiceTests.cs",
               "DocumentMoniker": "C:\\Users\\User\\Source\\Repos\\Messenger\\Pingo.Messages.ComponentTests\\ServiceTests.cs",
               "RelativeDocumentMoniker": "Pingo.Messages.ComponentTests\\ServiceTests.cs",
               "ToolTip": "C:\\Users\\User\\Source\\Repos\\Messenger\\Pingo.Messages.ComponentTests\\ServiceTests.cs",
               "RelativeToolTip": "Pingo.Messages.ComponentTests\\ServiceTests.cs",
-              "ViewState": "AgIAADsAAAAAAAAAAAAkwEUAAABDAAAAAAAAAA==",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAgAAABMAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-02-21T01:06:32.569Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-02-21T01:06:32.569Z"
             }
           ]
         }

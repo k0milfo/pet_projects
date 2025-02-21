@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("Pingo.Messages")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+39dfa5d88c7d04d8c1bb63e7fb42c35eae582186")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+9a2b2bc2076ffe9ae93c8537c16fb1e85f503010")]
 [assembly: System.Reflection.AssemblyProductAttribute("Pingo.Messages")]
 [assembly: System.Reflection.AssemblyTitleAttribute("Pingo.Messages")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]
