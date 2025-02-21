@@ -1,3 +1,0 @@
-﻿<Project>
-  <Import Project="..\buildMultiTargeting\Pingo.Messages.WebApi.props" />
-</Project>
