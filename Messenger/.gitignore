@@ -1,5 +1,9 @@
+/.vs/
 /FrontendMessage/bin
 /FrontendMessage/obj
 /Pingo.Messages.WebApi/bin
 /Pingo.Messages.WebApi/obj
-/.vs/
+/Pingo.Messages.ComponentTests/bin
+/Pingo.Messages.ComponentTests/obj
+/Pingo.Messages/bin
+/Pingo.Messages/obj
