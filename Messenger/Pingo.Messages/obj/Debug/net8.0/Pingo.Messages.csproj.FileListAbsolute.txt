@@ -1,0 +1,15 @@
+C:\Users\User\Source\Repos\Messenger\Pingo.Messages\obj\Debug\net8.0\Pingo.Messages.csproj.AssemblyReference.cache
+C:\Users\User\Source\Repos\Messenger\Pingo.Messages\obj\Debug\net8.0\Pingo.Messages.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\User\Source\Repos\Messenger\Pingo.Messages\obj\Debug\net8.0\Pingo.Messages.AssemblyInfoInputs.cache
+C:\Users\User\Source\Repos\Messenger\Pingo.Messages\obj\Debug\net8.0\Pingo.Messages.AssemblyInfo.cs
+C:\Users\User\Source\Repos\Messenger\Pingo.Messages\obj\Debug\net8.0\Pingo.Messages.csproj.CoreCompileInputs.cache
+C:\Users\User\Source\Repos\Messenger\Pingo.Messages\obj\Debug\net8.0\Pingo.Messages.sourcelink.json
+C:\Users\User\Source\Repos\Messenger\Pingo.Messages\bin\Debug\net8.0\Pingo.Messages.deps.json
+C:\Users\User\Source\Repos\Messenger\Pingo.Messages\bin\Debug\net8.0\Pingo.Messages.runtimeconfig.json
+C:\Users\User\Source\Repos\Messenger\Pingo.Messages\bin\Debug\net8.0\Pingo.Messages.dll
+C:\Users\User\Source\Repos\Messenger\Pingo.Messages\bin\Debug\net8.0\Pingo.Messages.pdb
+C:\Users\User\Source\Repos\Messenger\Pingo.Messages\obj\Debug\net8.0\Pingo.Messages.dll
+C:\Users\User\Source\Repos\Messenger\Pingo.Messages\obj\Debug\net8.0\refint\Pingo.Messages.dll
+C:\Users\User\Source\Repos\Messenger\Pingo.Messages\obj\Debug\net8.0\Pingo.Messages.pdb
+C:\Users\User\Source\Repos\Messenger\Pingo.Messages\obj\Debug\net8.0\Pingo.Messages.genruntimeconfig.cache
+C:\Users\User\Source\Repos\Messenger\Pingo.Messages\obj\Debug\net8.0\ref\Pingo.Messages.dll
