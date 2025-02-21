@@ -1,3 +1,4 @@
+using FluentAssertions;
 using Microsoft.Extensions.DependencyInjection;
 using Pingo.Messages.Entity;
 using Pingo.Messages.Service;
@@ -35,7 +36,7 @@ public sealed class ServiceTests : IClassFixture<WebAppFactoryFixture>, IAsyncLi
         var response = await _client.GetAsync("api/Messages");
         response.EnsureSuccessStatusCode();
         var content = await response.Content.ReadAsAsync<List<Message>>();
-        Assert.Empty(content);
+        content.Should().BeEmpty();
     }
 
     [Fact]
@@ -48,7 +49,7 @@ public sealed class ServiceTests : IClassFixture<WebAppFactoryFixture>, IAsyncLi
         var response = await _client.GetAsync("api/Messages");
         response.EnsureSuccessStatusCode();
         var content = await response.Content.ReadAsAsync<List<Message>>();
-        Assert.Single(content);
+        content.Should().ContainSingle();
     }
 
     [Fact]
@@ -64,7 +65,9 @@ public sealed class ServiceTests : IClassFixture<WebAppFactoryFixture>, IAsyncLi
         response.EnsureSuccessStatusCode();
         var content = await response.Content.ReadAsAsync<List<Message>>();
 
-        Assert.Collection(content, message => Assert.Equal(secondId, message.Id), message => Assert.Equal(firstId, message.Id));
+        content.Should().SatisfyRespectively(
+            firstMessage => firstMessage.Id.Should().Be(secondId),
+            secondMessage => secondMessage.Id.Should().Be(firstId));
     }
 
     [Fact]
@@ -81,8 +84,8 @@ public sealed class ServiceTests : IClassFixture<WebAppFactoryFixture>, IAsyncLi
         response.EnsureSuccessStatusCode();
         var content = await response.Content.ReadAsAsync<List<Message>>();
 
-        Assert.Equal(id, content[0].Id);
-        Assert.NotEqual(firstMessage.Text, content[0].Text);
-        Assert.NotEqual(firstMessage.UpdatedAt, content[0].UpdatedAt);
+        content[0].Id.Should().Be(id);
+        content[0].Text.Should().NotBe(firstMessage.Text);
+        content[0].UpdatedAt.Should().NotBe(firstMessage.UpdatedAt);
     }
 }
