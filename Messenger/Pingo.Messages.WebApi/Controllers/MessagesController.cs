@@ -1,44 +1,24 @@
+using Microsoft.AspNetCore.Mvc;
+using Pingo.Messages.WebApi.Service.Interface;
+using Index = FrontendMessage.Pages.Index;
+
 namespace Pingo.Messages.WebApi.Controllers;
 
-using Microsoft.AspNetCore.Mvc;
-using Pingo.Messages.Entity;
-using Pingo.Messages.Service.Interfaces;
-
 [ApiController]
-[Route("api/Messages")]
-public sealed class MessagesController(IMessageDataRepository<Message> messageData, ILogger<MessagesController> logger) : ControllerBase
+[Route("api/messages")]
+public sealed class MessagesController(IMessagesService<Index.MessageFrontend> service) : ControllerBase
 {
-    public IMessageDataRepository<Message> MessageData { get; } = messageData;
-
-    public ILogger<MessagesController> Logger { get; } = logger;
-
     [HttpGet]
-    public async Task<IList<Message>> GetMessages()
+    public async Task<IReadOnlyList<Index.MessageFrontend>> GetMessages()
     {
-        var messages = await MessageData.GetAllAsync();
-        return messages.OrderByDescending(i => i.UpdatedAt ?? i.SentAt).ToList();
+        return await service.GetMessagesAsync();
     }
 
     [HttpPut("{id}")]
-    public async Task<ActionResult<Message>> UpsertMessage(Guid id, Message sentMessage)
+    public async Task<ActionResult> UpsertMessage(Guid id, Index.MessageFrontend messageApi)
     {
-        var response = await MessageData.GetAsync(id);
+        await service.UpsertMessageAsync(id, messageApi);
 
-        if (response == null)
-        {
-            await MessageData.InsertAsync(sentMessage);
-        }
-        else
-        {
-            var updatedResponse = sentMessage with
-            {
-                Id = response.Id,
-                UpdatedAt = sentMessage.SentAt,
-                Text = sentMessage.Text,
-            };
-            await MessageData.UpdateAsync(response, updatedResponse);
-        }
-
-        return this.Ok(sentMessage);
+        return this.NoContent();
     }
 }

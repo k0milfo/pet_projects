@@ -1,21 +1,23 @@
+using AutoMapper;
+using Microsoft.EntityFrameworkCore;
+using Pingo.Messages.Entity;
+using Pingo.Messages.Service.Interfaces;
+using Index = FrontendMessage.Pages.Index;
+
 namespace Pingo.Messages.Service.Repositories;
 
-using Microsoft.EntityFrameworkCore;
-
-using Pingo.Messages.Entity;
-
-using Pingo.Messages.Service.Interfaces;
-
-public sealed class MessageDataRepository(ApplicationDbContext context) : IMessageDataRepository<Message>
+internal sealed class MessageDataRepository(ApplicationDbContext context, IMapper mapper) : IMessageDataRepository<Index.MessageFrontend>
 {
-    public async Task<Message?> GetAsync(Guid id)
+    public async Task<Index.MessageFrontend?> GetAsync(Guid id)
     {
-        return await context.Messages.FirstOrDefaultAsync(i => i.Id == id);
+        var entity = await context.Messages.AsNoTracking().FirstOrDefaultAsync(i => i.Id == id);
+        return mapper.Map<Index.MessageFrontend>(entity);
     }
 
-    public async Task<IList<Message>> GetAllAsync()
+    public async Task<IReadOnlyList<Index.MessageFrontend>> GetAllAsync()
     {
-        return await context.Messages.ToListAsync();
+        var entity = await context.Messages.OrderByDescending(i => i.UpdatedAt ?? i.SentAt).ToListAsync();
+        return mapper.Map<IReadOnlyList<Index.MessageFrontend>>(entity);
     }
 
     public async Task<bool> DeleteAsync(Guid id)
@@ -31,17 +33,18 @@ public sealed class MessageDataRepository(ApplicationDbContext context) : IMessa
         return true;
     }
 
-    public async Task<bool> InsertAsync(Message entity)
+    public async Task<bool> InsertAsync(Index.MessageFrontend entity)
     {
-        await context.Messages.AddAsync(entity);
+        var message = mapper.Map<Message>(entity);
+        await context.Messages.AddAsync(message);
         await context.SaveChangesAsync();
         return true;
     }
 
-    public async Task<bool> UpdateAsync(Message entity, Message updatedResponse)
+    public async Task UpdateAsync(Index.MessageFrontend entity)
     {
-        context.Entry(entity).CurrentValues.SetValues(updatedResponse);
+        var message = mapper.Map<Message>(entity);
+        context.Update(message);
         await context.SaveChangesAsync();
-        return true;
     }
 }

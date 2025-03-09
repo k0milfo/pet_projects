@@ -1,41 +1,24 @@
 using FluentAssertions;
-using Microsoft.Extensions.DependencyInjection;
-using Pingo.Messages.Entity;
-using Pingo.Messages.Service;
+using Index = FrontendMessage.Pages.Index;
 
 namespace Pingo.Messages.ComponentTests;
 
-[Collection("Database Collection")]
-public sealed class ServiceTests : IClassFixture<WebAppFactoryFixture>, IAsyncLifetime
+[Collection(DatabaseCollection.NonParallelTests)]
+public sealed class ServiceTests(WebAppFactoryFixture fixture) : IClassFixture<WebAppFactoryFixture>, IAsyncLifetime
 {
-    private readonly HttpClient _client;
-    private readonly ApplicationDbContext _dbContext;
+    private readonly HttpClient _client = fixture.CreateClient();
 
-    public ServiceTests(WebAppFactoryFixture fixture)
+    private async Task<IReadOnlyList<Index.MessageFrontend>> ListMessagesAsync()
     {
-        _client = fixture.CreateClient();
-        var scope = fixture.Factory.Services.CreateScope();
-        _dbContext = scope.ServiceProvider.GetRequiredService<ApplicationDbContext>();
-    }
-
-    public async Task InitializeAsync()
-    {
-        await _dbContext.Database.EnsureDeletedAsync();
-        await _dbContext.Database.EnsureCreatedAsync();
-    }
-
-    public Task DisposeAsync()
-    {
-        _dbContext.Dispose();
-        return Task.CompletedTask;
+        var response = await _client.GetAsync("api/messages");
+        response.EnsureSuccessStatusCode();
+        return await response.Content.ReadAsAsync<IReadOnlyList<Index.MessageFrontend>>();
     }
 
     [Fact]
     public async Task GetAllMessages_ShouldReturnEmptyList()
     {
-        var response = await _client.GetAsync("api/Messages");
-        response.EnsureSuccessStatusCode();
-        var content = await response.Content.ReadAsAsync<List<Message>>();
+        var content = await ListMessagesAsync();
         content.Should().BeEmpty();
     }
 
@@ -43,13 +26,11 @@ public sealed class ServiceTests : IClassFixture<WebAppFactoryFixture>, IAsyncLi
     public async Task AddOneMessage_ShouldReturnSingleMessage()
     {
         var id = Guid.NewGuid();
-        var message = new Message(id, "Hello, world!", DateTime.UtcNow, UpdatedAt: null);
+        var message = new Index.MessageFrontend(id, "Hello, world!", DateTime.UtcNow, UpdatedAt: null);
 
-        await _client.PutAsJsonAsync($"api/Messages/{id}", message);
-        var response = await _client.GetAsync("api/Messages");
-        response.EnsureSuccessStatusCode();
-        var content = await response.Content.ReadAsAsync<List<Message>>();
-        content.Should().ContainSingle();
+        await _client.PutAsJsonAsync($"api/messages/{id}", message);
+        var content = await ListMessagesAsync();
+        content.Should().ContainSingle().Which.Should().Match<Index.MessageFrontend>(i => i.Text == message.Text);
     }
 
     [Fact]
@@ -58,12 +39,10 @@ public sealed class ServiceTests : IClassFixture<WebAppFactoryFixture>, IAsyncLi
         var firstId = Guid.NewGuid();
         var secondId = Guid.NewGuid();
 
-        await _client.PutAsJsonAsync($"api/Messages/{firstId}", new Message(firstId, "First message", DateTime.UtcNow, UpdatedAt: null));
-        await _client.PutAsJsonAsync($"api/Messages/{secondId}", new Message(secondId, "Second message", DateTime.UtcNow, UpdatedAt: null));
+        await _client.PutAsJsonAsync($"api/messages/{firstId}", new Index.MessageFrontend(firstId, "First message", DateTime.UtcNow, UpdatedAt: null));
+        await _client.PutAsJsonAsync($"api/messages/{secondId}", new Index.MessageFrontend(secondId, "Second message", DateTime.UtcNow, UpdatedAt: null));
 
-        var response = await _client.GetAsync("api/Messages");
-        response.EnsureSuccessStatusCode();
-        var content = await response.Content.ReadAsAsync<List<Message>>();
+        var content = await ListMessagesAsync();
 
         content.Should().SatisfyRespectively(
             firstMessage => firstMessage.Id.Should().Be(secondId),
@@ -74,18 +53,22 @@ public sealed class ServiceTests : IClassFixture<WebAppFactoryFixture>, IAsyncLi
     public async Task UpdateMessage_ShouldReturnSingleUpdatedMessage()
     {
         var id = Guid.NewGuid();
-        var firstMessage = new Message(id, "Hello, world!", DateTime.UtcNow, UpdatedAt: null);
-        var secondMessage = new Message(id, ":)", DateTime.UtcNow, UpdatedAt: null);
+        var firstMessage = new Index.MessageFrontend(id, "Hello, world!", DateTime.UtcNow, UpdatedAt: null);
+        var secondMessage = new Index.MessageFrontend(id, ":)", DateTime.UtcNow, UpdatedAt: null);
 
-        await _client.PutAsJsonAsync($"api/Messages/{id}", firstMessage);
-        await _client.PutAsJsonAsync($"api/Messages/{id}", secondMessage);
+        await _client.PutAsJsonAsync($"api/messages/{id}", firstMessage);
+        await Task.Delay(2000);
+        await _client.PutAsJsonAsync($"api/messages/{id}", secondMessage);
 
-        var response = await _client.GetAsync("api/Messages");
-        response.EnsureSuccessStatusCode();
-        var content = await response.Content.ReadAsAsync<List<Message>>();
+        var content = await ListMessagesAsync();
 
         content[0].Id.Should().Be(id);
         content[0].Text.Should().NotBe(firstMessage.Text);
-        content[0].UpdatedAt.Should().NotBe(firstMessage.UpdatedAt);
+        content[0].Text.Should().Be(secondMessage.Text);
+        content[0].UpdatedAt.Should().NotBe(firstMessage.SentAt);
     }
+
+    async Task IAsyncLifetime.InitializeAsync() => await fixture.ResetAsync();
+
+    Task IAsyncLifetime.DisposeAsync() => Task.CompletedTask;
 }

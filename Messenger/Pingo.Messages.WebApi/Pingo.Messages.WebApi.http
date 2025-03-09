@@ -1,6 +1,6 @@
-@MessageService_HostAddress = http://localhost:5094
+@Pingo.Messages.WebApi_HostAddress = http://localhost:7231
 
-GET {{MessageService_HostAddress}}/weatherforecast/
+GET {{Pingo.Messages.WebApi_HostAddress}}/weatherforecast/
 Accept: application/json
 
 ###

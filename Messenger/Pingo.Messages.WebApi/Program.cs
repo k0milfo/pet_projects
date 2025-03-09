@@ -1,25 +1,20 @@
-using System.Globalization;
-using Microsoft.EntityFrameworkCore;
-using Pingo.Messages.Entity;
-using Pingo.Messages.Service;
-using Pingo.Messages.Service.Interfaces;
-using Pingo.Messages.Service.Repositories;
-using Pingo.Messages.WebApi.Controllers;
-using Serilog;
+using Pingo.Messages.Extensions;
+using Pingo.Messages.WebApi.Entity;
+using Pingo.Messages.WebApi.Service.Implementations;
+using Pingo.Messages.WebApi.Service.Interface;
+using Index = FrontendMessage.Pages.Index;
 
 var builder = WebApplication.CreateBuilder(args);
-builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
-builder.Services.AddDbContext<ApplicationDbContext>(options =>
-    options.UseInMemoryDatabase("MessagerDb"));
-builder.Services.AddScoped<MessagesController>();
-builder.Services.AddScoped<IMessageDataRepository<Message>, MessageDataRepository>();
+builder.Services.AddAutoMapper(typeof(MappingProfile));
+builder.Services.AddScoped<IMessagesService<Index.MessageFrontend>, MessagesService>();
+builder.Services.AddMessages(builder.Configuration);
 builder.Services.AddCors(options => options.AddPolicy("AllowAll", policy => policy.AllowAnyOrigin() // Разрешить запросы с любого источника
     .AllowAnyMethod() // Разрешить любые методы (GET, POST и т.д.)
     .AllowAnyHeader()));
-builder.Services.AddLogging(loggingBuilder =>
-    loggingBuilder.AddSerilog(dispose: true));
+builder.Services.AddAuthorization();
+builder.Services.AddControllers(); // для swagger
 var app = builder.Build();
 app.UseCors("AllowAll");
 app.UseRouting();
@@ -29,22 +24,20 @@ if (app.Environment.IsDevelopment())
     app.UseSwaggerUI();
 }
 
-app.UseHttpsRedirection();
-
-app.UseAuthorization();
-
 app.MapControllers();
-Log.Logger = new LoggerConfiguration()
-    .Enrich.FromLogContext()
-    .WriteTo.Console(formatProvider: CultureInfo.InvariantCulture)
-    .CreateLogger();
+app.UseHttpsRedirection();
+app.UseRouting();
+app.UseAuthorization();
 
 await app.RunAsync().ConfigureAwait(false);
 
-public sealed partial class Program
+namespace Pingo.Messages.WebApi
 {
-    public static Program CreateInstance()
+    public sealed partial class Program
     {
-        return new Program();
+        public static Program CreateInstance()
+        {
+            return new Program();
+        }
     }
 }

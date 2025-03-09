@@ -1,11 +1,11 @@
 @page "/"
-@using Pingo.Messages.Entity
+@using MudBlazor
 
 @inject HttpClient Http
 
 <PageTitle>Chat</PageTitle>
 
-<MudList T="Message">
+<MudList T="MessageFrontend">
     @if (Messages != null)
     {
         foreach (var message in Messages)
@@ -15,32 +15,31 @@
     }
 </MudList>
 
-<MudTextField @bind-Value="NewMessage" Label="Введите сообщение" />
+<MudTextField @bind-Value="Message" Label="Введите сообщение" />
 <MudButton OnClick="SendMessage" type="button">Send</MudButton>
 
 @code {
-	private List<Message>? Messages = new();
-	private string NewMessage = string.Empty;
+    private IReadOnlyList<MessageFrontend>? Messages;
+    private string Message = string.Empty;
 
-	protected override async Task OnInitializedAsync()
-	{
-		Messages = await Http.GetFromJsonAsync<List<Message>>("api/Messages");
-	}
+    protected override async Task OnInitializedAsync()
+    {
+        Messages = await Http.GetFromJsonAsync<IReadOnlyList<MessageFrontend>>("api/messages");
+    }
 
-	private async Task SendMessage()
-	{
-		if (!string.IsNullOrWhiteSpace(NewMessage))
+    private async Task SendMessage()
+    {
+        if (!string.IsNullOrWhiteSpace(Message))
         {
             var messageId = Guid.NewGuid();
-            await Http.PutAsJsonAsync($"api/Messages/{messageId}", new Message(Id: messageId, Text: NewMessage, SentAt: TimeProvider.System.GetUtcNow(), UpdatedAt: null));
-			NewMessage = string.Empty;
+            await Http.PutAsJsonAsync($"api/messages/{messageId}", new MessageFrontend(Id: messageId, Text: Message, SentAt: TimeProvider.System.GetUtcNow(), UpdatedAt: null));
+            Message = string.Empty;
 
-			Messages = await Http.GetFromJsonAsync<List<Message>>("api/Messages");
-		}
-	}
+            Messages = await Http.GetFromJsonAsync<IReadOnlyList<MessageFrontend>>("api/messages");
+        }
+    }
 
-    
-
+    public sealed record MessageFrontend(Guid Id, string Text, DateTimeOffset SentAt, DateTimeOffset? UpdatedAt);
 }
 
 <style>

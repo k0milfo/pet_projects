@@ -1,14 +1,16 @@
+using Index = FrontendMessage.Pages.Index;
+
 namespace Pingo.Messages.Service.Interfaces;
 
 public interface IMessageDataRepository<T>
 {
-    public Task<T?> GetAsync(Guid id);
+    Task<T?> GetAsync(Guid id);
 
-    public Task<IList<T>> GetAllAsync();
+    Task<IReadOnlyList<T>> GetAllAsync();
 
-    public Task<bool> DeleteAsync(Guid id);
+    Task<bool> DeleteAsync(Guid id);
 
-    public Task<bool> InsertAsync(T entity);
+    Task<bool> InsertAsync(Index.MessageFrontend entity);
 
-    public Task<bool> UpdateAsync(T entity, T entity1);
+    Task UpdateAsync(Index.MessageFrontend entity);
 }

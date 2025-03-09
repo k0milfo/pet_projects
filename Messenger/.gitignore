@@ -1,4 +1,4 @@
-/.vs/
+/.vs
 /FrontendMessage/bin
 /FrontendMessage/obj
 /Pingo.Messages.WebApi/bin
@@ -7,3 +7,9 @@
 /Pingo.Messages.ComponentTests/obj
 /Pingo.Messages/bin
 /Pingo.Messages/obj
+DataTransferObject/bin
+DataTransferObject/obj
+Pingo.Identity.Service/bin
+Pingo.Identity.Service/obj
+Pingo.Identity.WebApi/bin
+Pingo.Identity.WebApi/obj

@@ -20,9 +20,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\MessageService\Pingo.Messages.WebApi.csproj" />
     <ProjectReference Include="..\Pingo.Messages.WebApi\Pingo.Messages.WebApi.csproj" />
-    <ProjectReference Include="..\Pingo.Messages\Pingo.Messages.csproj" />
   </ItemGroup>
 
   <ItemGroup>
