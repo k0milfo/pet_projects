@@ -18,19 +18,6 @@
           }
         }
       },
-      "CSharpFunctionalExtensions/3.5.1": {
-        "type": "package",
-        "compile": {
-          "lib/net8.0/CSharpFunctionalExtensions.dll": {
-            "related": ".pdb;.xml"
-          }
-        },
-        "runtime": {
-          "lib/net8.0/CSharpFunctionalExtensions.dll": {
-            "related": ".pdb;.xml"
-          }
-        }
-      },
       "Humanizer.Core/2.14.1": {
         "type": "package",
         "compile": {
@@ -1041,26 +1028,6 @@
         "icon.png",
         "lib/net8.0/AutoMapper.dll",
         "lib/net8.0/AutoMapper.xml"
-      ]
-    },
-    "CSharpFunctionalExtensions/3.5.1": {
-      "sha512": "J9wNzOzRdc4pfO3WREYR19zjp585y7/y9TKQXKkbxxnXt7N6h2Q8AjP0+bayrgRVxpU9COaFMA8961xbptYsUg==",
-      "type": "package",
-      "path": "csharpfunctionalextensions/3.5.1",
-      "files": [
-        ".nupkg.metadata",
-        ".signature.p7s",
-        "csharpfunctionalextensions.3.5.1.nupkg.sha512",
-        "csharpfunctionalextensions.nuspec",
-        "lib/net6.0/CSharpFunctionalExtensions.dll",
-        "lib/net6.0/CSharpFunctionalExtensions.pdb",
-        "lib/net6.0/CSharpFunctionalExtensions.xml",
-        "lib/net8.0/CSharpFunctionalExtensions.dll",
-        "lib/net8.0/CSharpFunctionalExtensions.pdb",
-        "lib/net8.0/CSharpFunctionalExtensions.xml",
-        "lib/netstandard2.0/CSharpFunctionalExtensions.dll",
-        "lib/netstandard2.0/CSharpFunctionalExtensions.pdb",
-        "lib/netstandard2.0/CSharpFunctionalExtensions.xml"
       ]
     },
     "Humanizer.Core/2.14.1": {
@@ -3141,7 +3108,6 @@
   "projectFileDependencyGroups": {
     "net8.0": [
       "AutoMapper >= 14.0.0",
-      "CSharpFunctionalExtensions >= 3.5.1",
       "Meziantou.Analyzer >= 2.0.187",
       "Microsoft.EntityFrameworkCore >= 9.0.2",
       "Microsoft.EntityFrameworkCore.Design >= 9.0.2",
@@ -3208,10 +3174,6 @@
           "AutoMapper": {
             "target": "Package",
             "version": "[14.0.0, )"
-          },
-          "CSharpFunctionalExtensions": {
-            "target": "Package",
-            "version": "[3.5.1, )"
           },
           "Meziantou.Analyzer": {
             "suppressParent": "All",

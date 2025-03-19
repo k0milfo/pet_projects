@@ -19,8 +19,12 @@
     </ItemGroup>
 
     <ItemGroup
-        Condition="$(MSBuildProjectName.Contains('WebApi')) OR $(MSBuildProjectName.Contains('Identity')) OR $(MSBuildProjectName.Contains('Messages'))">
+        Condition="$(MSBuildProjectName.Contains('Messages'))">
         <PackageReference Include="AutoMapper" Version="14.0.0"/>
+    </ItemGroup>
+
+    <ItemGroup
+        Condition="$(MSBuildProjectName.Contains('Identity'))">
         <PackageReference Include="CSharpFunctionalExtensions" Version="3.5.1" />
     </ItemGroup>
 

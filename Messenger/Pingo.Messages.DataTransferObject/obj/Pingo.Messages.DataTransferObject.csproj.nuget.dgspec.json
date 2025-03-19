@@ -56,10 +56,6 @@
               "target": "Package",
               "version": "[14.0.0, )"
             },
-            "CSharpFunctionalExtensions": {
-              "target": "Package",
-              "version": "[3.5.1, )"
-            },
             "Meziantou.Analyzer": {
               "suppressParent": "All",
               "target": "Package",

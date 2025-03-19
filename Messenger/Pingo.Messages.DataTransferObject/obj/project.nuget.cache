@@ -1,11 +1,10 @@
 {
   "version": 2,
-  "dgSpecHash": "fgbbz56zYj8=",
+  "dgSpecHash": "nOUznD0yRwk=",
   "success": true,
   "projectFilePath": "C:\\Users\\Ni\\source\\repos\\pet_projects\\Messenger\\Pingo.Messages.DataTransferObject\\Pingo.Messages.DataTransferObject.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\Ni\\.nuget\\packages\\automapper\\14.0.0\\automapper.14.0.0.nupkg.sha512",
-    "C:\\Users\\Ni\\.nuget\\packages\\csharpfunctionalextensions\\3.5.1\\csharpfunctionalextensions.3.5.1.nupkg.sha512",
     "C:\\Users\\Ni\\.nuget\\packages\\humanizer.core\\2.14.1\\humanizer.core.2.14.1.nupkg.sha512",
     "C:\\Users\\Ni\\.nuget\\packages\\meziantou.analyzer\\2.0.187\\meziantou.analyzer.2.0.187.nupkg.sha512",
     "C:\\Users\\Ni\\.nuget\\packages\\microsoft.bcl.asyncinterfaces\\7.0.0\\microsoft.bcl.asyncinterfaces.7.0.0.nupkg.sha512",
