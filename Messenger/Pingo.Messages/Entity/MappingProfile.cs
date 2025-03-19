@@ -1,14 +1,14 @@
 using AutoMapper;
-using Pingo.Messages.Entity;
-using Index = FrontendMessage.Pages.Index;
+using Pingo.Messages.DataTransferObject;
 
-namespace Pingo.Messages.WebApi.Entity;
+namespace Pingo.Messages.Entity;
 
-public sealed class MappingProfile : Profile
+internal sealed class MappingProfile : Profile
 {
     public MappingProfile()
     {
-        CreateMap<Index.MessageFrontend, Message>();
-        CreateMap<Message, Index.MessageFrontend>();
+        CreateMap<MessagesEntityDto, Message>()
+            .ForMember(dest => dest.SentAt, opt => opt.MapFrom(src => src.SentAt ?? DateTimeOffset.UtcNow))
+            .ForMember(dest => dest.UpdatedAt, opt => opt.MapFrom(src => src.SentAt != null ? DateTimeOffset.UtcNow : (DateTimeOffset?)null)).ReverseMap();
     }
 }

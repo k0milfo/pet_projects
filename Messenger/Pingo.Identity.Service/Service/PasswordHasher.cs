@@ -7,7 +7,7 @@ public sealed class PasswordHasher : IPasswordHasher
         return BCrypt.Net.BCrypt.GenerateSalt();
     }
 
-    public string HashPassword(string password, string salt)
+    public string PasswordHash(string password, string salt)
     {
         return BCrypt.Net.BCrypt.HashPassword(password, salt);
     }

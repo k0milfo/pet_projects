@@ -1,5 +1,6 @@
 @page "/"
 @using MudBlazor
+@using Pingo.Messages.DataTransferObject
 
 @inject HttpClient Http
 
@@ -32,7 +33,7 @@
         if (!string.IsNullOrWhiteSpace(Message))
         {
             var messageId = Guid.NewGuid();
-            await Http.PutAsJsonAsync($"api/messages/{messageId}", new MessageFrontend(Id: messageId, Text: Message, SentAt: TimeProvider.System.GetUtcNow(), UpdatedAt: null));
+            await Http.PutAsJsonAsync($"api/messages/{messageId}", new MessagesEntityDto(Id: null, Text: Message, SentAt: null, UpdatedAt: null));
             Message = string.Empty;
 
             Messages = await Http.GetFromJsonAsync<IReadOnlyList<MessageFrontend>>("api/messages");

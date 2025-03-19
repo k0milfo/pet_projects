@@ -24,4 +24,4 @@ builderWebAssembly.Services.AddScoped(_ =>
 });
 builderWebAssembly.Services.AddMudServices();
 
-await builderWebAssembly.Build().RunAsync().ConfigureAwait(false);
+await builderWebAssembly.Build().RunAsync();

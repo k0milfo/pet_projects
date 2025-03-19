@@ -1,39 +1,53 @@
 <Project>
-  <PropertyGroup>
-    <!-- Общие настройки -->
-    <TargetFramework>net8.0</TargetFramework>
-    <TreatWarningsAsErrors>true</TreatWarningsAsErrors>
-    <EnforceCodeStyleInBuild>true</EnforceCodeStyleInBuild>
-	<NoWarn>$(NoWarn);SA0001;SA1019</NoWarn>
-  </PropertyGroup>
-
-  <ItemGroup>
-    <!-- Анализаторы -->
-    <PackageReference Include="SonarAnalyzer.CSharp" Version="10.6.0.109712" PrivateAssets="all" />
-    <PackageReference Include="Roslynator.Analyzers" Version="4.13.0" PrivateAssets="all" />
-    <PackageReference Include="Roslynator.Formatting.Analyzers" Version="4.13.0" PrivateAssets="all" />
-    <PackageReference Include="Meziantou.Analyzer" Version="2.0.187" PrivateAssets="all" />
-    <PackageReference Include="StyleCop.Analyzers" Version="1.2.0-beta.556" PrivateAssets="all" />
-  </ItemGroup>
+    <PropertyGroup>
+        <!-- Общие настройки -->
+        <TargetFramework>net8.0</TargetFramework>
+        <Nullable>enable</Nullable>
+        <ImplicitUsings>enable</ImplicitUsings>
+        <TreatWarningsAsErrors>true</TreatWarningsAsErrors>
+        <EnforceCodeStyleInBuild>true</EnforceCodeStyleInBuild>
+        <NoWarn>$(NoWarn);SA0001;SA1019</NoWarn>
+    </PropertyGroup>
 
     <ItemGroup>
-        <PackageReference Include="AutoMapper" Version="14.0.0" />
-        <PackageReference Include="Microsoft.EntityFrameworkCore" Version="9.0.2" />
-        <PackageReference Include="Npgsql.EntityFrameworkCore.PostgreSQL" Version="9.0.1" />
+        <!-- Анализаторы -->
+        <PackageReference Include="SonarAnalyzer.CSharp" Version="10.6.0.109712" PrivateAssets="all" />
+        <PackageReference Include="Roslynator.Analyzers" Version="4.13.0" PrivateAssets="all" />
+        <PackageReference Include="Roslynator.Formatting.Analyzers" Version="4.13.0" PrivateAssets="all" />
+        <PackageReference Include="Meziantou.Analyzer" Version="2.0.187" PrivateAssets="all" />
+        <PackageReference Include="StyleCop.Analyzers" Version="1.2.0-beta.556" PrivateAssets="all" />
+    </ItemGroup>
+
+    <ItemGroup
+        Condition="$(MSBuildProjectName.Contains('WebApi')) OR $(MSBuildProjectName.Contains('Identity')) OR $(MSBuildProjectName.Contains('Messages'))">
+        <PackageReference Include="AutoMapper" Version="14.0.0"/>
+        <PackageReference Include="CSharpFunctionalExtensions" Version="3.5.1" />
+    </ItemGroup>
+
+    <ItemGroup
+        Condition="$(MSBuildProjectName.Contains('WebApi'))">
+        <PackageReference Include="Swashbuckle.AspNetCore" Version="6.6.2" />
+    </ItemGroup>
+
+    <ItemGroup Condition="!$(MSBuildProjectName.Contains('WebApi'))">
+        <PackageReference Include="Microsoft.EntityFrameworkCore" Version="9.0.2"/>
+        <PackageReference Include="Npgsql.EntityFrameworkCore.PostgreSQL" Version="9.0.1"/>
         <PackageReference Include="Microsoft.EntityFrameworkCore.Design" Version="9.0.2">
             <PrivateAssets>all</PrivateAssets>
-            <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
         </PackageReference>
-        <PackageReference Include="Microsoft.EntityFrameworkCore.InMemory" Version="9.0.2" />
+        <PackageReference Include="Microsoft.EntityFrameworkCore.Relational" Version="9.0.2"/>
+    </ItemGroup>
+
+    <ItemGroup Condition="$(MSBuildProjectName.Contains('ComponentTests'))">
+        <PackageReference Include="Microsoft.EntityFrameworkCore.InMemory" Version="9.0.2"/>
         <PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="9.0.2">
             <PrivateAssets>all</PrivateAssets>
-            <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
         </PackageReference>
 
     </ItemGroup>
 
     <ItemGroup>
-        <InternalsVisibleTo Include="Pingo.Messages.ComponentTests" />
+        <InternalsVisibleTo Include="$(MSBuildProjectName).ComponentTests"/>
         <InternalsVisibleTo Include="Pingo.Identity.DataTransferObject"/>
     </ItemGroup>
 </Project>

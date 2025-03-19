@@ -1,33 +1,36 @@
+using CSharpFunctionalExtensions;
 using Microsoft.AspNetCore.Mvc;
-using Pingo.Identity.WebApi.Entity;
-using Pingo.Identity.WebApi.Service.Interface;
+using Pingo.Identity.Service.Entity;
+using Pingo.Identity.Service.Service.Interface;
 
 namespace Pingo.Identity.WebApi.Controllers;
 
 [ApiController]
 [Route("api/identity")]
-public sealed class IdentityController(IIdentityService<LoginRequest> identityService) : ControllerBase
+public sealed class IdentityController(IIdentityService identityService) : ControllerBase
 {
-    [HttpPost("insert")]
-    public async Task<IActionResult> InsertIdentity(LoginRequest request)
+    [ProducesResponseType(StatusCodes.Status204NoContent)]
+    [HttpPost("register")]
+    public async Task<IActionResult> InsertIdentity(RegisterRequest request)
     {
         await identityService.InsertAsync(request);
 
-        return this.NoContent();
+        return NoContent();
     }
 
+    [ProducesResponseType(StatusCodes.Status200OK, Type = typeof(TokenResponse))]
     [HttpPost("login")]
-    public async Task<IActionResult> Login([FromBody] LoginRequest request)
+    public async Task<TokenResponse> LoginAsync(LoginRequest request)
     {
         var result = await identityService.LoginAsync(request);
-        return result is { AccessToken: not "", RefreshToken: not "" } ? Ok(result) : Unauthorized();
+        return result.Value;
     }
 
     [ProducesResponseType(StatusCodes.Status200OK, Type = typeof(TokenResponse))]
     [HttpPost("refresh")]
-    public async Task<IActionResult> Refresh([FromBody] RefreshTokenRequest request)
+    public async Task<TokenResponse> RefreshAsync(RefreshTokenRequest request)
     {
         var result = await identityService.RefreshAsync(request);
-        return result is { AccessToken: not "", RefreshToken: not "" } ? Ok(result) : Unauthorized();
+        return result.Value;
     }
 }

@@ -28,7 +28,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Pingo.Identity.WebApi", "Pi
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Pingo.Identity.Service", "Pingo.Identity.Service\Pingo.Identity.Service.csproj", "{6AFADAAA-8C4D-4C24-9DD8-6E6072FA22DD}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DataTransferObject", "DataTransferObject\DataTransferObject.csproj", "{EBF768E1-5353-43DB-A419-DD72005217F6}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Pingo.Messages.DataTransferObject", "Pingo.Messages.DataTransferObject\Pingo.Messages.DataTransferObject.csproj", "{675681BE-539C-4D2C-BBEF-53FF2D7AFB13}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -60,10 +60,10 @@ Global
 		{6AFADAAA-8C4D-4C24-9DD8-6E6072FA22DD}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{6AFADAAA-8C4D-4C24-9DD8-6E6072FA22DD}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{6AFADAAA-8C4D-4C24-9DD8-6E6072FA22DD}.Release|Any CPU.Build.0 = Release|Any CPU
-		{EBF768E1-5353-43DB-A419-DD72005217F6}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{EBF768E1-5353-43DB-A419-DD72005217F6}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{EBF768E1-5353-43DB-A419-DD72005217F6}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{EBF768E1-5353-43DB-A419-DD72005217F6}.Release|Any CPU.Build.0 = Release|Any CPU
+		{675681BE-539C-4D2C-BBEF-53FF2D7AFB13}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{675681BE-539C-4D2C-BBEF-53FF2D7AFB13}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{675681BE-539C-4D2C-BBEF-53FF2D7AFB13}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{675681BE-539C-4D2C-BBEF-53FF2D7AFB13}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -76,7 +76,7 @@ Global
 		{FEA8ADAB-E019-4D6A-B5AD-92F591AA6565} = {9DAE9CFF-0DA6-4C62-B375-8B0D7DD38520}
 		{2C30EC2A-BF91-4EEB-9241-806B26D56AE7} = {36D591C7-65C7-A0D1-1CBC-10CDE441BDC8}
 		{6AFADAAA-8C4D-4C24-9DD8-6E6072FA22DD} = {36D591C7-65C7-A0D1-1CBC-10CDE441BDC8}
-		{EBF768E1-5353-43DB-A419-DD72005217F6} = {36D591C7-65C7-A0D1-1CBC-10CDE441BDC8}
+		{675681BE-539C-4D2C-BBEF-53FF2D7AFB13} = {9DAE9CFF-0DA6-4C62-B375-8B0D7DD38520}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {54CB32BC-1FEA-4A46-986D-503D4B5C1220}

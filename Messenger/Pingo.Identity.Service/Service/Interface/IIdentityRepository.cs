@@ -1,10 +1,10 @@
-using DataTransferObject;
+using Pingo.Identity.Service.Entity;
 
 namespace Pingo.Identity.Service.Service.Interface;
 
-public interface IIdentityRepository<in T>
+internal interface IIdentityRepository
 {
-    Task InsertAsync(T entity);
+    Task InsertAsync(User entity);
 
-    Task<EntityDto?> GetAsync(string email);
+    Task<User?> GetAsync(string email);
 }

@@ -1,24 +1,24 @@
 using Microsoft.AspNetCore.Mvc;
-using Pingo.Messages.WebApi.Service.Interface;
-using Index = FrontendMessage.Pages.Index;
+using Pingo.Messages.DataTransferObject;
+using Pingo.Messages.Service.Interfaces;
 
 namespace Pingo.Messages.WebApi.Controllers;
 
 [ApiController]
 [Route("api/messages")]
-public sealed class MessagesController(IMessagesService<Index.MessageFrontend> service) : ControllerBase
+public sealed class MessagesController(IMessagesService service) : ControllerBase
 {
     [HttpGet]
-    public async Task<IReadOnlyList<Index.MessageFrontend>> GetMessages()
+    public async Task<IReadOnlyList<MessagesEntityDto>> GetMessages()
     {
         return await service.GetMessagesAsync();
     }
 
     [HttpPut("{id}")]
-    public async Task<ActionResult> UpsertMessage(Guid id, Index.MessageFrontend messageApi)
+    public async Task<ActionResult> UpsertMessage(Guid id, MessagesEntityDto messageApi)
     {
         await service.UpsertMessageAsync(id, messageApi);
 
-        return this.NoContent();
+        return NoContent();
     }
 }

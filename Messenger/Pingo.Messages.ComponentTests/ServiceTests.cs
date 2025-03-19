@@ -8,13 +8,6 @@ public sealed class ServiceTests(WebAppFactoryFixture fixture) : IClassFixture<W
 {
     private readonly HttpClient _client = fixture.CreateClient();
 
-    private async Task<IReadOnlyList<Index.MessageFrontend>> ListMessagesAsync()
-    {
-        var response = await _client.GetAsync("api/messages");
-        response.EnsureSuccessStatusCode();
-        return await response.Content.ReadAsAsync<IReadOnlyList<Index.MessageFrontend>>();
-    }
-
     [Fact]
     public async Task GetAllMessages_ShouldReturnEmptyList()
     {
@@ -26,7 +19,7 @@ public sealed class ServiceTests(WebAppFactoryFixture fixture) : IClassFixture<W
     public async Task AddOneMessage_ShouldReturnSingleMessage()
     {
         var id = Guid.NewGuid();
-        var message = new Index.MessageFrontend(id, "Hello, world!", DateTime.UtcNow, UpdatedAt: null);
+        var message = new Index.MessageFrontend(id, "Hello, world!", TimeProvider.System.GetUtcNow(), UpdatedAt: null);
 
         await _client.PutAsJsonAsync($"api/messages/{id}", message);
         var content = await ListMessagesAsync();
@@ -39,8 +32,8 @@ public sealed class ServiceTests(WebAppFactoryFixture fixture) : IClassFixture<W
         var firstId = Guid.NewGuid();
         var secondId = Guid.NewGuid();
 
-        await _client.PutAsJsonAsync($"api/messages/{firstId}", new Index.MessageFrontend(firstId, "First message", DateTime.UtcNow, UpdatedAt: null));
-        await _client.PutAsJsonAsync($"api/messages/{secondId}", new Index.MessageFrontend(secondId, "Second message", DateTime.UtcNow, UpdatedAt: null));
+        await _client.PutAsJsonAsync($"api/messages/{firstId}", new Index.MessageFrontend(firstId, "First message", TimeProvider.System.GetUtcNow(), UpdatedAt: null));
+        await _client.PutAsJsonAsync($"api/messages/{secondId}", new Index.MessageFrontend(secondId, "Second message", TimeProvider.System.GetUtcNow(), UpdatedAt: null));
 
         var content = await ListMessagesAsync();
 
@@ -53,8 +46,8 @@ public sealed class ServiceTests(WebAppFactoryFixture fixture) : IClassFixture<W
     public async Task UpdateMessage_ShouldReturnSingleUpdatedMessage()
     {
         var id = Guid.NewGuid();
-        var firstMessage = new Index.MessageFrontend(id, "Hello, world!", DateTime.UtcNow, UpdatedAt: null);
-        var secondMessage = new Index.MessageFrontend(id, ":)", DateTime.UtcNow, UpdatedAt: null);
+        var firstMessage = new Index.MessageFrontend(id, "Hello, world!", TimeProvider.System.GetUtcNow(), UpdatedAt: null);
+        var secondMessage = new Index.MessageFrontend(id, ":)", TimeProvider.System.GetUtcNow(), UpdatedAt: null);
 
         await _client.PutAsJsonAsync($"api/messages/{id}", firstMessage);
         await Task.Delay(2000);
@@ -66,6 +59,13 @@ public sealed class ServiceTests(WebAppFactoryFixture fixture) : IClassFixture<W
         content[0].Text.Should().NotBe(firstMessage.Text);
         content[0].Text.Should().Be(secondMessage.Text);
         content[0].UpdatedAt.Should().NotBe(firstMessage.SentAt);
+    }
+
+    private async Task<IReadOnlyList<Index.MessageFrontend>> ListMessagesAsync()
+    {
+        var response = await _client.GetAsync("api/messages");
+        response.EnsureSuccessStatusCode();
+        return await response.Content.ReadAsAsync<IReadOnlyList<Index.MessageFrontend>>();
     }
 
     async Task IAsyncLifetime.InitializeAsync() => await fixture.ResetAsync();

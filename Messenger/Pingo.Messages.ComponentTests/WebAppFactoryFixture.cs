@@ -8,20 +8,20 @@ namespace Pingo.Messages.ComponentTests;
 
 public sealed class WebAppFactoryFixture
 {
-    public WebApplicationFactory<WebApi.Program> Factory;
+    private readonly WebApplicationFactory<WebApi.Program> _factory;
 
     public WebAppFactoryFixture()
     {
-        Factory = new WebApplicationFactory<WebApi.Program>()
+        _factory = new WebApplicationFactory<WebApi.Program>()
             .WithWebHostBuilder(builder =>
             {
                 builder.ConfigureServices(services =>
                 {
-                    var ContextDbDescriptor = services.Single(d =>
+                    var contextDbDescriptor = services.Single(d =>
                         d.ServiceType == typeof(IDbContextOptionsConfiguration<ApplicationDbContext>));
-                    if (ContextDbDescriptor != null)
+                    if (contextDbDescriptor != null)
                     {
-                        services.Remove(ContextDbDescriptor);
+                        services.Remove(contextDbDescriptor);
                     }
 
                     services.AddDbContext<ApplicationDbContext>(options =>
@@ -32,11 +32,11 @@ public sealed class WebAppFactoryFixture
             });
     }
 
-    public HttpClient CreateClient() => Factory.CreateClient();
+    public HttpClient CreateClient() => _factory.CreateClient();
 
     public async Task ResetAsync()
     {
-        await using var scope = Factory.Services.CreateAsyncScope();
+        await using var scope = _factory.Services.CreateAsyncScope();
         var dbContext = scope.ServiceProvider.GetService<ApplicationDbContext>();
 
         if (dbContext != null)
