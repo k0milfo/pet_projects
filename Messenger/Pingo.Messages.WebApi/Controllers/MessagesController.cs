@@ -1,23 +1,27 @@
+using AutoMapper;
 using Microsoft.AspNetCore.Mvc;
-using Pingo.Messages.DataTransferObject;
+using Pingo.Messages.Entity;
 using Pingo.Messages.Service.Interfaces;
+using Pingo.Messages.WebApi.Entity;
 
 namespace Pingo.Messages.WebApi.Controllers;
 
 [ApiController]
 [Route("api/messages")]
-public sealed class MessagesController(IMessagesService service) : ControllerBase
+public sealed class MessagesController(IMessagesService service, IMapper mapper) : ControllerBase
 {
     [HttpGet]
-    public async Task<IReadOnlyList<MessagesEntityDto>> GetMessages()
+    public async Task<IReadOnlyList<MessageResponseWebApi>> GetMessages()
     {
-        return await service.GetMessagesAsync();
+        var messagesResponse = await service.GetMessagesAsync();
+        return mapper.Map<IReadOnlyList<MessageResponseWebApi>>(messagesResponse);
     }
 
     [HttpPut("{id}")]
-    public async Task<ActionResult> UpsertMessage(Guid id, MessagesEntityDto messageApi)
+    public async Task<ActionResult> UpsertMessage(Guid id, MessageWebApi messageApi)
     {
-        await service.UpsertMessageAsync(id, messageApi);
+        var messageService = mapper.Map<MessageService>(messageApi);
+        await service.UpsertMessageAsync(id, messageService);
 
         return NoContent();
     }

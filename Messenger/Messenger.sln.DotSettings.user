@@ -6,6 +6,6 @@
 &lt;/SessionState&gt;</s:String>
 	<s:String x:Key="/Default/Environment/UnitTesting/UnitTestSessionStore/Sessions/=7a409caa_002D8b86_002D4a34_002Da7e8_002Df99f790b20f6/@EntryIndexedValue">&lt;SessionState ContinuousTestingMode="0" IsActive="True" Name="BackendApiTests #2" xmlns="urn:schemas-jetbrains-com:jetbrains-ut-session"&gt;&#xD;
   &lt;TestAncestor&gt;&#xD;
-    &lt;TestId&gt;xUnit::9CE1A82B-35CA-4AFC-8E53-2151CEE82022::net8.0::Pingo.Messages.ComponentTests.BackendApiTests&lt;/TestId&gt;&#xD;
+    &lt;TestId&gt;xUnit::9CE1A82B-35CA-4AFC-8E53-2151CEE82022::net8.0::Pingo.Messages.ComponentTests.ServiceTests.UpdateMessage_ShouldReturnSingleUpdatedMessage&lt;/TestId&gt;&#xD;
   &lt;/TestAncestor&gt;&#xD;
 &lt;/SessionState&gt;</s:String></wpf:ResourceDictionary>

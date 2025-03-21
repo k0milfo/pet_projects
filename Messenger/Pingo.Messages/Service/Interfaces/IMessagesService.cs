@@ -1,10 +1,10 @@
-using Pingo.Messages.DataTransferObject;
+using Pingo.Messages.Entity;
 
 namespace Pingo.Messages.Service.Interfaces;
 
 public interface IMessagesService
 {
-    Task<IReadOnlyList<MessagesEntityDto>> GetMessagesAsync();
+    Task<IReadOnlyList<MessageService>> GetMessagesAsync();
 
-    Task UpsertMessageAsync(Guid id, MessagesEntityDto entity);
+    Task UpsertMessageAsync(Guid id, MessageService entity);
 }

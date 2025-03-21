@@ -1,9 +1,11 @@
 using Pingo.Messages.Extensions;
+using Pingo.Messages.WebApi.Entity;
 
 var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 builder.Services.AddMessages(builder.Configuration.GetConnectionString("DefaultConnection"));
+builder.Services.AddAutoMapper(typeof(MappingProfileWebApi));
 builder.Services.AddCors(options => options.AddPolicy("AllowAll", policy => policy.AllowAnyOrigin() // Разрешить запросы с любого источника
     .AllowAnyMethod() // Разрешить любые методы (GET, POST и т.д.)
     .AllowAnyHeader()));

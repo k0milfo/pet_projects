@@ -4,8 +4,4 @@
     <None Remove="Extensions\appsettings.json" />
   </ItemGroup>
 
-  <ItemGroup>
-    <ProjectReference Include="..\FrontendMessage\FrontendMessage.csproj" />
-  </ItemGroup>
-
 </Project>

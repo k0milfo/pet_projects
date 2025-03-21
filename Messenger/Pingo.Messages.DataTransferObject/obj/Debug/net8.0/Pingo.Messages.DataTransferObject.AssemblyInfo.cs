@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("Pingo.Messages.DataTransferObject")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+590f33d75f7e0c22c87f01e331ef1ccf20dd61f7")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+c1ca32dc254d6b996bd9ca26444e3bf5163fc752")]
 [assembly: System.Reflection.AssemblyProductAttribute("Pingo.Messages.DataTransferObject")]
 [assembly: System.Reflection.AssemblyTitleAttribute("Pingo.Messages.DataTransferObject")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

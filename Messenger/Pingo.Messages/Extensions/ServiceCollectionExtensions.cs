@@ -15,6 +15,6 @@ public static class ServiceCollectionExtensions
             options.UseNpgsql(connectionString));
         services.AddScoped<IMessageDataRepository, MessageDataRepository>();
         services.AddScoped<IMessagesService, MessagesService>();
-        services.AddAutoMapper(typeof(MappingProfile));
+        services.AddAutoMapper(typeof(MappingProfileService));
     }
 }
