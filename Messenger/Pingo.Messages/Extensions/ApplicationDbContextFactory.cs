@@ -1,6 +1,5 @@
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Design;
-using Pingo.Messages.Service;
 
 namespace Pingo.Messages.Extensions;
 

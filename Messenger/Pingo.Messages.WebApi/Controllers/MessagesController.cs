@@ -1,7 +1,7 @@
 using AutoMapper;
 using Microsoft.AspNetCore.Mvc;
 using Pingo.Messages.Entity;
-using Pingo.Messages.Service.Interfaces;
+using Pingo.Messages.Interfaces;
 using Pingo.Messages.WebApi.Entity;
 
 namespace Pingo.Messages.WebApi.Controllers;
@@ -14,7 +14,7 @@ public sealed class MessagesController(IMessagesService service, IMapper mapper)
     public async Task<IReadOnlyList<MessageResponseWebApi>> GetMessages()
     {
         var messagesResponse = await service.GetMessagesAsync();
-        return mapper.Map<IReadOnlyList<MessageResponseWebApi>>(messagesResponse);
+        return mapper.Map<IReadOnlyList<MessageResponseWebApi>>(messagesResponse.Value);
     }
 
     [HttpPut("{id}")]

@@ -1,9 +1,8 @@
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
 using Pingo.Messages.Entity;
-using Pingo.Messages.Service;
-using Pingo.Messages.Service.Interfaces;
-using Pingo.Messages.Service.Repositories;
+using Pingo.Messages.Interfaces;
+using Pingo.Messages.Repositories;
 
 namespace Pingo.Messages.Extensions;
 
