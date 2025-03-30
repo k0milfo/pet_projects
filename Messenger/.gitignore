@@ -13,3 +13,5 @@ Pingo.Identity.Service/bin
 Pingo.Identity.Service/obj
 Pingo.Identity.WebApi/bin
 Pingo.Identity.WebApi/obj
+/Pingo.Identity.ComponentTests/bin
+/Pingo.Identity.ComponentTests/obj

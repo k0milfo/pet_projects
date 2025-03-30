@@ -16,6 +16,9 @@ public sealed class WebAppFactoryFixture
         .WithCleanUp(true)
         .Build();
 
+    private static readonly string ConnectionString =
+        "Host=localhost;Port=5432;Database=postgres;Username=postgres;Password=postgres";
+
     public WebAppFactoryFixture()
     {
         _ = StartContainerAsync();
@@ -27,8 +30,7 @@ public sealed class WebAppFactoryFixture
                 {
                     services.AddIdentity();
                     services.Configure<DataBaseSettings>(opts =>
-                        opts.DefaultConnection = PostgresContainer.ConnectionString);
-                    services.AddHostedService<TestDatabaseMigrator>();
+                        opts.DefaultConnection = ConnectionString);
                 });
             });
     }
@@ -41,7 +43,7 @@ public sealed class WebAppFactoryFixture
 
     public static async Task ResetAsync()
     {
-        await using var connection = new NpgsqlConnection(PostgresContainer.ConnectionString);
+        await using var connection = new NpgsqlConnection(ConnectionString);
         await connection.OpenAsync();
         await new NpgsqlCommand("""TRUNCATE "User", "UserCredentials", "RefreshTokens" CASCADE""", connection)
             .ExecuteNonQueryAsync();
