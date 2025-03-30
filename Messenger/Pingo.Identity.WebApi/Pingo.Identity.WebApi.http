@@ -1,6 +1,0 @@
-@Pingo.Identity.WebApi_HostAddress = http://localhost:5133
-
-GET {{Pingo.Identity.WebApi_HostAddress}}/weatherforecast/
-Accept: application/json
-
-###

@@ -1,9 +1,0 @@
-{
-    "profiles": {
-        "Pingo.Messages.WebApi": {
-            "environmentVariables": {
-                "DB_CONNECTION_STRING": "Host=localhost;Port=5432;Database=postgres;Username=postgres;Password=postgres;Timeout=10;SslMode=Prefer"
-            }
-        }
-    }
-}

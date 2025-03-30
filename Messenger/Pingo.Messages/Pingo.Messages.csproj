@@ -1,7 +1,0 @@
-﻿<Project Sdk="Microsoft.NET.Sdk">
-
-  <ItemGroup>
-    <None Remove="Extensions\appsettings.json" />
-  </ItemGroup>
-
-</Project>
