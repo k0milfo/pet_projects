@@ -10,7 +10,9 @@ internal interface IIdentityRepository
 
     Task<Result<User?>> GetUserAsync(string email);
 
-    Task InsertRefreshTokenAsync(RefreshTokenRequest request);
+    Task InsertRefreshTokenAsync(TokenData data);
 
-    Task DeleteRefreshTokenAsync(RefreshTokenRequest request);
+    Task DeleteRefreshTokenAsync(TokenData data);
+
+    Task<TokenData?> GetRefreshTokenAsync(Guid? token);
 }

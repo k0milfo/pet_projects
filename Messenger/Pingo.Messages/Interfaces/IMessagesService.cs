@@ -5,7 +5,7 @@ namespace Pingo.Messages.Interfaces;
 
 public interface IMessagesService
 {
-    Task<Result<IReadOnlyList<MessageService>>> GetMessagesAsync();
+    Task<Result<IReadOnlyList<Message>>> GetMessagesAsync();
 
-    Task UpsertMessageAsync(Guid id, MessageService entity);
+    Task UpsertMessageAsync(Guid id, string message);
 }

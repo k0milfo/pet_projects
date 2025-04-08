@@ -5,33 +5,28 @@ using Pingo.Messages.Interfaces;
 
 namespace Pingo.Messages.Repositories;
 
-internal sealed class MessagesService(IMessageDataRepository repository, IMapper mapper) : IMessagesService
+internal sealed class MessagesService(IMessageDataRepository repository, IMapper mapper, TimeProvider timeProvider) : IMessagesService
 {
-    public async Task<Result<IReadOnlyList<MessageService>>> GetMessagesAsync()
+    public async Task<Result<IReadOnlyList<Message>>> GetMessagesAsync()
     {
         var messages = await repository.GetAllAsync();
 
-        return Result.Success(mapper.Map<IReadOnlyList<MessageService>>(messages.Value));
+        return Result.Success(mapper.Map<IReadOnlyList<Message>>(messages.Value));
     }
 
-    public async Task UpsertMessageAsync(Guid id, MessageService entity)
+    public async Task UpsertMessageAsync(Guid id, string message)
     {
         var oldMessage = await repository.GetAsync(id);
 
         if (oldMessage.Value == null)
         {
-            entity = entity with
-            {
-                Id = id,
-            };
-            await repository.InsertAsync(entity);
+            await repository.InsertAsync(new Message(id, message, timeProvider.GetUtcNow(), UpdatedAt: null));
         }
         else
         {
-            oldMessage = mapper.Map(entity, oldMessage);
             oldMessage = oldMessage.Value! with
             {
-                Id = id,
+                UpdatedAt = timeProvider.GetUtcNow(),
             };
             await repository.UpdateAsync(oldMessage.Value!);
         }

@@ -1,51 +1,78 @@
+using Dapper;
 using Microsoft.AspNetCore.Mvc.Testing;
 using Microsoft.Extensions.DependencyInjection;
 using Npgsql;
+using Pingo.Identity.Service;
 using Pingo.Identity.Service.Entity.Options;
-using Pingo.Identity.Service.Extensions;
+using Respawn;
 using Testcontainers.PostgreSql;
 
 namespace Pingo.Identity.ComponentTests;
 
-public sealed class WebAppFactoryFixture
+public sealed class WebAppFactoryFixture : IAsyncLifetime
 {
-    private readonly WebApplicationFactory<WebApi.Program> _factory;
+    private Respawner _respawner = null!;
+    private PostgreSqlContainer _container = null!;
 
-    private readonly PostgreSqlContainer _container = new PostgreSqlBuilder()
-        .WithImage("postgres:latest")
-        .WithCleanUp(true)
-        .Build();
-
-    private static readonly string ConnectionString =
-        "Host=localhost;Port=5432;Database=postgres;Username=postgres;Password=postgres";
-
-    public WebAppFactoryFixture()
+    public async Task InitializeAsync()
     {
-        _ = StartContainerAsync();
+        _container = new PostgreSqlBuilder()
+             .WithImage("postgres:latest")
+             .WithCleanUp(true)
+             .Build();
 
-        _factory = new WebApplicationFactory<WebApi.Program>()
+        await _container.StartAsync();
+
+        var factory = new WebApplicationFactory<WebApi.Program>()
             .WithWebHostBuilder(builder =>
             {
                 builder.ConfigureServices(services =>
                 {
-                    services.AddIdentity();
                     services.Configure<DataBaseSettings>(opts =>
-                        opts.DefaultConnection = ConnectionString);
+                        opts.DefaultConnection = _container.GetConnectionString());
+                    services.AddSingleton<IDatabaseConnectionFactory, DatabaseConnectionFactory>();
+                    services.AddTransient<IDatabaseSeeder, DatabaseSeeder>();
                 });
             });
+
+        using var scope = factory.Services.CreateScope();
+        var seeder = scope.ServiceProvider.GetRequiredService<IDatabaseSeeder>();
+        await seeder.SeedAsync();
+
+        await using var conn = new NpgsqlConnection(_container.GetConnectionString());
+        await conn.OpenAsync();
+
+        _respawner = await Respawner.CreateAsync(conn, new RespawnerOptions
+        {
+            DbAdapter = DbAdapter.Postgres,
+            SchemasToInclude = new[] { "public" },
+        });
     }
 
-    internal WebApplicationFactory<WebApi.Program> Factory => _factory;
-
-    private async Task StartContainerAsync() => await _container.StartAsync();
-
-    public HttpClient CreateClient() => _factory.CreateClient();
-
-    public static async Task ResetAsync()
+    public HttpClient CreateClient()
     {
-        await using var connection = new NpgsqlConnection(ConnectionString);
-        await connection.OpenAsync();
-        await new NpgsqlCommand("""TRUNCATE "User", "UserCredentials", "RefreshTokens" CASCADE""", connection)
-            .ExecuteNonQueryAsync();
+        var factory = new WebApplicationFactory<WebApi.Program>()
+            .WithWebHostBuilder(builder =>
+            {
+                builder.ConfigureServices(services =>
+                {
+                    services.Configure<DataBaseSettings>(opts =>
+                        opts.DefaultConnection = _container.GetConnectionString());
+                    services.AddSingleton<IDatabaseConnectionFactory, DatabaseConnectionFactory>();
+                    services.AddTransient<IDatabaseSeeder, DatabaseSeeder>();
+                });
+            });
+
+        return factory.CreateClient();
     }
+
+    public async Task ResetAsync()
+    {
+        await using var conn = new NpgsqlConnection(_container.GetConnectionString());
+        await conn.OpenAsync();
+        await conn.ExecuteAsync("DROP TYPE IF EXISTS your_type_name CASCADE;");
+        await _respawner.ResetAsync(conn);
+    }
+
+    public Task DisposeAsync() => Task.CompletedTask;
 }

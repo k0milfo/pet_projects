@@ -9,31 +9,31 @@ namespace Pingo.Identity.Service.Implementations;
 
 internal sealed class IdentityService(IIdentityRepository repository, IPasswordHasher hasher, ITokenService token, TimeProvider timeProvider) : IIdentityService
 {
-    public async Task<Result> InsertAsync(RegisterRequest request)
+    public async Task<UnitResult<LoginErrorType>> InsertAsync(RegisterRequest request)
     {
         var user = await repository.GetUserAsync(request.Email!);
         if (request is { Password: not null, Email: not null } && user.Value is null)
         {
             var salt = hasher.GenerateSalt();
             var passwordHash = hasher.PasswordHash(request.Password, salt);
-            var entity = new User(Guid.NewGuid(), timeProvider.GetUtcNow(), request.Email, passwordHash, salt, Token: null);
+            var entity = new User(Guid.NewGuid(), timeProvider.GetUtcNow(), request.Email, passwordHash, salt);
             await repository.InsertUserAsync(entity);
-            return Result.Success();
+            return Result.Success<LoginErrorType>();
         }
 
         return user.Value == null
-            ? Result.Failure("Данные введены некорректно")
-            : Result.Failure("Пользователь с таким email уже существует.");
+            ? LoginErrorType.InvalidInputData
+            : LoginErrorType.EmailAlreadyExists;
     }
 
-    public async Task<Result<TokenResponse>> LoginAsync(LoginRequest request)
+    public async Task<Result<TokenResponse, LoginErrorType>> LoginAsync(AuthRequest request)
     {
         var user = await repository.GetUserAsync(request.Email!);
         if (user.Value is not null && request.Password is not null)
         {
             if (!hasher.VerifyPassword(request.Password, user.Value.PasswordHash))
             {
-                return Result.Failure<TokenResponse>("Неверный пароль.");
+                return LoginErrorType.InvalidPassword;
             }
 
             var claims = new List<Claim>
@@ -42,35 +42,35 @@ internal sealed class IdentityService(IIdentityRepository repository, IPasswordH
                 new(ClaimTypes.Role, "User"),
             };
 
-            await token.DeleteRefreshTokenAsync(new RefreshTokenRequest(user.Value!.Email, user.Value.Token));
-            var accessToken = token.GenerateAccessToken(claims);
-            var refreshToken = token.GenerateRefreshToken(claims);
-            await token.InsertRefreshTokenAsync(new RefreshTokenRequest(user.Value!.Email, refreshToken.Value));
-            return Result.Success(new TokenResponse(accessToken.Value, refreshToken.Value));
+            return await ReplaceTokenAsync(request, claims);
         }
 
-        return Result.Failure<TokenResponse>("Пользователь с таким email не найден.");
+        return LoginErrorType.EmailNotFound;
     }
 
-    public async Task<Result<TokenResponse>> RefreshAsync(RefreshTokenRequest request)
+    public async Task<Result<TokenResponse, LoginErrorType>> RefreshTokenAsync(AuthRequest request)
     {
-        var user = await repository.GetUserAsync(request.Email!);
-
-        if (user.Value is not null && user.Value.Token == request.Token && token.IsTokenValid(request.Token!).Value)
+        var refreshToken = repository.GetRefreshTokenAsync(request.Token);
+        if (token.IsTokenValid(refreshToken.Result!))
         {
             var claims = new List<Claim>
             {
-                new(ClaimTypes.Email, user.Value?.Email!),
+                new(ClaimTypes.Email, request.Email!),
                 new(ClaimTypes.Role, "User"),
             };
 
-            await token.DeleteRefreshTokenAsync(request);
-            var accessToken = token.GenerateAccessToken(claims);
-            var refreshToken = token.GenerateRefreshToken(claims);
-            await token.InsertRefreshTokenAsync(request);
-            return Result.Success(new TokenResponse(accessToken.Value, refreshToken.Value));
+            return await ReplaceTokenAsync(request, claims);
         }
 
-        return Result.Failure<TokenResponse>("Refresh-токен недействителен или истёк.");
+        return LoginErrorType.InvalidRefreshToken;
+    }
+
+    private async Task<TokenResponse> ReplaceTokenAsync(AuthRequest request, List<Claim> claims)
+    {
+        await repository.DeleteRefreshTokenAsync(new TokenData(request.Token, ExpirationTime: null));
+        var accessToken = token.GenerateAccessToken(claims);
+        var newRefresh = Guid.NewGuid();
+        await repository.InsertRefreshTokenAsync(new TokenData(newRefresh, timeProvider.GetUtcNow()));
+        return new TokenResponse(accessToken.Value, newRefresh);
     }
 }

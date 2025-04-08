@@ -6,6 +6,6 @@ internal sealed class MappingProfileService : Profile
 {
     public MappingProfileService()
     {
-        CreateMap<MessageService, MessageRepository>().ReverseMap();
+        CreateMap<Message, MessageEntity>().ReverseMap();
     }
 }

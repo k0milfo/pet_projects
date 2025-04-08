@@ -26,43 +26,47 @@ internal sealed class IdentityRepository(IDatabaseConnectionFactory dbConnection
             entity.PasswordHash,
             entity.Salt,
         });
-
-        await connection.ExecuteAsync(SqlQueries.InsertRefreshToken, new
-        {
-            Email = entity.Email,
-            entity.Token,
-        });
     }
 
     public async Task<Result<User?>> GetUserAsync(string email)
     {
         await using var connection = dbConnectionFactory.GetDbConnection();
 
-        return Result.Success(await connection.QueryFirstOrDefaultAsync<User>(SqlQueries.GetUser, new
+        return await connection.QueryFirstOrDefaultAsync<User>(SqlQueries.GetUser, new
         {
             Email = email,
-        }));
+        });
     }
 
-    public async Task InsertRefreshTokenAsync(RefreshTokenRequest request)
+    public async Task<TokenData?> GetRefreshTokenAsync(Guid? token)
+    {
+        await using var connection = dbConnectionFactory.GetDbConnection();
+
+        return await connection.QueryFirstOrDefaultAsync<TokenData>(SqlQueries.GetToken, new
+        {
+            Token = token,
+        });
+    }
+
+    public async Task InsertRefreshTokenAsync(TokenData data)
     {
         await using var connection = dbConnectionFactory.GetDbConnection();
 
         await connection.ExecuteAsync(SqlQueries.InsertRefreshToken, new
         {
-            request.Email,
-            request.Token,
+            data.Token,
+            data.ExpirationTime,
         });
     }
 
-    public async Task DeleteRefreshTokenAsync(RefreshTokenRequest request)
+    public async Task DeleteRefreshTokenAsync(TokenData data)
     {
         await using var connection = dbConnectionFactory.GetDbConnection();
 
         await connection.ExecuteAsync(SqlQueries.DeleteInvalidateRefreshToken, new
         {
-            request.Email,
-            request.Token,
+            data.Token,
+            data.ExpirationTime,
         });
     }
 }

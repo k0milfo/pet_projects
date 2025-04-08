@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("Pingo.Identity.ComponentTests")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+578685dde27ec19a770f3d166bfb49e3d8d74b3f")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+a611aa03b341cdecf8757f1f115d34c2719d703c")]
 [assembly: System.Reflection.AssemblyProductAttribute("Pingo.Identity.ComponentTests")]
 [assembly: System.Reflection.AssemblyTitleAttribute("Pingo.Identity.ComponentTests")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

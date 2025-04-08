@@ -6,9 +6,9 @@ namespace Pingo.Identity.Service.Interface;
 
 public interface IIdentityService
 {
-    Task<Result> InsertAsync(RegisterRequest request);
+    Task<UnitResult<LoginErrorType>> InsertAsync(RegisterRequest request);
 
-    Task<Result<TokenResponse>> LoginAsync(LoginRequest request);
+    Task<Result<TokenResponse, LoginErrorType>> LoginAsync(AuthRequest request);
 
-    Task<Result<TokenResponse>> RefreshAsync(RefreshTokenRequest request);
+    Task<Result<TokenResponse, LoginErrorType>> RefreshTokenAsync(AuthRequest request);
 }

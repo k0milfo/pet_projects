@@ -2,9 +2,9 @@ using System.Net;
 using System.Net.Http.Json;
 using FluentAssertions;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.Extensions.DependencyInjection;
+using Pingo.Identity.Service;
 using Pingo.Identity.Service.Entity.Requests;
-using Pingo.Identity.Service.Interface;
+using Pingo.Identity.Service.Entity.Responses;
 
 namespace Pingo.Identity.ComponentTests;
 
@@ -12,103 +12,155 @@ namespace Pingo.Identity.ComponentTests;
 public sealed class ServiceTests : IClassFixture<WebAppFactoryFixture>, IAsyncLifetime
 {
     private readonly HttpClient _client;
-    private readonly IServiceScope _scope;
-    private readonly IIdentityRepository _repository;
+    private readonly WebAppFactoryFixture _fixture;
 
     public ServiceTests(WebAppFactoryFixture fixture)
     {
         _client = fixture.CreateClient();
-        _scope = fixture.Factory.Services.CreateScope();
-        _repository = _scope.ServiceProvider.GetRequiredService<IIdentityRepository>();
+        _fixture = fixture;
     }
 
     [Fact]
     public async Task UserRegistrationSuccessful()
     {
+        // Arrange
         var request = new RegisterRequest("string", "string");
+
+        // Act
         var response = await _client.PostAsJsonAsync("api/identity/register", request);
+
+        // Assert
         response.StatusCode.Should().Be(HttpStatusCode.NoContent);
     }
 
     [Fact]
     public async Task ErrorRegistering_ExistingEmail()
     {
+        // Arrange
         var request = new RegisterRequest("string", "string");
+
+        // Act
         await _client.PostAsJsonAsync("api/identity/register", request);
         var response = await _client.PostAsJsonAsync("api/identity/register", request);
-        response.StatusCode.Should().Be(HttpStatusCode.BadRequest);
+
+        // Assert
+        response.StatusCode.Should().Be(HttpStatusCode.Unauthorized);
         var problemDetails = await response.Content.ReadFromJsonAsync<ProblemDetails>();
-        problemDetails!.Detail.Should().Be("Пользователь с таким email уже существует.");
+        problemDetails!.Detail.Should().Be(LoginErrorType.EmailAlreadyExists.ToString());
     }
 
     [Fact]
     public async Task SuccessfulLogin()
     {
-        var request = new LoginRequest("string", "string");
+        // Arrange
+        var request = new RegisterRequest("string", "string");
+
+        // Act
         await _client.PostAsJsonAsync("api/identity/register", request);
         var response = await _client.PostAsJsonAsync("api/identity/login", request);
+
+        // Assert
         response.StatusCode.Should().Be(HttpStatusCode.OK);
     }
 
     [Fact]
     public async Task LoginError()
     {
-        var request = new LoginRequest("string", "string");
-        var response = await _client.PostAsJsonAsync("api/identity/login", request);
-        response.StatusCode.Should().Be(HttpStatusCode.NotFound);
-        var problemDetails = await response.Content.ReadFromJsonAsync<ProblemDetails>();
-        problemDetails!.Detail.Should().Be("Пользователь с таким email не найден.");
+        // Arrange
+        var request = new RegisterRequest("string", "string");
 
+        // Act
+        var response = await _client.PostAsJsonAsync("api/identity/login", request);
+
+        // Assert
+        response.StatusCode.Should().Be(HttpStatusCode.Unauthorized);
+        var problemDetails = await response.Content.ReadFromJsonAsync<ProblemDetails>();
+        problemDetails!.Detail.Should().Be(LoginErrorType.EmailNotFound.ToString());
+
+        // Act
         await _client.PostAsJsonAsync("api/identity/register", request);
+
+        // Arrange
         request = request with
         {
             Password = "string1",
         };
+
+        // Act
         response = await _client.PostAsJsonAsync("api/identity/login", request);
+
+        // Assert
         response.StatusCode.Should().Be(HttpStatusCode.Unauthorized);
         problemDetails = await response.Content.ReadFromJsonAsync<ProblemDetails>();
-        problemDetails!.Detail.Should().Be("Неверный пароль.");
+        problemDetails!.Detail.Should().Be(LoginErrorType.InvalidPassword.ToString());
     }
 
     [Fact]
     public async Task SuccessfulTokenRefresh()
     {
+        // Arrange
         var request = new RegisterRequest("string", "string");
+
+        // Act
         var response = await _client.PostAsJsonAsync("api/identity/register", request);
+
+        // Assert
         response.StatusCode.Should().Be(HttpStatusCode.NoContent);
 
+        // Act
         response = await _client.PostAsJsonAsync("api/identity/login", request);
+
+        // Assert
         response.StatusCode.Should().Be(HttpStatusCode.OK);
 
-        var user = await _repository.GetUserAsync(request.Email!);
-        var tokenRequest = new RefreshTokenRequest(user.Value!.Email, user.Value.Token);
+        // Arrange
+        var loginResponse = await response.Content.ReadFromJsonAsync<TokenResponse>();
+        var tokenRequest = new AuthRequest(request.Email, request.Password, loginResponse!.RefreshToken);
+
+        // Act
         response = await _client.PostAsJsonAsync("api/identity/refresh", tokenRequest);
+
+        // Assert
         response.StatusCode.Should().Be(HttpStatusCode.OK);
     }
 
     [Fact]
     public async Task TokenRefreshError()
     {
+        // Arrange
         var request = new RegisterRequest("string", "string");
+
+        // Act
         var response = await _client.PostAsJsonAsync("api/identity/register", request);
+
+        // Assert
         response.StatusCode.Should().Be(HttpStatusCode.NoContent);
 
+        // Act
         response = await _client.PostAsJsonAsync("api/identity/login", request);
+
+        // Assert
         response.StatusCode.Should().Be(HttpStatusCode.OK);
 
-        var user = await _repository.GetUserAsync(request.Email!);
-        await Task.Delay(1000);
+        // Act
         response = await _client.PostAsJsonAsync("api/identity/login", request);
+
+        // Assert
         response.StatusCode.Should().Be(HttpStatusCode.OK);
 
-        var tokenRequest = new RefreshTokenRequest(user.Value!.Email, user.Value.Token);
+        // Arrange
+        var tokenRequest = new AuthRequest(request.Email, request.Password, Guid.NewGuid());
+
+        // Act
         response = await _client.PostAsJsonAsync("api/identity/refresh", tokenRequest);
+
+        // Assert
         response.StatusCode.Should().Be(HttpStatusCode.Unauthorized);
         var problemDetails = await response.Content.ReadFromJsonAsync<ProblemDetails>();
-        problemDetails!.Detail.Should().Be("Refresh-токен недействителен или истёк.");
+        problemDetails!.Detail.Should().Be(LoginErrorType.InvalidRefreshToken.ToString());
     }
 
-    async Task IAsyncLifetime.InitializeAsync() => await WebAppFactoryFixture.ResetAsync();
+    public async Task InitializeAsync() => await _fixture.ResetAsync();
 
-    Task IAsyncLifetime.DisposeAsync() => Task.CompletedTask;
+    public async Task DisposeAsync() => await Task.CompletedTask;
 }

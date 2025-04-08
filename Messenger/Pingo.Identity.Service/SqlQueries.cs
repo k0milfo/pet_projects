@@ -19,23 +19,29 @@ internal static class SqlQueries
 
     public const string CreateTableRefreshTokens = """
           CREATE TABLE IF NOT EXISTS "RefreshTokens"
-          (Email TEXT PRIMARY KEY, Token TEXT, 
-          FOREIGN KEY (Email) REFERENCES "User"(Email) ON DELETE CASCADE);
+          (
+          Token UUID PRIMARY KEY, ExpirationTime TIMESTAMPTZ NOT NULL
+          );
     """;
 
     public const string CreateTableUser = """
           CREATE TABLE IF NOT EXISTS "User" 
           (
-          Id UUID, Email TEXT UNIQUE, RegisteredAt TIMESTAMP WITH TIME ZONE NOT NULL, PRIMARY KEY(Id, Email)
+          Id UUID, Email TEXT UNIQUE, RegisteredAt TIMESTAMPTZ NOT NULL, PRIMARY KEY(Id, Email)
           );
     """;
 
     public const string GetUser = """
-          SELECT i.Id, i.RegisteredAt, j.Email, j.PasswordHash, j.Salt, k.Token
+          SELECT i.Id, i.RegisteredAt, j.Email, j.PasswordHash, j.Salt
           FROM "User" i
           JOIN "UserCredentials" j ON i.Id = j.UserId
-          JOIN "RefreshTokens" k ON i.Email = k.Email
           WHERE j.Email = @Email
+    """;
+
+    public const string GetToken = """
+          SELECT Token, ExpirationTime
+          FROM "RefreshTokens"
+          WHERE Token = @Token
     """;
 
     public const string InsertUserMetadata = """
@@ -44,10 +50,12 @@ internal static class SqlQueries
     """;
 
     public const string InsertRefreshToken = """
-          INSERT INTO "RefreshTokens" (Email, Token) 
-          VALUES (@Email, @Token)
-          ON CONFLICT (Email) DO UPDATE
-          SET Token = EXCLUDED.Token;
+           INSERT INTO "RefreshTokens" (Token, ExpirationTime)
+           VALUES (@Token, @ExpirationTime)
+           ON CONFLICT (Token) 
+           DO UPDATE SET
+           Token = EXCLUDED.Token,
+           ExpirationTime = EXCLUDED.ExpirationTime;
     """;
 
     public const string DeleteInvalidateRefreshToken = """
