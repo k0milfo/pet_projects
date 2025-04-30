@@ -1,0 +1,97 @@
+@page "/Chat"
+@using FrontendMessage.Service.Interface
+@using MudBlazor
+@inject ChatApiClient Http
+@inject ITokenStorage TokenStorage
+@inject NavigationManager Navigation
+
+<PageTitle>Chat</PageTitle>
+
+<MudList T="OutputMessage">
+    @if (Messages != null)
+    {
+        foreach (var message in Messages)
+        {
+            <MudListItem>@(message.UpdatedAt?.ToString("HH:mm") ?? message.SentAt.ToString("HH:mm")) @message.Text</MudListItem>
+        }
+    }
+</MudList>
+
+<MudTextField @bind-Value="Message" Label="Введите сообщение" />
+<MudButton OnClick="SendMessage" type="button">Send</MudButton>
+
+@code {
+    private IReadOnlyList<OutputMessage>? Messages;
+    private string Message = string.Empty;
+
+    protected override async Task OnInitializedAsync()
+    {
+        var token = await TokenStorage.GetAccessTokenAsync();
+        if (string.IsNullOrEmpty(token))
+        {
+            Navigation.NavigateTo("/");
+            return;
+        }
+        Messages = await Http.Client.GetFromJsonAsync<IReadOnlyList<OutputMessage>>("api/messages");
+    }
+
+    private async Task SendMessage()
+    {
+        if (!string.IsNullOrWhiteSpace(Message))
+        {
+            var messageId = Guid.NewGuid();
+            await Http.Client.PutAsJsonAsync($"api/messages/{messageId}", Message);
+            Message = string.Empty;
+
+            Messages = await Http.Client.GetFromJsonAsync<IReadOnlyList<OutputMessage>>("api/messages");
+        }
+    }
+
+    public sealed record OutputMessage(Guid Id, string Text, DateTimeOffset SentAt, DateTimeOffset? UpdatedAt);
+}
+
+<style>
+    .chat-container {
+        max-width: 500px;
+        margin: auto;
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+    }
+
+    .chat-box {
+        height: 300px;
+        overflow-y: auto;
+        border: 1px solid #ccc;
+        border-radius: 10px;
+        padding: 10px;
+        background: #f9f9f9;
+    }
+
+    .chat-messages {
+        display: flex;
+        flex-direction: column;
+        gap: 5px;
+    }
+
+    .chat-message {
+        padding: 5px;
+        background: #e3f2fd;
+        border-radius: 5px;
+    }
+
+    .chat-input-container {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+    }
+
+    .chat-input {
+        display: flex;
+        gap: 10px;
+    }
+
+    .chat-textfield {
+        flex-grow: 1;
+    }
+</style>

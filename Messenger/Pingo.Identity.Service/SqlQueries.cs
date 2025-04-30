@@ -39,10 +39,16 @@ internal static class SqlQueries
     """;
 
     public const string GetToken = """
-          SELECT Token, ExpirationTime
+          SELECT Token AS token, ExpirationTime AS expirationTime
           FROM "RefreshTokens"
           WHERE Token = @Token
     """;
+
+    public const string GetExpiredTokens = """
+          SELECT Token AS token, ExpirationTime AS expirationTime
+          FROM "RefreshTokens"
+          WHERE ExpirationTime < CURRENT_TIMESTAMP
+        """;
 
     public const string InsertUserMetadata = """
           INSERT INTO "User" (Id, Email, RegisteredAt) 

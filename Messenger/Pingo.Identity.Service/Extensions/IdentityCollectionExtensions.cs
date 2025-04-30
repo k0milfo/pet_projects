@@ -15,5 +15,6 @@ public static class IdentityCollectionExtensions
         services.AddScoped<IPasswordHasher, PasswordHasher>();
         services.AddScoped<IIdentityService, IdentityService>();
         services.AddScoped<ITokenService, TokenService>();
+        services.AddHostedService<HangfireJobRegistry>();
     }
 }

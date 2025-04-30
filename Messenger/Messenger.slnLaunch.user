@@ -1,6 +1,6 @@
 [
   {
-    "Name": "Новый профиль",
+    "Name": "Front+MessagesWebApi",
     "Projects": [
       {
         "Path": "Pingo.Messages.WebApi\\Pingo.Messages.WebApi.csproj",
@@ -17,6 +17,23 @@
     "Projects": [
       {
         "Path": "Pingo.Messages.ComponentTests\\Pingo.Messages.ComponentTests.csproj",
+        "Action": "Start"
+      }
+    ]
+  },
+  {
+    "Name": "Front+Identity+Messages",
+    "Projects": [
+      {
+        "Path": "FrontendMessage\\FrontendMessage.csproj",
+        "Action": "Start"
+      },
+      {
+        "Path": "Pingo.Identity.WebApi\\Pingo.Identity.WebApi.csproj",
+        "Action": "Start"
+      },
+      {
+        "Path": "Pingo.Messages.WebApi\\Pingo.Messages.WebApi.csproj",
         "Action": "Start"
       }
     ]

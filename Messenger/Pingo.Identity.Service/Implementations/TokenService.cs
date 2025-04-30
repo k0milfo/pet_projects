@@ -2,7 +2,6 @@ using System.Globalization;
 using System.IdentityModel.Tokens.Jwt;
 using System.Security.Claims;
 using System.Text;
-using CSharpFunctionalExtensions;
 using Microsoft.Extensions.Options;
 using Microsoft.IdentityModel.Tokens;
 using Pingo.Identity.Service.Entity.Options;
@@ -11,9 +10,9 @@ using Pingo.Identity.Service.Interface;
 
 namespace Pingo.Identity.Service.Implementations;
 
-internal sealed class TokenService(IOptions<JwtOptions> jwtOptions, TimeProvider timeProvider) : ITokenService
+internal sealed class TokenService(IOptions<JwtOptions> jwtOptions, TimeProvider timeProvider, IIdentityRepository repository) : ITokenService
 {
-    public Result<string> GenerateAccessToken(IEnumerable<Claim> claims)
+    public string GenerateAccessToken(IEnumerable<Claim> claims)
     {
         var key = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(jwtOptions.Value.Key));
         var creeds = new SigningCredentials(key, SecurityAlgorithms.HmacSha256);
@@ -34,6 +33,18 @@ internal sealed class TokenService(IOptions<JwtOptions> jwtOptions, TimeProvider
             return false;
         }
 
-        return !(token.ExpirationTime > timeProvider.GetUtcNow());
+        return token.ExpirationTime > timeProvider.GetUtcNow();
+    }
+
+    public async Task ClearingInvalidTokensAsync()
+    {
+        var invalidTokens = await repository.GetInvalidRefreshTokensAsync();
+        if (invalidTokens.Any())
+        {
+            foreach (var token in invalidTokens)
+            {
+                await repository.DeleteRefreshTokenAsync(token.Token);
+            }
+        }
     }
 }

@@ -1,7 +1,8 @@
 using Microsoft.Extensions.DependencyInjection;
 using Npgsql;
+using Pingo.Identity.Service;
 
-namespace Pingo.Identity.Service;
+namespace Pingo.Identity.ComponentTests;
 
 internal sealed class DatabaseSeeder(IServiceProvider serviceProvider) : IDatabaseSeeder
 {

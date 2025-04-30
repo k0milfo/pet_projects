@@ -36,7 +36,7 @@ public sealed class IdentityController(IIdentityService identityService) : Contr
     [ProducesResponseType(StatusCodes.Status401Unauthorized)]
     [ProducesResponseType(StatusCodes.Status404NotFound)]
     [HttpPost("login")]
-    public async Task<IActionResult> LoginAsync(AuthRequest request)
+    public async Task<IActionResult> LoginAsync([FromBody] AuthRequest request)
     {
         var result = await identityService.LoginAsync(request);
         if (result.IsFailure)
@@ -61,9 +61,9 @@ public sealed class IdentityController(IIdentityService identityService) : Contr
     [ProducesResponseType(StatusCodes.Status401Unauthorized)]
     [ProducesResponseType(StatusCodes.Status404NotFound)]
     [HttpPost("refresh")]
-    public async Task<IActionResult> RefreshTokenAsync(AuthRequest request)
+    public async Task<IActionResult> RefreshTokenAsync([FromBody] RefreshTokenRequest tokenRequest)
     {
-        var result = await identityService.RefreshTokenAsync(request);
+        var result = await identityService.RefreshTokenAsync(tokenRequest);
         if (result.IsFailure)
         {
             return result.Error switch

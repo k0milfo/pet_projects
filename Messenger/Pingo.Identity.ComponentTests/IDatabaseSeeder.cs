@@ -1,4 +1,4 @@
-namespace Pingo.Identity.Service;
+namespace Pingo.Identity.ComponentTests;
 
 public interface IDatabaseSeeder
 {

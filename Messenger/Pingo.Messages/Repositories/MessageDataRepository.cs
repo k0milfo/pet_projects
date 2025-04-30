@@ -1,5 +1,4 @@
 using AutoMapper;
-using CSharpFunctionalExtensions;
 using Microsoft.EntityFrameworkCore;
 using Pingo.Messages.Entity;
 using Pingo.Messages.Interfaces;
@@ -8,19 +7,19 @@ namespace Pingo.Messages.Repositories;
 
 internal sealed class MessageDataRepository(ApplicationDbContext context, IMapper mapper) : IMessageDataRepository
 {
-    public async Task<Result<Message?>> GetAsync(Guid id)
+    public async Task<Message?> GetAsync(Guid id)
     {
         var entity = await context.Messages.AsNoTracking().FirstOrDefaultAsync(i => i.Id == id);
         return mapper.Map<Message>(entity);
     }
 
-    public async Task<Result<IReadOnlyList<Message>>> GetAllAsync()
+    public async Task<IReadOnlyList<Message>> GetAllAsync()
     {
         var entity = await context.Messages.OrderByDescending(i => i.UpdatedAt ?? i.SentAt).ToListAsync();
-        return Result.Success(mapper.Map<IReadOnlyList<Message>>(entity));
+        return mapper.Map<IReadOnlyList<Message>>(entity);
     }
 
-    public async Task<Result<bool>> DeleteAsync(Guid id)
+    public async Task<bool> DeleteAsync(Guid id)
     {
         var entity = await context.Messages.FirstOrDefaultAsync(i => i.Id == id);
         if (entity == null)

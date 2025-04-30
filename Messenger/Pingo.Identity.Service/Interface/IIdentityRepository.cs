@@ -8,11 +8,13 @@ internal interface IIdentityRepository
 {
     Task InsertUserAsync(User entity);
 
-    Task<Result<User?>> GetUserAsync(string email);
+    Task<User?> GetUserAsync(string email);
 
     Task InsertRefreshTokenAsync(TokenData data);
 
-    Task DeleteRefreshTokenAsync(TokenData data);
+    Task DeleteRefreshTokenAsync(Guid? refreshToken);
 
     Task<TokenData?> GetRefreshTokenAsync(Guid? token);
+
+    Task<IReadOnlyList<TokenData>> GetInvalidRefreshTokensAsync();
 }

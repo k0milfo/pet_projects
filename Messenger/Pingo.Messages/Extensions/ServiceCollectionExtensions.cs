@@ -15,5 +15,10 @@ public static class ServiceCollectionExtensions
         services.AddScoped<IMessageDataRepository, MessageDataRepository>();
         services.AddScoped<IMessagesService, MessagesService>();
         services.AddAutoMapper(typeof(MappingProfileService));
+
+        var serviceProvider = services.BuildServiceProvider();
+        using var scope = serviceProvider.CreateScope();
+        var db = scope.ServiceProvider.GetRequiredService<ApplicationDbContext>();
+        db.Database.Migrate();
     }
 }

@@ -115,7 +115,7 @@ public sealed class ServiceTests : IClassFixture<WebAppFactoryFixture>, IAsyncLi
 
         // Arrange
         var loginResponse = await response.Content.ReadFromJsonAsync<TokenResponse>();
-        var tokenRequest = new AuthRequest(request.Email, request.Password, loginResponse!.RefreshToken);
+        var tokenRequest = new RefreshTokenRequest(request.Email, loginResponse!.RefreshToken);
 
         // Act
         response = await _client.PostAsJsonAsync("api/identity/refresh", tokenRequest);
@@ -149,7 +149,7 @@ public sealed class ServiceTests : IClassFixture<WebAppFactoryFixture>, IAsyncLi
         response.StatusCode.Should().Be(HttpStatusCode.OK);
 
         // Arrange
-        var tokenRequest = new AuthRequest(request.Email, request.Password, Guid.NewGuid());
+        var tokenRequest = new RefreshTokenRequest(request.Email, RefreshToken: Guid.NewGuid());
 
         // Act
         response = await _client.PostAsJsonAsync("api/identity/refresh", tokenRequest);

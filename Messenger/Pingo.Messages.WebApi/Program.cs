@@ -1,3 +1,6 @@
+using System.Text;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
+using Microsoft.IdentityModel.Tokens;
 using Pingo.Messages.Extensions;
 using Pingo.Messages.WebApi.Entity;
 
@@ -12,9 +15,21 @@ builder.Services.AddCors(options => options.AddPolicy("AllowAll", policy => poli
     .AllowAnyHeader()));
 builder.Services.AddAuthorization();
 builder.Services.AddControllers(); // для swagger
+builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
+    .AddJwtBearer(JwtBearerDefaults.AuthenticationScheme, options =>
+    {
+        options.TokenValidationParameters = new()
+        {
+            ValidateIssuer = false,
+            ValidateAudience = false,
+            ValidateLifetime = true,
+            ValidateIssuerSigningKey = true,
+            IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(builder.Configuration["Jwt:Key"]!)),
+        };
+    });
 var app = builder.Build();
-app.UseCors("AllowAll");
 app.UseRouting();
+app.UseCors("AllowAll");
 if (app.Environment.IsDevelopment())
 {
     app.UseSwagger();
@@ -23,7 +38,7 @@ if (app.Environment.IsDevelopment())
 
 app.MapControllers();
 app.UseHttpsRedirection();
-app.UseRouting();
+app.UseAuthentication();
 app.UseAuthorization();
 
 await app.RunAsync();
