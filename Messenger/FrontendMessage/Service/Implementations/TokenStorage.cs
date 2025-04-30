@@ -4,7 +4,7 @@ using Microsoft.JSInterop;
 
 namespace FrontendMessage.Service.Implementations;
 
-internal sealed class BrowserTokenStorage(IJSRuntime js) : ITokenStorage
+internal sealed class TokenStorage(IJSRuntime js) : ITokenStorage
 {
     public async Task SaveAuthDataAsync(TokenResponse tokens, string email)
     {

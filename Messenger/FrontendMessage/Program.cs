@@ -18,7 +18,7 @@ if (string.IsNullOrEmpty(baseUrl) || string.IsNullOrEmpty(chatUrl))
     throw new InvalidOperationException("BaseUrl is not configured in appsettings.json.");
 }
 
-builderWebAssembly.Services.AddScoped<ITokenStorage, BrowserTokenStorage>();
+builderWebAssembly.Services.AddScoped<ITokenStorage, TokenStorage>();
 builderWebAssembly.Services.AddTransient<AuthenticationHandler>();
 var retryPolicy = HttpPolicyExtensions
     .HandleTransientHttpError()
