@@ -12,11 +12,11 @@ builder.RootComponents.Add<App>("#app");
 builder.RootComponents.Add<HeadOutlet>("head::after");
 builder.Configuration.AddJsonFile("appsettings.json", optional: false, reloadOnChange: true);
 builder.Services.AddBlazoredLocalStorage();
-var baseUrl = builder.Configuration["ApiSettings:BaseUrl"];
+var identityUrl = builder.Configuration["ApiSettings:IdentityUrl"];
 var chatUrl = builder.Configuration["ApiSettings:ChatUrl"];
-if (string.IsNullOrEmpty(baseUrl) || string.IsNullOrEmpty(chatUrl))
+if (string.IsNullOrEmpty(identityUrl) || string.IsNullOrEmpty(chatUrl))
 {
-    throw new InvalidOperationException("BaseUrl is not configured in appsettings.json.");
+    throw new InvalidOperationException("IdentityUrl is not configured in appsettings.json.");
 }
 
 builder.Services.AddTransient<AuthenticationHandler>();
@@ -35,7 +35,7 @@ builder.Services
 builder.Services
     .AddHttpClient<IdentityApiClient>(client =>
     {
-        client.BaseAddress = new Uri(baseUrl);
+        client.BaseAddress = new Uri(identityUrl);
     })
     .AddPolicyHandler(retryPolicy);
 

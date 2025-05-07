@@ -11,7 +11,6 @@ namespace Pingo.Messages.WebApi.Controllers;
 public sealed class MessagesController(IMessagesService service, IMapper mapper) : ControllerBase
 {
     [HttpGet]
-    [Authorize]
     public async Task<IReadOnlyList<MessageResponse>> GetMessages()
     {
         var messagesResponse = await service.GetMessagesAsync();
@@ -19,7 +18,6 @@ public sealed class MessagesController(IMessagesService service, IMapper mapper)
     }
 
     [HttpPut("{id}")]
-    [Authorize]
     public async Task<ActionResult> UpsertMessage(Guid id, [FromBody] string message)
     {
         await service.UpsertMessageAsync(id, message);
