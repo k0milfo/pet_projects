@@ -8,7 +8,7 @@ public interface ITokenStorage
 
     Task<string?> GetAccessTokenAsync();
 
-    Task<string?> GetRefreshTokenAsync();
+    Task<Guid?> GetRefreshTokenAsync();
 
     Task<string?> GetEmailAsync();
 

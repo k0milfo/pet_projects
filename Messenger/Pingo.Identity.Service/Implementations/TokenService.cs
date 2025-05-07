@@ -4,13 +4,13 @@ using System.Security.Claims;
 using System.Text;
 using Microsoft.Extensions.Options;
 using Microsoft.IdentityModel.Tokens;
+using Pingo.Identity.Service.Entity.Models;
 using Pingo.Identity.Service.Entity.Options;
-using Pingo.Identity.Service.Entity.Requests;
 using Pingo.Identity.Service.Interface;
 
 namespace Pingo.Identity.Service.Implementations;
 
-internal sealed class TokenService(IOptions<JwtOptions> jwtOptions, TimeProvider timeProvider, IIdentityRepository repository) : ITokenService
+internal sealed class TokenService(IOptions<JwtOptions> jwtOptions, TimeProvider timeProvider) : ITokenService
 {
     public string GenerateAccessToken(IEnumerable<Claim> claims)
     {
@@ -26,25 +26,8 @@ internal sealed class TokenService(IOptions<JwtOptions> jwtOptions, TimeProvider
         return new JwtSecurityTokenHandler().WriteToken(token);
     }
 
-    public bool IsTokenValid(TokenData? token)
+    public bool IsTokenValid(TokenData token)
     {
-        if (token == null)
-        {
-            return false;
-        }
-
         return token.ExpirationTime > timeProvider.GetUtcNow();
-    }
-
-    public async Task ClearingInvalidTokensAsync()
-    {
-        var invalidTokens = await repository.GetInvalidRefreshTokensAsync();
-        if (invalidTokens.Any())
-        {
-            foreach (var token in invalidTokens)
-            {
-                await repository.DeleteRefreshTokenAsync(token.Token);
-            }
-        }
     }
 }

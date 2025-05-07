@@ -18,6 +18,7 @@ internal sealed class DatabaseMigrator(IServiceProvider serviceProvider) : Backg
         await ExecuteSqlAsync(SqlQueries.CreateTableUser, connection, stoppingToken);
         await ExecuteSqlAsync(SqlQueries.CreateTableUserCredentials, connection, stoppingToken);
         await ExecuteSqlAsync(SqlQueries.CreateTableRefreshTokens, connection, stoppingToken);
+        await ExecuteSqlAsync(SqlQueries.CreateIndexOnRefreshTokens, connection, stoppingToken);
     }
 
     private static async Task ExecuteSqlAsync(string sql, NpgsqlConnection connection, CancellationToken stoppingToken)

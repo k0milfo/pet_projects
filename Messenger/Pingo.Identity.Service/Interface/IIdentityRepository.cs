@@ -1,6 +1,4 @@
-using CSharpFunctionalExtensions;
 using Pingo.Identity.Service.Entity.Models;
-using Pingo.Identity.Service.Entity.Requests;
 
 namespace Pingo.Identity.Service.Interface;
 
@@ -12,9 +10,9 @@ internal interface IIdentityRepository
 
     Task InsertRefreshTokenAsync(TokenData data);
 
-    Task DeleteRefreshTokenAsync(Guid? refreshToken);
+    Task DeleteRefreshTokenAsync(Guid refreshToken);
 
-    Task<TokenData?> GetRefreshTokenAsync(Guid? token);
+    Task DeleteExpiredRefreshTokensAsync(DateTimeOffset dateTime);
 
-    Task<IReadOnlyList<TokenData>> GetInvalidRefreshTokensAsync();
+    Task<TokenData?> GetRefreshTokenAsync(Guid token);
 }

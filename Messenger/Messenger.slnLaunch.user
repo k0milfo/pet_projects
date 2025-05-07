@@ -37,5 +37,14 @@
         "Action": "Start"
       }
     ]
+  },
+  {
+    "Name": "Identity",
+    "Projects": [
+      {
+        "Path": "Pingo.Identity.WebApi\\Pingo.Identity.WebApi.csproj",
+        "Action": "Start"
+      }
+    ]
   }
 ]

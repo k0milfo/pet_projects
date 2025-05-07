@@ -1,10 +1,10 @@
 @page "/"
+@using Blazored.LocalStorage
 @using FrontendMessage.Entity
-@using FrontendMessage.Service.Interface
 @using MudBlazor
-@inject MainApiClient Http
-@inject ITokenStorage TokenStorage
-@inject NavigationManager Navigation
+@inject IdentityApiClient http
+@inject NavigationManager navigation
+@inject ILocalStorageService storageService
 
 <PageTitle>Вход в чат</PageTitle>
 
@@ -35,14 +35,16 @@
 
         try
         {
-            var response = await Http.Client.PostAsJsonAsync("api/identity/login",
+            var response = await http.Client.PostAsJsonAsync("api/identity/login",
                 new {Email = _email, Password = _password});
 
             if (response.IsSuccessStatusCode)
             {
                 var tokens = await response.Content.ReadFromJsonAsync<TokenResponse>();
-                await TokenStorage.SaveAuthDataAsync(tokens!, _email);
-                Navigation.NavigateTo("/Chat");
+                await storageService.SetItemAsync("accessToken", tokens!.AccessToken);
+                await storageService.SetItemAsync("refreshToken", tokens.RefreshToken);
+                await storageService.SetItemAsync("email", _email);
+                navigation.NavigateTo("/Chat");
             }
             else
             {

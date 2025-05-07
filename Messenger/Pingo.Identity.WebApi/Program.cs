@@ -8,12 +8,13 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 builder.Services.AddIdentity();
-builder.Services.AddHangfire(config => config.UseRedisStorage("localhost:6379"));
+builder.Services.AddHangfire(config =>
+    config.UseRedisStorage(builder.Configuration.GetConnectionString("Redis")));
 builder.Services.AddHangfireServer();
 builder.Services.AddControllers();
 builder.Services.AddProblemDetails();
 builder.Services.AddSingleton(TimeProvider.System);
-builder.Services.AddSingleton(typeof(JwtSecurityTokenHandler));
+builder.Services.AddSingleton<JwtSecurityTokenHandler>();
 builder.Services.Configure<JwtOptions>(builder.Configuration.GetSection("Jwt"));
 builder.Services.Configure<DataBaseSettings>(builder.Configuration.GetSection("ConnectionStrings"));
 builder.Services.AddCors(options => options.AddPolicy("AllowAll", policy => policy.AllowAnyOrigin() // Разрешить запросы с любого источника

@@ -11,4 +11,6 @@ public interface IIdentityService
     Task<Result<TokenResponse, LoginErrorType>> LoginAsync(AuthRequest request);
 
     Task<Result<TokenResponse, LoginErrorType>> RefreshTokenAsync(RefreshTokenRequest request);
+
+    Task ClearingInvalidTokensAsync();
 }

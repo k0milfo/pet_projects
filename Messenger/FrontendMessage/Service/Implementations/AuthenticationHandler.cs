@@ -1,20 +1,21 @@
 using System.Net;
 using System.Net.Http.Headers;
 using System.Net.Http.Json;
+using System.Threading;
+using Blazored.LocalStorage;
 using FrontendMessage.Entity;
-using FrontendMessage.Service.Interface;
 
 namespace FrontendMessage.Service.Implementations;
 
 public sealed class AuthenticationHandler(
-    ITokenStorage tokenStorage)
+    IdentityApiClient identityApi, ILocalStorageService storageService)
     : DelegatingHandler
 {
     protected override async Task<HttpResponseMessage> SendAsync(
         HttpRequestMessage request,
         CancellationToken cancellationToken)
     {
-        var accessToken = await tokenStorage.GetAccessTokenAsync();
+        var accessToken = await storageService.GetItemAsync<string>("accessToken", cancellationToken);
 
         if (!string.IsNullOrEmpty(accessToken))
         {
@@ -25,34 +26,48 @@ public sealed class AuthenticationHandler(
 
         if (response.StatusCode == HttpStatusCode.Unauthorized)
         {
-            var refreshToken = await tokenStorage.GetRefreshTokenAsync();
-            var email = await tokenStorage.GetEmailAsync();
+            var refreshToken = await storageService.GetItemAsync<string>("refreshToken", cancellationToken);
+            var email = await storageService.GetItemAsync<string>("email", cancellationToken);
             if (!string.IsNullOrEmpty(refreshToken))
             {
-                var tokensRequest = new HttpRequestMessage(HttpMethod.Post, "https://localhost:7294/api/identity/refresh")
+                var tokensRequest = new HttpRequestMessage(HttpMethod.Post, "api/identity/refresh")
                 {
                     Content = JsonContent.Create(new
                     {
                         Email = email,
-                        RefreshToken = Guid.Parse(refreshToken),
+                        RefreshToken = refreshToken,
                     }),
                 };
 
-                var tokensResponse = await base.SendAsync(tokensRequest, cancellationToken);
+                var tokensResponse = await identityApi.Client.SendAsync(tokensRequest, cancellationToken);
 
                 if (tokensResponse.IsSuccessStatusCode)
                 {
-                    var tokens = await tokensResponse.Content.ReadFromJsonAsync<TokenResponse>(cancellationToken: cancellationToken);
-                    await tokenStorage.ClearTokensAsync();
-                    await tokenStorage.SaveAuthDataAsync(new TokenResponse(tokens!.AccessToken, tokens.RefreshToken), email!);
+                    var tokens = await tokensResponse.Content.ReadFromJsonAsync<TokenResponse>(cancellationToken);
+                    await ClearAuthDataAsync();
+                    await SaveAuthDataAsync(tokens!.AccessToken, tokens.RefreshToken, email!);
                 }
 
-                accessToken = await tokenStorage.GetAccessTokenAsync();
+                accessToken = await storageService.GetItemAsync<string>("accessToken", cancellationToken);
                 request.Headers.Authorization = new AuthenticationHeaderValue("Bearer", accessToken);
-                return await base.SendAsync(request, cancellationToken);
+                return await identityApi.Client.SendAsync(request, cancellationToken);
             }
         }
 
         return response;
+    }
+
+    private async Task SaveAuthDataAsync(string accessToken, Guid refreshToken, string email)
+    {
+        await storageService.SetItemAsync("accessToken", accessToken);
+        await storageService.SetItemAsync("refreshToken", refreshToken);
+        await storageService.SetItemAsync("email", email);
+    }
+
+    private async Task ClearAuthDataAsync()
+    {
+        await storageService.RemoveItemAsync("accessToken");
+        await storageService.RemoveItemAsync("refreshToken");
+        await storageService.RemoveItemAsync("email");
     }
 }

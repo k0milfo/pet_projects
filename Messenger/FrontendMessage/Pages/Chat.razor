@@ -1,9 +1,9 @@
 @page "/Chat"
-@using FrontendMessage.Service.Interface
+@using Blazored.LocalStorage
 @using MudBlazor
-@inject ChatApiClient Http
-@inject ITokenStorage TokenStorage
-@inject NavigationManager Navigation
+@inject ChatApiClient http
+@inject ILocalStorageService storageService
+@inject NavigationManager navigation
 
 <PageTitle>Chat</PageTitle>
 
@@ -26,13 +26,13 @@
 
     protected override async Task OnInitializedAsync()
     {
-        var token = await TokenStorage.GetAccessTokenAsync();
+        var token = await storageService.GetItemAsStringAsync("accessToken");
         if (string.IsNullOrEmpty(token))
         {
-            Navigation.NavigateTo("/");
+            navigation.NavigateTo("/");
             return;
         }
-        Messages = await Http.Client.GetFromJsonAsync<IReadOnlyList<OutputMessage>>("api/messages");
+        Messages = await http.Client.GetFromJsonAsync<IReadOnlyList<OutputMessage>>("api/messages");
     }
 
     private async Task SendMessage()
@@ -40,10 +40,10 @@
         if (!string.IsNullOrWhiteSpace(Message))
         {
             var messageId = Guid.NewGuid();
-            await Http.Client.PutAsJsonAsync($"api/messages/{messageId}", Message);
+            await http.Client.PutAsJsonAsync($"api/messages/{messageId}", Message);
             Message = string.Empty;
 
-            Messages = await Http.Client.GetFromJsonAsync<IReadOnlyList<OutputMessage>>("api/messages");
+            Messages = await http.Client.GetFromJsonAsync<IReadOnlyList<OutputMessage>>("api/messages");
         }
     }
 

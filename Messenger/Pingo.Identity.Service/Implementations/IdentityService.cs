@@ -20,55 +20,55 @@ internal sealed class IdentityService(IIdentityRepository repository, IPasswordH
         var salt = hasher.GenerateSalt();
         var passwordHash = hasher.PasswordHash(request.Password, salt);
         var entity = new User(Guid.NewGuid(), timeProvider.GetUtcNow(), request.Email, passwordHash, salt);
+
         await repository.InsertUserAsync(entity);
         return Result.Success<LoginErrorType>();
     }
 
     public async Task<Result<TokenResponse, LoginErrorType>> LoginAsync(AuthRequest request)
     {
-        var user = await repository.GetUserAsync(request.Email!);
+        var user = await repository.GetUserAsync(request.Email);
         if (user is null)
         {
             return LoginErrorType.EmailNotFound;
         }
 
-        if (!hasher.VerifyPassword(request.Password!, user.PasswordHash!))
+        if (!hasher.VerifyPassword(request.Password, user.PasswordHash))
         {
             return LoginErrorType.InvalidPassword;
         }
 
-        var claims = new List<Claim>
-            {
-                new(ClaimTypes.Email, user?.Email!),
-                new(ClaimTypes.Role, "User"),
-            };
-
-        return await ReplaceTokenAsync(new RefreshTokenRequest(request.Email, RefreshToken: null), claims);
+        return await ReplaceTokenAsync(user.Email, user.Id);
     }
 
     public async Task<Result<TokenResponse, LoginErrorType>> RefreshTokenAsync(RefreshTokenRequest request)
     {
-        var refreshToken = repository.GetRefreshTokenAsync(request.RefreshToken);
-        if (!token.IsTokenValid(refreshToken.Result!))
+        var refreshToken = await repository.GetRefreshTokenAsync(request.RefreshToken);
+        if (refreshToken is null || !token.IsTokenValid(refreshToken))
         {
             return LoginErrorType.InvalidRefreshToken;
         }
 
-        var claims = new List<Claim>
-        {
-            new(ClaimTypes.Email, request.Email!),
-            new(ClaimTypes.Role, "User"),
-        };
-
-        return await ReplaceTokenAsync(request, claims);
+        await repository.DeleteRefreshTokenAsync(request.RefreshToken);
+        return await ReplaceTokenAsync(request.Email, refreshToken.UserId);
     }
 
-    private async Task<TokenResponse> ReplaceTokenAsync(RefreshTokenRequest request, List<Claim> claims)
+    private async Task<TokenResponse> ReplaceTokenAsync(string email, Guid id)
+        {
+            var claims = new List<Claim>
+            {
+                new(ClaimTypes.Email, email),
+                new(ClaimTypes.Role, "User"),
+            };
+
+            var accessToken = token.GenerateAccessToken(claims);
+            var newRefresh = Guid.NewGuid();
+            await repository.InsertRefreshTokenAsync(new TokenData(newRefresh, UserId: id, timeProvider.GetUtcNow().AddHours(12)));
+            return new TokenResponse(accessToken, newRefresh);
+        }
+
+    public async Task ClearingInvalidTokensAsync()
     {
-        await repository.DeleteRefreshTokenAsync(request.RefreshToken);
-        var accessToken = token.GenerateAccessToken(claims);
-        var newRefresh = Guid.NewGuid();
-        await repository.InsertRefreshTokenAsync(new TokenData(newRefresh, timeProvider.GetUtcNow().AddHours(12)));
-        return new TokenResponse(accessToken, newRefresh);
+        await repository.DeleteExpiredRefreshTokensAsync(timeProvider.GetUtcNow());
     }
 }

@@ -24,6 +24,7 @@ internal sealed class DatabaseSeeder(IServiceProvider serviceProvider) : IDataba
         await ExecuteSqlAsync(SqlQueries.CreateTableUser, connection, cancellationToken);
         await ExecuteSqlAsync(SqlQueries.CreateTableUserCredentials, connection, cancellationToken);
         await ExecuteSqlAsync(SqlQueries.CreateTableRefreshTokens, connection, cancellationToken);
+        await ExecuteSqlAsync(SqlQueries.CreateIndexOnRefreshTokens, connection, cancellationToken);
     }
 
     private static async Task ExecuteSqlAsync(string sql, NpgsqlConnection connection, CancellationToken ct)

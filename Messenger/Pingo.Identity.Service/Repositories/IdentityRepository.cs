@@ -1,6 +1,5 @@
 using Dapper;
 using Pingo.Identity.Service.Entity.Models;
-using Pingo.Identity.Service.Entity.Requests;
 using Pingo.Identity.Service.Interface;
 
 namespace Pingo.Identity.Service.Repositories;
@@ -15,7 +14,6 @@ internal sealed class IdentityRepository(IDatabaseConnectionFactory dbConnection
         {
             entity.Id,
             entity.RegisteredAt,
-            entity.Email,
         });
 
         await connection.ExecuteAsync(SqlQueries.InsertUserCredentials, new
@@ -41,7 +39,7 @@ internal sealed class IdentityRepository(IDatabaseConnectionFactory dbConnection
             : new User(entity.Id, new DateTimeOffset(entity.RegisteredAt), entity.Email, entity.PasswordHash, entity.Salt);
     }
 
-    public async Task<TokenData?> GetRefreshTokenAsync(Guid? token)
+    public async Task<TokenData?> GetRefreshTokenAsync(Guid token)
     {
         await using var connection = dbConnectionFactory.GetDbConnection();
 
@@ -49,10 +47,9 @@ internal sealed class IdentityRepository(IDatabaseConnectionFactory dbConnection
         {
             Token = token,
         });
-
         return entity is null
-            ? null
-            : new TokenData(entity.Token, entity.ExpirationTime);
+        ? null
+            : new TokenData(entity.Token, entity.UserId, entity.ExpirationTime);
     }
 
     public async Task InsertRefreshTokenAsync(TokenData data)
@@ -62,11 +59,12 @@ internal sealed class IdentityRepository(IDatabaseConnectionFactory dbConnection
         await connection.ExecuteAsync(SqlQueries.InsertRefreshToken, new
         {
             data.Token,
+            data.UserId,
             data.ExpirationTime,
         });
     }
 
-    public async Task DeleteRefreshTokenAsync(Guid? refreshToken)
+    public async Task DeleteRefreshTokenAsync(Guid refreshToken)
     {
         await using var connection = dbConnectionFactory.GetDbConnection();
 
@@ -76,13 +74,13 @@ internal sealed class IdentityRepository(IDatabaseConnectionFactory dbConnection
         });
     }
 
-    public async Task<IReadOnlyList<TokenData>> GetInvalidRefreshTokensAsync()
+    public async Task DeleteExpiredRefreshTokensAsync(DateTimeOffset dateTime)
     {
         await using var connection = dbConnectionFactory.GetDbConnection();
 
-        var expiredTokens = await connection.QueryAsync<TokenDataEntity>(SqlQueries.GetExpiredTokens);
-        return expiredTokens
-            .Select(i => new TokenData(i.Token, i.ExpirationTime))
-            .ToArray();
+        await connection.ExecuteAsync(SqlQueries.DeleteExpiredRefreshTokens, new
+        {
+            DateTime = dateTime,
+        });
     }
 }

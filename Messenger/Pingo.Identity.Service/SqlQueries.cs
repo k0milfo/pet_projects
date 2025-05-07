@@ -13,21 +13,38 @@ internal static class SqlQueries
 
     public const string CreateTableUserCredentials = """
           CREATE TABLE IF NOT EXISTS "UserCredentials"
-          (UserId UUID PRIMARY KEY, Email TEXT UNIQUE, PasswordHash TEXT NOT NULL, Salt TEXT NOT NULL, 
-          FOREIGN KEY (UserId, Email) REFERENCES "User"(Id, Email) ON DELETE CASCADE);
+          (
+          UserId UUID, 
+          Email TEXT UNIQUE, 
+          PasswordHash TEXT NOT NULL, 
+          Salt TEXT NOT NULL,
+          PRIMARY KEY (UserId, Email), 
+          FOREIGN KEY (UserId) REFERENCES "User"(Id) ON DELETE CASCADE
+          );
     """;
 
     public const string CreateTableRefreshTokens = """
           CREATE TABLE IF NOT EXISTS "RefreshTokens"
           (
-          Token UUID PRIMARY KEY, ExpirationTime TIMESTAMPTZ NOT NULL
+          UserId UUID,
+          Token UUID,
+          ExpirationTime TIMESTAMPTZ NOT NULL,
+          PRIMARY KEY (Token), 
+          FOREIGN KEY (UserId) REFERENCES "User"(Id) ON DELETE CASCADE
           );
+    """;
+
+    public const string CreateIndexOnRefreshTokens = """
+          CREATE INDEX IF NOT EXISTS "IX_RefreshTokens_ExpirationTime" 
+          ON "RefreshTokens" (ExpirationTime);
     """;
 
     public const string CreateTableUser = """
           CREATE TABLE IF NOT EXISTS "User" 
           (
-          Id UUID, Email TEXT UNIQUE, RegisteredAt TIMESTAMPTZ NOT NULL, PRIMARY KEY(Id, Email)
+          Id UUID, 
+          RegisteredAt TIMESTAMPTZ NOT NULL, 
+          PRIMARY KEY(Id)
           );
     """;
 
@@ -39,28 +56,23 @@ internal static class SqlQueries
     """;
 
     public const string GetToken = """
-          SELECT Token AS token, ExpirationTime AS expirationTime
+          SELECT Token AS token, UserId AS userId, ExpirationTime AS expirationTime
           FROM "RefreshTokens"
-          WHERE Token = @Token
-    """;
-
-    public const string GetExpiredTokens = """
-          SELECT Token AS token, ExpirationTime AS expirationTime
-          FROM "RefreshTokens"
-          WHERE ExpirationTime < CURRENT_TIMESTAMP
-        """;
+          WHERE Token = @Token AND ExpirationTime > NOW()
+   """;
 
     public const string InsertUserMetadata = """
-          INSERT INTO "User" (Id, Email, RegisteredAt) 
-          VALUES (@Id, @Email, @RegisteredAt);
+          INSERT INTO "User" (Id, RegisteredAt) 
+          VALUES (@Id, @RegisteredAt);
     """;
 
     public const string InsertRefreshToken = """
-           INSERT INTO "RefreshTokens" (Token, ExpirationTime)
-           VALUES (@Token, @ExpirationTime)
+           INSERT INTO "RefreshTokens" (Token, UserId, ExpirationTime)
+           VALUES (@Token, @UserId, @ExpirationTime)
            ON CONFLICT (Token) 
            DO UPDATE SET
            Token = EXCLUDED.Token,
+           UserId = EXCLUDED.UserId,
            ExpirationTime = EXCLUDED.ExpirationTime;
     """;
 
@@ -69,8 +81,13 @@ internal static class SqlQueries
           WHERE Token = @Token OR Token IS NULL;
     """;
 
+    public const string DeleteExpiredRefreshTokens = """
+          DELETE FROM "RefreshTokens"
+          WHERE ExpirationTime < @DateTime;
+    """;
+
     public const string InsertUserCredentials = """
           INSERT INTO "UserCredentials" 
-          (UserId, Email, PasswordHash, Salt) VALUES (@UserId, @Email, @PasswordHash, @Salt)
+          (UserId, Email, PasswordHash, Salt) VALUES (@UserId, @Email, @PasswordHash, @Salt);
     """;
 }
