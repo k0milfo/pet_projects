@@ -1,6 +1,10 @@
 using System.Text;
+using MassTransit.Logging;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.IdentityModel.Tokens;
+using OpenTelemetry.Exporter;
+using OpenTelemetry.Resources;
+using OpenTelemetry.Trace;
 using Pingo.Messages.Extensions;
 using Pingo.Messages.WebApi.Entity;
 
@@ -28,6 +32,19 @@ builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
             ClockSkew = TimeSpan.Zero,
         };
     });
+
+builder.Services.AddOpenTelemetry()
+    .WithTracing(tracing => tracing
+        .AddAspNetCoreInstrumentation()
+        .AddEntityFrameworkCoreInstrumentation()
+        .AddHttpClientInstrumentation()
+        .AddSource(DiagnosticHeaders.DefaultListenerName) // MassTransit(RabbitMQ)
+        .SetResourceBuilder(ResourceBuilder.CreateDefault().AddService(serviceName: "Pingo.Messages"))
+        .AddOtlpExporter(options =>
+        {
+            options.Endpoint = new Uri(builder.Configuration["Jaeger:Host"]!);
+            options.Protocol = OtlpExportProtocol.Grpc;
+        }));
 var app = builder.Build();
 app.UseRouting();
 app.UseCors("AllowAll");

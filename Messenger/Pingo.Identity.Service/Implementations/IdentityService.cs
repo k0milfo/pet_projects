@@ -1,13 +1,16 @@
 using System.Security.Claims;
 using CSharpFunctionalExtensions;
+using MassTransit;
 using Pingo.Identity.Service.Entity.Models;
 using Pingo.Identity.Service.Entity.Requests;
 using Pingo.Identity.Service.Entity.Responses;
 using Pingo.Identity.Service.Interface;
+using Shared;
 
 namespace Pingo.Identity.Service.Implementations;
 
-internal sealed class IdentityService(IIdentityRepository repository, IPasswordHasher hasher, ITokenService token, TimeProvider timeProvider) : IIdentityService
+internal sealed class IdentityService(
+    IIdentityRepository repository, IPasswordHasher hasher, ITokenService token, TimeProvider timeProvider, IPublishEndpoint publishEndpoint) : IIdentityService
 {
     public async Task<UnitResult<LoginErrorType>> InsertAsync(RegisterRequest request)
     {
@@ -38,6 +41,7 @@ internal sealed class IdentityService(IIdentityRepository repository, IPasswordH
             return LoginErrorType.InvalidPassword;
         }
 
+        await publishEndpoint.Publish(new UserLoggedIn(request.Email), CancellationToken.None);
         return await ReplaceTokenAsync(user.Email, user.Id);
     }
 
@@ -54,18 +58,18 @@ internal sealed class IdentityService(IIdentityRepository repository, IPasswordH
     }
 
     private async Task<TokenResponse> ReplaceTokenAsync(string email, Guid id)
-        {
-            var claims = new List<Claim>
+    {
+        var claims = new List<Claim>
             {
                 new(ClaimTypes.Email, email),
                 new(ClaimTypes.Role, "User"),
             };
 
-            var accessToken = token.GenerateAccessToken(claims);
-            var newRefresh = Guid.NewGuid();
-            await repository.InsertRefreshTokenAsync(new TokenData(newRefresh, UserId: id, timeProvider.GetUtcNow().AddHours(12)));
-            return new TokenResponse(accessToken, newRefresh);
-        }
+        var accessToken = token.GenerateAccessToken(claims);
+        var newRefresh = Guid.NewGuid();
+        await repository.InsertRefreshTokenAsync(new TokenData(newRefresh, UserId: id, timeProvider.GetUtcNow().AddHours(12)));
+        return new TokenResponse(accessToken, newRefresh);
+    }
 
     public async Task ClearingInvalidTokensAsync()
     {

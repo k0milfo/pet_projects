@@ -14,11 +14,11 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("Pingo.Identity.ComponentTests")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+23ccc352e2e0dc7f1a7a2e8a5e60e6790b8efbae")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+5948683e1605c8b5c210ed80b8fc3b38f25977bc")]
 [assembly: System.Reflection.AssemblyProductAttribute("Pingo.Identity.ComponentTests")]
 [assembly: System.Reflection.AssemblyTitleAttribute("Pingo.Identity.ComponentTests")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]
-[assembly: System.Runtime.CompilerServices.InternalsVisibleTo("Pingo.Identity.ComponentTests.ComponentTests")]
+[assembly: System.Runtime.CompilerServices.InternalsVisibleTo("Pingo.Identity.ComponentTests.Pingo.Messages.ComponentTests")]
 [assembly: System.Runtime.CompilerServices.InternalsVisibleTo("Pingo.Messages.ComponentTests")]
 [assembly: System.Runtime.CompilerServices.InternalsVisibleTo("Pingo.Identity.ComponentTests")]
 

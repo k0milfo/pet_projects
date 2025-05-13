@@ -1,9 +1,5 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk.Web">
-
-  <ItemGroup>
-    <PackageReference Include="Microsoft.AspNetCore.Authentication.JwtBearer" Version="8.0.15" />
-  </ItemGroup>
-
+  <Import Project="../Directory.Build.props" />
   <ItemGroup>
     <ProjectReference Include="..\Pingo.Messages\Pingo.Messages.csproj" />
   </ItemGroup>

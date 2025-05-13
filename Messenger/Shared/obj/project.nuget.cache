@@ -1,0 +1,15 @@
+{
+  "version": 2,
+  "dgSpecHash": "ihUTap7THAc=",
+  "success": true,
+  "projectFilePath": "C:\\Users\\Ni\\source\\repos\\pet_projects\\Messenger\\Shared\\Shared.csproj",
+  "expectedPackageFiles": [
+    "C:\\Users\\Ni\\.nuget\\packages\\meziantou.analyzer\\2.0.187\\meziantou.analyzer.2.0.187.nupkg.sha512",
+    "C:\\Users\\Ni\\.nuget\\packages\\roslynator.analyzers\\4.13.0\\roslynator.analyzers.4.13.0.nupkg.sha512",
+    "C:\\Users\\Ni\\.nuget\\packages\\roslynator.formatting.analyzers\\4.13.0\\roslynator.formatting.analyzers.4.13.0.nupkg.sha512",
+    "C:\\Users\\Ni\\.nuget\\packages\\sonaranalyzer.csharp\\10.6.0.109712\\sonaranalyzer.csharp.10.6.0.109712.nupkg.sha512",
+    "C:\\Users\\Ni\\.nuget\\packages\\stylecop.analyzers\\1.2.0-beta.556\\stylecop.analyzers.1.2.0-beta.556.nupkg.sha512",
+    "C:\\Users\\Ni\\.nuget\\packages\\stylecop.analyzers.unstable\\1.2.0.556\\stylecop.analyzers.unstable.1.2.0.556.nupkg.sha512"
+  ],
+  "logs": []
+}

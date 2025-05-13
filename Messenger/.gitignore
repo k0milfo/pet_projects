@@ -13,3 +13,5 @@
 /Pingo.Identity.WebApi/obj
 /Pingo.Identity.ComponentTests/bin
 /Pingo.Identity.ComponentTests/obj
+/Pingo.Identity.Service.Tests/bin
+/Pingo.Identity.Service.Tests/obj

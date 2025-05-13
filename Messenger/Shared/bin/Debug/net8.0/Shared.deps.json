@@ -1,0 +1,82 @@
+{
+  "runtimeTarget": {
+    "name": ".NETCoreApp,Version=v8.0",
+    "signature": ""
+  },
+  "compilationOptions": {},
+  "targets": {
+    ".NETCoreApp,Version=v8.0": {
+      "Shared/1.0.0": {
+        "dependencies": {
+          "Meziantou.Analyzer": "2.0.187",
+          "Roslynator.Analyzers": "4.13.0",
+          "Roslynator.Formatting.Analyzers": "4.13.0",
+          "SonarAnalyzer.CSharp": "10.6.0.109712",
+          "StyleCop.Analyzers": "1.2.0-beta.556"
+        },
+        "runtime": {
+          "Shared.dll": {}
+        }
+      },
+      "Meziantou.Analyzer/2.0.187": {},
+      "Roslynator.Analyzers/4.13.0": {},
+      "Roslynator.Formatting.Analyzers/4.13.0": {},
+      "SonarAnalyzer.CSharp/10.6.0.109712": {},
+      "StyleCop.Analyzers/1.2.0-beta.556": {
+        "dependencies": {
+          "StyleCop.Analyzers.Unstable": "1.2.0.556"
+        }
+      },
+      "StyleCop.Analyzers.Unstable/1.2.0.556": {}
+    }
+  },
+  "libraries": {
+    "Shared/1.0.0": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
+    },
+    "Meziantou.Analyzer/2.0.187": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-s35YCC7rnWZnxtpdihrkdrGSAuzhdc+1kUMmO+UgVoogw3HAMmPO9BrSkxfU/KwhncK0Hr+nHFuAqOl+mGS01Q==",
+      "path": "meziantou.analyzer/2.0.187",
+      "hashPath": "meziantou.analyzer.2.0.187.nupkg.sha512"
+    },
+    "Roslynator.Analyzers/4.13.0": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-SSYEq2tPT4nmElTGJvpDsLmEw1mWY+Z+CM+H7gO49fSq4VyFivrmHyCeP3gWcDmgqMg77h2tLYRoZ0cjgnKmuA==",
+      "path": "roslynator.analyzers/4.13.0",
+      "hashPath": "roslynator.analyzers.4.13.0.nupkg.sha512"
+    },
+    "Roslynator.Formatting.Analyzers/4.13.0": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-WxayP0vkpigClbmsRmt1Mn2kBEAE+klgeE9HSHECDyWDAvuPS2BV6CKWkm7/J/cGtFuaGn0yQhv3v4bbD6GnPg==",
+      "path": "roslynator.formatting.analyzers/4.13.0",
+      "hashPath": "roslynator.formatting.analyzers.4.13.0.nupkg.sha512"
+    },
+    "SonarAnalyzer.CSharp/10.6.0.109712": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-fMwoXhlmFrcIYLpmCZOPXQkKwQD6WoFsmkZp8FZ7RJ9Db+ELUg56qh1X4Vy2nU7ZOWmuAMDOMosYxiQKNLBWtw==",
+      "path": "sonaranalyzer.csharp/10.6.0.109712",
+      "hashPath": "sonaranalyzer.csharp.10.6.0.109712.nupkg.sha512"
+    },
+    "StyleCop.Analyzers/1.2.0-beta.556": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-llRPgmA1fhC0I0QyFLEcjvtM2239QzKr/tcnbsjArLMJxJlu0AA5G7Fft0OI30pHF3MW63Gf4aSSsjc5m82J1Q==",
+      "path": "stylecop.analyzers/1.2.0-beta.556",
+      "hashPath": "stylecop.analyzers.1.2.0-beta.556.nupkg.sha512"
+    },
+    "StyleCop.Analyzers.Unstable/1.2.0.556": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-zvn9Mqs/ox/83cpYPignI8hJEM2A93s2HkHs8HYMOAQW0PkampyoErAiIyKxgTLqbbad29HX/shv/6LGSjPJNQ==",
+      "path": "stylecop.analyzers.unstable/1.2.0.556",
+      "hashPath": "stylecop.analyzers.unstable.1.2.0.556.nupkg.sha512"
+    }
+  }
+}
