@@ -1,18 +1,21 @@
 using System.Security.Claims;
+using AutoFixture;
+using FluentAssertions;
 using MassTransit;
+using Microsoft.Extensions.Time.Testing;
 using Moq;
+using Pingo.Identity.Events;
 using Pingo.Identity.Service.Entity.Models;
 using Pingo.Identity.Service.Entity.Requests;
 using Pingo.Identity.Service.Implementations;
 using Pingo.Identity.Service.Interface;
-using Shared;
 
 namespace Pingo.Identity.Service.Tests;
 
 public sealed class IdentityServiceTests
 {
     private readonly IdentityService _service;
-    private readonly TimeProvider _timeProvider = TimeProvider.System;
+    private readonly Fixture _fixture;
     private readonly Mock<IIdentityRepository> _userRepoMock;
     private readonly Mock<IPasswordHasher> _passwordHasherMock;
     private readonly Mock<IPublishEndpoint> _publishEndpointMock;
@@ -24,9 +27,11 @@ public sealed class IdentityServiceTests
         _passwordHasherMock = new Mock<IPasswordHasher>();
         _publishEndpointMock = new Mock<IPublishEndpoint>();
         _tokenMock = new Mock<ITokenService>();
+        _fixture = new Fixture();
+        var fakeTimeProvider = new FakeTimeProvider();
 
         _service = new IdentityService(
-            _userRepoMock.Object, _passwordHasherMock.Object, _tokenMock.Object, TimeProvider.System,
+            _userRepoMock.Object, _passwordHasherMock.Object, _tokenMock.Object, fakeTimeProvider,
             _publishEndpointMock.Object);
     }
 
@@ -34,39 +39,29 @@ public sealed class IdentityServiceTests
     public async Task LoginAsync_ValidCredentials_ReturnsTokensAndPublishesEvent()
     {
         // Arrange
-        var email = "test@test.com";
-        var password = "password";
-        var passwordHash = "$2a$11$owr5QCuMrUSnDBUJkUlD7OVMt.0v.n/CHJnZ6gjxeSjtqT5mFDQ0u";
-        var id = Guid.NewGuid();
-        var time = _timeProvider.GetUtcNow();
-        var salt = "$2a$11$owr5QCuMrUSnDBUJkUlD7O";
-        var accessToken = "access_token";
+        var user = _fixture.Create<User>();
+        var authRequest = _fixture.Create<AuthRequest>();
+        var tokenData = _fixture.Create<TokenData>();
 
-        _userRepoMock.Setup(r => r.GetUserAsync(email))
-            .ReturnsAsync(new User(
-                Id: id,
-                RegisteredAt: time,
-                Email: email,
-                PasswordHash: passwordHash,
-                Salt: salt));
+        _userRepoMock.Setup(r => r.GetUserAsync(authRequest.Email))
+            .ReturnsAsync(user);
 
-        _passwordHasherMock.Setup(r => r.VerifyPassword(password, passwordHash))
+        _passwordHasherMock.Setup(r => r.VerifyPassword(authRequest.Password, user.PasswordHash))
             .Returns(value: true);
 
         _tokenMock.Setup(r => r.GenerateAccessToken(It.IsAny<List<Claim>>()))
-            .Returns(accessToken);
+            .Returns(tokenData.Token.ToString);
 
         // Act
-        var result = await _service.LoginAsync(new AuthRequest(email, password));
+        var result = await _service.LoginAsync(authRequest);
 
         // Assert
-        Assert.True(result.IsSuccess);
-        Assert.False(string.IsNullOrEmpty(result.Value.AccessToken));
-        Assert.False(string.IsNullOrEmpty(result.Value.RefreshToken.ToString()));
-        Assert.NotEqual(Guid.Empty, result.Value.RefreshToken);
+        result.IsSuccess.Should().BeTrue();
+        result.Value.AccessToken.Should().NotBeNullOrEmpty();
+        result.Value.RefreshToken.Should().NotBe(Guid.Empty);
 
         _publishEndpointMock.Verify(p => p.Publish(
-            It.Is<UserLoggedIn>(e => e.Email == email),
+            It.Is<UserLoggedIn>(e => e.Email == authRequest.Email),
             It.IsAny<CancellationToken>()),
             Times.Once);
     }
@@ -75,42 +70,40 @@ public sealed class IdentityServiceTests
     public async Task LoginAsync_NonexistentUser_ReturnsError()
     {
         // Arrange
-        var email = "test@test.com";
-        var password = "password";
+        var authRequest = _fixture.Create<AuthRequest>();
 
-        _userRepoMock.Setup(r => r.GetUserAsync(email))
+        _userRepoMock.Setup(r => r.GetUserAsync(authRequest.Email))
             .ReturnsAsync((User)null!);
 
-        var result = await _service.LoginAsync(new AuthRequest(email, password));
+        // Act
+        var result = await _service.LoginAsync(authRequest);
 
-        Assert.False(result.IsSuccess);
-        Assert.Equal(LoginErrorType.EmailNotFound, result.Error);
+        // Assert
+        result.IsSuccess.Should().BeFalse();
+        result.Error.Should().Be(LoginErrorType.EmailNotFound);
+
+        _publishEndpointMock.VerifyNoOtherCalls();
     }
 
     [Fact]
     public async Task LoginAsync_InvalidPassword_ReturnsError()
     {
         // Arrange
-        var email = "test@test.com";
-        var password = "password";
-        var passwordHash = "password123";
+        var authRequest = _fixture.Create<AuthRequest>();
+        var user = _fixture.Create<User>();
 
-        _userRepoMock.Setup(r => r.GetUserAsync(email)).ReturnsAsync(
-            new User(
-                Id: Guid.NewGuid(),
-                RegisteredAt: _timeProvider.GetUtcNow(),
-                Email: email,
-                PasswordHash: passwordHash,
-                Salt: "asdfsdf"));
+        _userRepoMock.Setup(r => r.GetUserAsync(authRequest.Email)).ReturnsAsync(user);
 
-        _passwordHasherMock.Setup(r => r.VerifyPassword(password, passwordHash))
+        _passwordHasherMock.Setup(r => r.VerifyPassword(authRequest.Password, user.PasswordHash))
             .Returns(value: false);
 
         // Act
-        var result = await _service.LoginAsync(new AuthRequest(email, password));
+        var result = await _service.LoginAsync(authRequest);
 
         // Assert
-        Assert.False(result.IsSuccess);
-        Assert.Equal(LoginErrorType.InvalidPassword, result.Error);
+        result.IsSuccess.Should().BeFalse();
+        result.Error.Should().Be(LoginErrorType.InvalidPassword);
+
+        _publishEndpointMock.VerifyNoOtherCalls();
     }
 }

@@ -1,11 +1,11 @@
 using System.Security.Claims;
 using CSharpFunctionalExtensions;
 using MassTransit;
+using Pingo.Identity.Events;
 using Pingo.Identity.Service.Entity.Models;
 using Pingo.Identity.Service.Entity.Requests;
 using Pingo.Identity.Service.Entity.Responses;
 using Pingo.Identity.Service.Interface;
-using Shared;
 
 namespace Pingo.Identity.Service.Implementations;
 
@@ -41,7 +41,8 @@ internal sealed class IdentityService(
             return LoginErrorType.InvalidPassword;
         }
 
-        await publishEndpoint.Publish(new UserLoggedIn(request.Email), CancellationToken.None);
+        await publishEndpoint.Publish(new UserLoggedIn(request.Email),
+            ctx => ctx.MessageId = Guid.NewGuid());
         return await ReplaceTokenAsync(user.Email, user.Id);
     }
 

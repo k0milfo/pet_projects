@@ -15,7 +15,7 @@ internal sealed class MessageDataRepository(ApplicationDbContext context, IMappe
 
     public async Task<IReadOnlyList<Message>> GetAllAsync()
     {
-        var entity = await context.Messages.OrderByDescending(i => i.UpdatedAt ?? i.SentAt).ToListAsync();
+        var entity = await context.Messages.OrderBy(i => i.UpdatedAt ?? i.SentAt).ToListAsync();
         return mapper.Map<IReadOnlyList<Message>>(entity);
     }
 

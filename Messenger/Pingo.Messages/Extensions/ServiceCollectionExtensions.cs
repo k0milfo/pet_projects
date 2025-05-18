@@ -1,6 +1,7 @@
 using MassTransit;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.Options;
 using Pingo.Messages.Entity;
 using Pingo.Messages.Implementations;
 using Pingo.Messages.Interfaces;
@@ -18,21 +19,25 @@ public static class ServiceCollectionExtensions
         services.AddScoped<IMessageDataRepository, MessageDataRepository>();
         services.AddScoped<IMessagesService, MessagesService>();
         services.AddAutoMapper(typeof(MappingProfileService));
+        services.AddHostedService<MigrationHostedService>();
+        services.AddScoped<UserLoggedInConsumer>();
         services.AddMassTransit(x =>
         {
-            x.AddConsumer<MessagesService>();
+            x.AddConsumer<UserLoggedInConsumer>();
             x.UsingRabbitMq((context, cfg) =>
             {
-                cfg.ReceiveEndpoint("user-logins-queue", e =>
+                var settings = context.GetRequiredService<IOptions<RabbitMqSettings>>().Value;
+                cfg.Host(settings.Host, h =>
                 {
-                    e.ConfigureConsumer<MessagesService>(context);
+                    h.Username(settings.Login);
+                    h.Password(settings.Password);
+                });
+
+                cfg.ReceiveEndpoint("user-logins-queue", ep =>
+                {
+                    ep.ConfigureConsumer<UserLoggedInConsumer>(context);
                 });
             });
         });
-
-        var serviceProvider = services.BuildServiceProvider();
-        using var scope = serviceProvider.CreateScope();
-        var db = scope.ServiceProvider.GetRequiredService<ApplicationDbContext>();
-        db.Database.Migrate();
     }
 }

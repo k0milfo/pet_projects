@@ -11,6 +11,7 @@ using Pingo.Messages.WebApi.Entity;
 var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
+builder.Services.Configure<RabbitMqSettings>(builder.Configuration.GetSection("RabbitMQ"));
 builder.Services.AddMessages(builder.Configuration.GetConnectionString("DefaultConnection"));
 builder.Services.AddAutoMapper(typeof(MappingProfileWebApi));
 builder.Services.AddSingleton(TimeProvider.System);

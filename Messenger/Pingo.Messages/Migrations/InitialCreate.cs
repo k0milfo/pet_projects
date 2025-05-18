@@ -4,8 +4,8 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace Pingo.Messages.Migrations;
 
-    /// <inheritdoc />
-    public sealed partial class InitialCreate : Migration
+/// <inheritdoc />
+public sealed partial class InitialCreate : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)

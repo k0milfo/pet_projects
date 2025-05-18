@@ -15,3 +15,5 @@
 /Pingo.Identity.ComponentTests/obj
 /Pingo.Identity.Service.Tests/bin
 /Pingo.Identity.Service.Tests/obj
+/Pingo.Identity.Events/bin
+/Pingo.Identity.Events/obj

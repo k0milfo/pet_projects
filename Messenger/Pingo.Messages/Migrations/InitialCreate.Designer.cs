@@ -12,7 +12,7 @@ using Pingo.Messages;
 namespace Pingo.Messages.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20250422224143_InitialCreate")]
+    [Migration("20250515230843_InitialCreate")]
     partial class InitialCreate
     {
         /// <inheritdoc />

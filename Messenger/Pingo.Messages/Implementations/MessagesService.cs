@@ -1,14 +1,12 @@
 using AutoMapper;
-using MassTransit;
 using Pingo.Messages.Entity;
 using Pingo.Messages.Interfaces;
-using Shared;
 using IMessageDataRepository = Pingo.Messages.Interfaces.IMessageDataRepository;
 
 namespace Pingo.Messages.Implementations;
 
 internal sealed class MessagesService(
-    IMessageDataRepository repository, IMapper mapper, TimeProvider timeProvider) : IMessagesService, IConsumer<UserLoggedIn>
+    IMessageDataRepository repository, IMapper mapper, TimeProvider timeProvider) : IMessagesService
 {
     public async Task<IReadOnlyList<Message>> GetMessagesAsync()
     {
@@ -31,10 +29,12 @@ internal sealed class MessagesService(
             {
                 UpdatedAt = timeProvider.GetUtcNow(),
             };
-            await repository.UpdateAsync(oldMessage!);
+            await repository.UpdateAsync(oldMessage);
         }
     }
 
-    async Task IConsumer<UserLoggedIn>.Consume(ConsumeContext<UserLoggedIn> context) =>
-        await repository.InsertAsync(new Message(Guid.NewGuid(), $"Привет, {context.Message.Email}!", SentAt: null, UpdatedAt: null));
+    public async Task SendWelcomeMessageAsync(Guid id, string message)
+    {
+        await repository.InsertAsync(new Message(id, message, timeProvider.GetUtcNow(), UpdatedAt: null));
+    }
 }

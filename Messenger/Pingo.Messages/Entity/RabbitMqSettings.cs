@@ -1,4 +1,4 @@
-namespace Pingo.Identity.WebApi.Entity;
+namespace Pingo.Messages.Entity;
 
 internal sealed class RabbitMqSettings
 {

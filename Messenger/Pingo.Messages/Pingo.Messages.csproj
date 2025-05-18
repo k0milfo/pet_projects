@@ -1,14 +1,7 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
-
+  <Import Project="../Directory.Build.props" />
   <ItemGroup>
-    <None Remove="Extensions\appsettings.json" />
-    <PackageReference Include="MassTransit" Version="8.4.0" />
-    <PackageReference Include="MassTransit.Newtonsoft" Version="8.4.0" />
-    <PackageReference Include="MassTransit.RabbitMQ" Version="8.4.0" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <ProjectReference Include="..\Shared\Shared.csproj" />
+    <ProjectReference Include="..\Pingo.Identity.Events\Pingo.Identity.Events.csproj" />
   </ItemGroup>
 
 </Project>
