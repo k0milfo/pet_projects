@@ -41,8 +41,7 @@ internal sealed class IdentityService(
             return LoginErrorType.InvalidPassword;
         }
 
-        await publishEndpoint.Publish(new UserLoggedIn(request.Email),
-            ctx => ctx.MessageId = Guid.NewGuid());
+        await publishEndpoint.Publish(new UserLoggedIn(request.Email));
         return await ReplaceTokenAsync(user.Email, user.Id);
     }
 
